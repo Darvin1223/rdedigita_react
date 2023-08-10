@@ -4,7 +4,7 @@ const LinksNavegacion = (props) => {
   
     return (
     <React.Fragment>
-         <Link to={props.url}>{props.name}</Link>
+         <Link className='link' to={props.url}>{props.name}</Link>
     </React.Fragment>
     );
 };

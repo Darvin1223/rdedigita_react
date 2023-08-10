@@ -2,7 +2,7 @@ import React from 'react';
 
 const Navegation = ({children}) => {
     return (
-      <nav className='Navegation'>
+      <nav className='Navegation hidden_menu'>
        {children}
       </nav>
     );

@@ -1,0 +1,20 @@
+$font_prymarie: "IBM Plex serif";
+$font_secondary: "Inter";
+*,*::after,*::before{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+html{
+    font-size: 62.5%;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: $font_prymarie;
+}
+a,p,span{
+    font-family: $font_secondary;
+}
+
+img{
+    width: 100%;
+}

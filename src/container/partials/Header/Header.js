@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Logo from "./../../../assets/img/Logordé.svg";
+
 import Navegation from "../../../components/Navegation/Navegation";
 import LinksNavegacion from "../../../components/LinksNavegacion/LinksNavegacion";
+import "./Header.scss";
+import Logo from "../../../components/Logo/Logo";
 const Header = () => {
   const urlCategories = "https://rdedigital.com/wp-json/wp/v2/categories";
   const [dataCategories, setDataCategories] = useState([]);
@@ -15,35 +17,30 @@ const Header = () => {
   dataCategories.forEach((categorie, index) => {
     console.table(index, categorie);
   });
-  const categori = [
+  const links = [
     {
       url: "/",
       name: "home",
     },
     {
-      url: "/12",
-      name: "Prueba",
+      url: "/politica",
+      name: "Politica",
     },
   ];
   return (
     <header className="Header">
       <div className="bar">
         <div className="bar-top">
-          <picture className="header_logo_container">
-            {/* <img className="header_logo_container--logo" src={Logo} alt="Logotipo"/> */}
-          </picture>
+         <Logo />
         </div>
         <div className="bar-down">
-          {/* <Navegation>
-                {elementos.map((elemento,index)=>(
-                    <LinksNavegacion key={index} url={elemento.url} name={elemento.name} />
-                ))}
-            </Navegation> */}
+          <span class="material-symbols-outlined icon_menu">menu</span>
           <Navegation>
-          {dataCategories.map((categorie, index) => (
-      <LinksNavegacion key={index} url={categorie.link} name={categorie.name} />
-    ))}
+            {links.map((link, index) => (
+              <LinksNavegacion key={index} url={link.url} name={link.name} />
+            ))}
           </Navegation>
+
         </div>
       </div>
     </header>
