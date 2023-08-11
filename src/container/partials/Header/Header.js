@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-
 import Navegation from "../../../components/Navegation/Navegation";
 import LinksNavegacion from "../../../components/LinksNavegacion/LinksNavegacion";
 import "./Header.scss";
 import Logo from "../../../components/Logo/Logo";
-const Header = () => {
+
+const Header = ({ isDarkMode }) => {
   const urlCategories = "http://localhost:5000/categories";
   const [dataCategories, setDataCategories] = useState([]);
+
   useEffect(() => {
     fetch(urlCategories)
       .then((response) => response.json())
@@ -17,6 +18,7 @@ const Header = () => {
   dataCategories.forEach((categorie, index) => {
     console.table(index, categorie);
   });
+
   const links = [
     {
       url: "/",
@@ -27,22 +29,23 @@ const Header = () => {
       name: "Politica",
     },
   ];
+
   return (
-    <header className="Header">
+    <header className={`Header ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <div className="bar">
         <div className="bar-top">
          <Logo />
         </div>
         <div className="bar-down">
-          <span class="material-symbols-outlined icon_menu">menu</span>
+          <span className="material-symbols-outlined icon_menu">menu</span>
           <Navegation>
             {links.map((link, index) => (
               <LinksNavegacion key={index} url={link.url} name={link.name} />
             ))}
           </Navegation>
           <Logo />
-          <span class="material-symbols-outlined search-icon">
-          search
+          <span className="material-symbols-outlined search-icon">
+            search
           </span>
         </div>
       </div>
