@@ -5,7 +5,7 @@ import LinksNavegacion from "../../../components/LinksNavegacion/LinksNavegacion
 import "./Header.scss";
 import Logo from "../../../components/Logo/Logo";
 const Header = () => {
-  const urlCategories = "https://rdedigital.com/wp-json/wp/v2/categories";
+  const urlCategories = "http://localhost:5000/categories";
   const [dataCategories, setDataCategories] = useState([]);
   useEffect(() => {
     fetch(urlCategories)
@@ -40,7 +40,10 @@ const Header = () => {
               <LinksNavegacion key={index} url={link.url} name={link.name} />
             ))}
           </Navegation>
-
+          <Logo />
+          <span class="material-symbols-outlined search-icon">
+          search
+          </span>
         </div>
       </div>
     </header>

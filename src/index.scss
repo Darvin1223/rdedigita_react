@@ -11,10 +11,18 @@ html{
 h1,h2,h3,h4,h5,h6{
     font-family: $font_prymarie;
 }
-a,p,span{
+a,p,span,button{
     font-family: $font_secondary;
 }
 
 img{
     width: 100%;
+}
+.btn{
+   padding: .5rem 2rem;
+   background-color: transparent;
+   color: #fff;
+   outline: none;
+   border: solid 0.2rem #fff;
+   border-radius: 0.2rem;
 }
