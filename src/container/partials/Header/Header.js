@@ -7,17 +7,18 @@ import Logo from "../../../components/Logo/Logo";
 const Header = ({ isDarkMode }) => {
   const urlCategories = "http://localhost:5000/categories";
   const [dataCategories, setDataCategories] = useState([]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    fetch(urlCategories)
-      .then((response) => response.json())
-      .then((dataCategories) => setDataCategories(dataCategories))
-      .catch((error) => console.error(`Error obteniendo la data: ${error}`));
-  }, []);
+  // useEffect(() => {
+  //   fetch(urlCategories)
+  //     .then((response) => response.json())
+  //     .then((dataCategories) => setDataCategories(dataCategories))
+  //     .catch((error) => console.error(`Error obteniendo la data: ${error}`));
+  // }, []);
 
-  dataCategories.forEach((categorie, index) => {
-    console.table(index, categorie);
-  });
+  // dataCategories.forEach((categorie, index) => {
+  //   console.table(index, categorie);
+  // });
 
   const links = [
     {
@@ -29,6 +30,9 @@ const Header = ({ isDarkMode }) => {
       name: "Politica",
     },
   ];
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <header className={`Header ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
@@ -53,4 +57,4 @@ const Header = ({ isDarkMode }) => {
   );
 };
 
-export default Header;
+export  {Header};

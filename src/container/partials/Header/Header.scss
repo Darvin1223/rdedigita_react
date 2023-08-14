@@ -43,6 +43,13 @@
             .icon_menu{
                 margin-left: 1rem;
             }
+            &.menu-open {
+                height: auto; // Permite que el contenido del menú se muestre
+                overflow: hidden; // Oculta el contenido que no se ajusta en la vista
+                max-height: 0; // Inicialmente, el menú está oculto
+          
+                transition: max-height 0.3s ease-in-out; // Agrega transición suave
+              }
             .Navegation{
                 display: flex;
                 flex-direction: column;
