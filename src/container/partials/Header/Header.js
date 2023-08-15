@@ -8,7 +8,19 @@ const Header = ({ isDarkMode }) => {
   const urlCategories = "http://localhost:5000/categories";
   const [dataCategories, setDataCategories] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   // useEffect(() => {
   //   fetch(urlCategories)
   //     .then((response) => response.json())
@@ -35,25 +47,26 @@ const Header = ({ isDarkMode }) => {
   };
 
   return (
-    <header className={`Header ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-      <div className="bar">
-        <div className="bar-top">
-         <Logo />
-        </div>
-        <div className="bar-down">
-          <span className="material-symbols-outlined icon_menu">menu</span>
-          <Navegation>
-            {links.map((link, index) => (
-              <LinksNavegacion key={index} url={link.url} name={link.name} />
-            ))}
-          </Navegation>
-          <Logo />
-          <span className="material-symbols-outlined search-icon">
-            search
-          </span>
-        </div>
+    <header className={`Header ${isDarkMode ? 'dark-mode' : 'light-mode'} `}>
+    <div className={`bar ${isScrolled ? 'scrolled' : ''}`}>
+      {/* <div className="bar-top">
+        <Logo />
+      </div> */}
+      <div className={`bar-down ${isMenuOpen ? 'menu-open' : ''}`}>
+        <span className="material-symbols-outlined icon_menu" onClick={toggleMenu}>menu</span>
+        <Navegation>
+          {links.map((link, index) => (
+            <LinksNavegacion key={index} url={link.url} name={link.name} />
+          ))}
+        </Navegation>
+        <Logo />
+        <span className="material-symbols-outlined search-icon">
+          search
+        </span>
       </div>
-    </header>
+    </div>
+  </header>
+  
   );
 };
 

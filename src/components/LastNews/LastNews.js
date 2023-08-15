@@ -30,15 +30,20 @@ const LastNews = () => {
                     <h2 className="news--title">{newsElement.title.rendered}</h2>
                   )}
                   {index === 0 || index === 4 || index === 8 ?(
-                      <div className="news-image">
-                      <img src={imageUrl} alt={newsElement.title.rendered} />
-                    </div>
+                      <picture className="news-image">
+                      <img className="news-image--img" src={imageUrl} alt={newsElement.title.rendered} />
+                    </picture>
                   ):(
                     <div></div>
-                  )
-                  }
+                  )}
+                  {index === 0 || index === 4 || index === 8 ?(
+                    <p className="news-extract" dangerouslySetInnerHTML={{ __html: excerptWithoutEllipsis.substring(0, 200) }} />
+                  ):(
+                    <div></div>
+                  )}
+                 
                 
-                  <p className="news-extract" dangerouslySetInnerHTML={{ __html: excerptWithoutEllipsis }} />
+                  {/* <p className="news-extract" dangerouslySetInnerHTML={{ __html: excerptWithoutEllipsis }} /> */}
                 </article>
               );
             })}

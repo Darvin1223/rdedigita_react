@@ -11,7 +11,7 @@
         .hero_slider_img{
             display: inline-block;
             width: 100%;
-            height: 100%;
+            height: 80vh;
             position: relative;
             &::after{
                 content: "";
@@ -20,6 +20,10 @@
                 height: 100%;
                 background-color: #1717173f;
                 left: 0;
+            }
+            .hero_slider_img--img{
+                height: 100%;
+                object-fit: cover;
             }
         }
         .hero_slider_textContainer{
@@ -36,8 +40,11 @@
                 font-weight: 600;
                 text-align: center;
                 margin-bottom: 2rem;
+                font-size: 3rem;
             }
             .btn{
+
+                font-size: 1.6rem;
                 &:hover{
                     border-color:#FF3910;
                     color: #FF3910;

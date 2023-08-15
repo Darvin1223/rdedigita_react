@@ -15,7 +15,7 @@ const Hero = () => {
                     <img src={sr} className='hero_slider_img--img'/>
                 </picture>
                 <section className='hero_slider_textContainer'>
-                    <h3 className='hero_slider--title'>El sacerdocio del entrenador</h3>
+                    <h2 className='hero_slider--title'>El sacerdocio del entrenador</h2>
                     <Btn url={"#"} text={"Ver mas"}> </Btn>
 
                 </section>

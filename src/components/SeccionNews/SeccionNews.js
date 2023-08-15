@@ -112,14 +112,17 @@ const SeccionNews = () => {
                     {categorizedNews[category]?.slice(0, 10).map((newsElement) => (
                       <article className="section_news--article" key={newsElement.id}>
                         <h3 className="section_news--article-title">{newsElement.title.rendered}</h3>
+                        <picture className="section_news--img">
                         <img
                           src={newsElement.imageUrl}
                           alt={newsElement.title.rendered}
                           className="section_news--article-img"
                         />
+                        </picture>
+                       
                         <div className="section_news--article-text"
                           dangerouslySetInnerHTML={{
-                            __html: newsElement.excerpt.rendered,
+                            __html: newsElement.excerpt.rendered.substring(0, 200),
                           }}
                         />
                       </article>
