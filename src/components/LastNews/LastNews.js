@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './LastNews.scss';
 
 const LastNews = () => {
-  const urlApiLatestPosts = "http://localhost:3001/api/latestPosts"; // Cambia la URL a donde esté corriendo tu servidor backend
+  const urlApiLatestPosts = "https://apitest.rdedigital.com/api/latestPosts"; // Cambia la URL a donde esté corriendo tu servidor backend
   const [lastNews, setLastNews] = useState([]);
 
   useEffect(() => {
@@ -29,14 +29,16 @@ const LastNews = () => {
                   ) : (
                     <h2 className="news--title">{newsElement.title}</h2>
                   )}
-                 
-                    <picture className="news-image">
-                      {imageUrl && (
-                        <img className="news-image--img" src={imageUrl} alt={newsElement.title} />
-                      )}
-                    </picture>
-                 
+                  {index === 0 || index === 4 || index === 8 || index === 11 ? (
+                     <picture className="news-image">
+                     {imageUrl && (
+                       <img className="news-image--img" src={imageUrl} alt={newsElement.title} />
+                     )}
+                   </picture>
+                  ): (
                     <p className="news-extract">{excerptWithoutEllipsis.substring(0, 200)}</p>
+                  )}
+                   
                   
                 </article>
               );

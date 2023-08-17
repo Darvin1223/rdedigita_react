@@ -52,23 +52,7 @@
                 margin-left: 1rem;
             }
           
-            .Navegation{
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                background-color: #fff;
-                height: 100vh;
-                top: 100%;
-                width: 100%;
-                border-right: 0.1rem #000 solid;
-                .link{
-            
-                    color: #c7c7c7;
-                    font-weight: 600;
-                    font-size: 2rem;
-                    text-decoration: none;
-                }
-            }
+           
             
             .logo_container{
                 width: 8rem;
@@ -76,9 +60,7 @@
             .search-icon{
                 margin-right: 1rem;
             }
-            .hidden_menu{
-                left: -100%;
-            }
+           
 
         }
     }

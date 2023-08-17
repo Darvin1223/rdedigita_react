@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './LinksNavegacion.scss';
 const LinksNavegacion = (props) => {
   
     return (

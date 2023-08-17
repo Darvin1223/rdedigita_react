@@ -34,13 +34,41 @@ const Header = ({ isDarkMode }) => {
 
   const links = [
     {
-      url: "/",
-      name: "home",
-    },
-    {
       url: "/politica",
       name: "Politica",
     },
+    {
+      url: "/economia",
+      name:"Economia"
+    },
+    {
+      url:"/arteria",
+      name:"Arteria"
+    },
+    {
+      url:"/ensamble",
+      name:"Ensamble"
+    },
+    {
+      url:"/intervista",
+      name:"Intervista"
+    },
+    {
+      url: "/scout",
+      name: "El Scout"
+    },
+    {
+      url: "/menaje",
+      name: "El Menaje"
+    },
+    {
+      url: "/paraiso",
+      name: "Paraíso"
+    },
+    {
+      url: "/chinazo",
+      name: "El Chinazo"
+    }
   ];
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -52,10 +80,11 @@ const Header = ({ isDarkMode }) => {
       {/* <div className="bar-top">
         <Logo />
       </div> */}
-      <div className={`bar-down ${isMenuOpen ? 'menu-open' : ''}`}>
+      <div className={`bar-down`}>
         <span className="material-symbols-outlined icon_menu" onClick={toggleMenu}>menu</span>
-        <Navegation>
+        <Navegation className={`${isMenuOpen ? '' : 'hidden_menu'}`}>
           {links.map((link, index) => (
+            
             <LinksNavegacion key={index} url={link.url} name={link.name} />
           ))}
         </Navegation>

@@ -1,0 +1,32 @@
+.Navegation{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #fff;
+    height: 100vh;
+    top: 103%;
+    width: 100%;
+    border-right: 0.1rem #000 solid;
+    z-index: 999;
+    animation: show_menu 1s ease-in-out;
+    .link{
+        text-align: center;
+        color: #000;
+        font-weight: 600;
+        font-size: 1.4rem;
+        text-decoration: none;
+        margin: 1rem 0;
+    }
+}
+
+.hidden_menu{
+    top: -100vh;
+}
+@keyframes show_menu {
+    from{
+        top: -100vh;
+    }
+    to{
+        top: 103%;
+    }
+}

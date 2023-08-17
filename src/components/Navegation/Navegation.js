@@ -1,8 +1,8 @@
 import React from 'react';
-
-const Navegation = ({children}) => {
+import './Navegation.scss';
+const Navegation = ({children, className}) => {
     return (
-      <nav className='Navegation hidden_menu'>
+      <nav className={`Navegation ${className}`}>
        {children}
       </nav>
     );
