@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import './LastNews.scss';
 
 const LastNews = () => {
-  const urlApiPost = "http://10.0.0.52:5000/posts";
+  const urlApiLatestPosts = "http://localhost:3001/api/latestPosts"; // Cambia la URL a donde esté corriendo tu servidor backend
   const [lastNews, setLastNews] = useState([]);
 
   useEffect(() => {
-    fetch(urlApiPost)
+    fetch(urlApiLatestPosts)
       .then((response) => response.json())
       .then((data) => setLastNews(data))
-      .catch((error) => console.error("Error fetching news:", error));
+      .catch((error) => console.error("Error fetching latest posts:", error));
   }, []);
 
   if (lastNews.length > 0) {
@@ -19,31 +19,25 @@ const LastNews = () => {
         <section className="news_container lastNews_container">
           <section className="principal_news">
             {lastNews.map((newsElement, index) => {
-              const excerptWithoutEllipsis = newsElement.excerpt.rendered.replace("[&hellip;]", ""); // Remove the ellipsis […]
-              const imageUrl = newsElement.imageUrl; // Assuming you added imageUrl in your API response
-              
+              const excerptWithoutEllipsis = newsElement.content.replace(/<\/?[^>]+(>|$)/g, ""); // Use "content" for content
+              const imageUrl = newsElement.feature_image; // Change to the correct field name in your API response
+
               return (
-                <article key={newsElement.id} className="news_container">
+                <article key={newsElement.ID} className="news_container">
                   {index === 0 ? (
-                    <h1 className="news--title">{newsElement.title.rendered}</h1>
+                    <h1 className="news--title">{newsElement.title}</h1> // Use "title" for title
                   ) : (
-                    <h2 className="news--title">{newsElement.title.rendered}</h2>
-                  )}
-                  {index === 0 || index === 4 || index === 8 ?(
-                      <picture className="news-image">
-                      <img className="news-image--img" src={imageUrl} alt={newsElement.title.rendered} />
-                    </picture>
-                  ):(
-                    <div></div>
-                  )}
-                  {index === 0 || index === 4 || index === 8 ?(
-                    <p className="news-extract" dangerouslySetInnerHTML={{ __html: excerptWithoutEllipsis.substring(0, 200) }} />
-                  ):(
-                    <div></div>
+                    <h2 className="news--title">{newsElement.title}</h2>
                   )}
                  
-                
-                  {/* <p className="news-extract" dangerouslySetInnerHTML={{ __html: excerptWithoutEllipsis }} /> */}
+                    <picture className="news-image">
+                      {imageUrl && (
+                        <img className="news-image--img" src={imageUrl} alt={newsElement.title} />
+                      )}
+                    </picture>
+                 
+                    <p className="news-extract">{excerptWithoutEllipsis.substring(0, 200)}</p>
+                  
                 </article>
               );
             })}

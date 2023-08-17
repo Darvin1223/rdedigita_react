@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const News = () => {
-    const urlApiPost = "http://10.0.0.52:5000/posts";
+    const urlApiPost = "http://192.168.100.56:5001/posts";
 
     const [news, setNews] = useState([]);
 
