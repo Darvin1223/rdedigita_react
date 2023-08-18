@@ -1,5 +1,5 @@
 import React from 'react';
-import { News } from './../News/News';
+
 import sr from './../../assets/img/sr.png';
 import './Hero.scss';
 import Btn from '../Btn/Btn';
