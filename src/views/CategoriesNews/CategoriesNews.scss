@@ -1,0 +1,10 @@
+.section_categories{
+    display: flex;
+    flex-direction: column;
+    .section_categories--title{
+        text-align: center;
+        margin: 2rem 0;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+}

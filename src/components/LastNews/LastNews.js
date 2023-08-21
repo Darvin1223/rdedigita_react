@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./LastNews.scss";
 import { Link } from 'react-router-dom';
+
 const LastNews = () => {
   const urlApiLatestPosts = "https://apitest.rdedigital.com/api/latestPosts"; // Cambia la URL a donde esté corriendo tu servidor backend
   const [lastNews, setLastNews] = useState([]);
@@ -22,15 +23,14 @@ const LastNews = () => {
               const excerptWithoutEllipsis = newsElement.content.replace(
                 /<\/?[^>]+(>|$)/g,
                 ""
-              ); // Use "content" for content
-              const imageUrl = newsElement.feature_image; // Change to the correct field name in your API response
+              );
+              const imageUrl = newsElement.feature_image;
 
               return (
-               
-                  <Link to={`/news/${newsElement.ID}`}>
-                   <article key={newsElement.ID} className="news_container">
+                <Link key={newsElement.ID} to={`/news/${newsElement.ID}`}>
+                  <article className="news_container">
                     {index === 0 ? (
-                      <h1 className="news--title">{newsElement.title}</h1> // Use "title" for title
+                      <h1 className="news--title">{newsElement.title}</h1>
                     ) : (
                       <h2 className="news--title">{newsElement.title}</h2>
                     )}
@@ -58,9 +58,7 @@ const LastNews = () => {
                       <p className="news-extract"></p>
                     )}
                   </article>
-                  </Link>
-                 
-               
+                </Link>
               );
             })}
           </section>

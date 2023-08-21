@@ -1,35 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useParams,Link } from 'react-router-dom';
+import "./CategoriesNews.scss";
+import { News } from '../News/News';
 
-const CategoriesNews = ({ match }) => {
+const CategoriesNews = () => {
+  const { nameCategorie } = useParams();
   const [categoryPosts, setCategoryPosts] = useState([]);
-  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    // Obtén el nombre de la categoría de los parámetros de la URL
-    const categoryName = match.params.nameCategorie;
-    
-    // Realiza una solicitud GET al endpoint de tu servidor Express
-    axios.get(`/api/postsByCategory/${categoryName}`)
-      .then(response => {
-        setCategoryPosts(response.data);
+    fetch(`https://apitest.rdedigital.com/api/postsByCategory/${nameCategorie}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setCategoryPosts(data);
+        setLoading(false);
       })
-      .catch(error => {
-        console.error('Error fetching category posts:', error);
+      .catch((error) => {
+        console.error('Error fetching news:', error);
+        setLoading(false);
       });
-  }, [match.params.nameCategorie]);
+  }, [nameCategorie]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div>
-      <h2>Posts de la categoría {match.params.nameCategorie}</h2>
-      <ul>
-        {categoryPosts.map(post => (
-          <li key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-          </li>
+    <section className="section_categories">
+      <h2 className='section_categories--title'>{nameCategorie}</h2>
+      <section className="section_categories_container_links">{/* Add links here */}</section>
+      <section className="section_categories_container_news">
+        {categoryPosts.map((news) => (
+          <Link to={`/news/${news.ID}`}>
+          <article className="news" key={news.ID}>
+            <picture className="news_img_container">
+              <img src={news.feature_image} alt={news.title} />
+            </picture>
+            <section className="news_texts">
+              <h2 className="news_texts--title">{news.title}</h2>
+              <p className='news_texts--description'>{news.post_excerpt}</p>
+            </section>
+          </article>
+          </Link>
+          
         ))}
-      </ul>
-    </div>
+      </section>
+    </section>
   );
 };
 

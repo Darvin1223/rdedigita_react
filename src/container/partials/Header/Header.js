@@ -73,29 +73,45 @@ const Header = ({ isDarkMode }) => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+  const date = new Date();
+  const currentDay = date.getDay()
+  const currentMoth = date.getMonth();
+  const currentYear = date.getFullYear()
+  const daysOfWeek = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+  const monthsOfYear = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
   return (
+    <>
     <header className={`Header ${isDarkMode ? 'dark-mode' : 'light-mode'} `}>
     <div className={`bar ${isScrolled ? 'scrolled' : ''}`}>
-      {/* <div className="bar-top">
+      {/*  <div className="bar-top">
         <Logo />
-      </div> */}
+      </div>  */}
       <div className={`bar-down`}>
-        <span className="material-symbols-outlined icon_menu" onClick={toggleMenu}>menu</span>
-        <Navegation className={`${isMenuOpen ? '' : 'hidden_menu'}`}>
-          {links.map((link, index) => (
-            
-            <LinksNavegacion key={index} url={link.url} name={link.name} />
-          ))}
-        </Navegation>
-        <Logo />
-        <span className="material-symbols-outlined search-icon">
-          search
-        </span>
+      <section className="bar-down-container">
+      <span className="material-symbols-outlined icon_menu" onClick={toggleMenu}>menu</span>
+      <Navegation className={`${isMenuOpen ? 'show_menu' : 'hidden_menu'}`}>
+        {links.map((link, index) => (
+          
+          <LinksNavegacion key={index} url={link.url} name={link.name} />
+        ))}
+      </Navegation>
+      <Logo />
+      <span className="material-symbols-outlined search-icon">
+        search
+      </span>
+      </section>
+    
       </div>
     </div>
   </header>
-  
+  <section className="timer-secttion">
+  <p><span>{`${daysOfWeek[currentDay]},${monthsOfYear[currentMoth]} ${currentMoth} ,${currentYear}`}</span></p> 
+  </section>
+    </>
+   
   );
 };
 
