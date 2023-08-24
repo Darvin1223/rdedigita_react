@@ -75,6 +75,7 @@ const Header = ({ isDarkMode }) => {
   };
   const date = new Date();
   const currentDay = date.getDay()
+  const currentDayNumber = date.getDate();
   const currentMoth = date.getMonth();
   const currentYear = date.getFullYear()
   const daysOfWeek = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
@@ -82,6 +83,11 @@ const Header = ({ isDarkMode }) => {
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
+  const mesesDelAño = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+  ];
+  
   return (
     <>
     <header className={`Header ${isDarkMode ? 'dark-mode' : 'light-mode'} `}>
@@ -108,7 +114,7 @@ const Header = ({ isDarkMode }) => {
     </div>
   </header>
   <section className="timer-secttion">
-  <p><span>{`${daysOfWeek[currentDay]},${monthsOfYear[currentMoth]} ${currentMoth} ,${currentYear}`}</span></p> 
+  <p><span>{`${daysOfWeek[currentDay]},${mesesDelAño[currentMoth]} ${currentDayNumber} ,${currentYear}`}</span></p> 
   </section>
     </>
    

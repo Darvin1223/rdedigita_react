@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./News.scss";
+import { SocialMediaIcons } from "../../components/SocialMediaIcons/SocialMediaIcons";
+import { RelacionalNews } from "../../components/RelacionalNews/RelacionalNews";
+
 const News = () => {
   const { newsId } = useParams();
   const [newsData, setNewsData] = useState(null);
   const [dataAllCat, setDataAllCat] = useState([]);
+  const [newCat, setNewCat] = useState(""); // State for newCat
 
   useEffect(() => {
-    // Realiza una solicitud GET al endpoint de tu servidor Express para obtener la noticia por ID
     fetch(`https://apitest.rdedigital.com/api/post/${newsId}`)
       .then((response) => response.json())
       .then((data) => {
@@ -17,27 +20,16 @@ const News = () => {
         console.error("Error fetching news details:", error);
       });
   }, [newsId]);
+
   useEffect(() => {
     if (newsData) {
       const categoriesName = newsData.categories_name;
       setDataAllCat(categoriesName);
+      if (categoriesName.length > 1) {
+        setNewCat(categoriesName[1]); // Set newCat based on your logic
+      }
     }
   }, [newsData]);
- console.log(dataAllCat)
-  // const image = newsData.feature_image;
-  // console.log(image);
-  let newCat = "";
-  // console.log(newsData.categories_name);
-  for (let index = 0; index < dataAllCat.length; index++) {
-    if(index === 0){
-     continue;
-    }
-    newCat = dataAllCat[index]
-    break;
-  }
-
-  console.log(newsData)
-  
   return (
     <section className="container">
       {newsData ? (
@@ -66,18 +58,27 @@ const News = () => {
           <section className="article_news_one--info">
             <p>Escrito por <span>{newsData.author_data.post_author}</span> el <span>{newsData.post_date}</span></p>
           </section>
+          <section className="article_news_one--socialMedia">
+            <SocialMediaIcons />
+          </section>
           <h1 className="article_news_one--title">{newsData.title}</h1>
             <picture className="article_news_one_img">
-              <img
-                src={`${newsData.feature_image}`}
+              <img src={`${newsData.feature_image}`}
                 className="article_news_one_img--img"
               />
             </picture>
             <div className="article_news_one--extrac" dangerouslySetInnerHTML={{ __html: newsData.content }} />
           </article>
+          <section className="relacionalNews">
+            <h3 className="relacionalNews--title">Noticias Relacionadas</h3>
+            <ul className="relacionalNews--list">
+            {newCat && <RelacionalNews categorie={newCat} />}
+            </ul>
+          </section>
         </section>
+
       ) : (
-        <p>Cargando...</p>
+        <p className="text-center">Cargando...</p>
       )}
     </section>
   );

@@ -15,6 +15,18 @@
                 }
             }
         }
+        .article_news_one--socialMedia{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+           a{
+            text-decoration: none;
+            &:hover{
+                cursor: pointer;
+            }
+           }
+        }
         .content_one_news_list--sections{
             display: flex;
             // flex-direction: column;
@@ -30,6 +42,10 @@
             
         }
         .article_news_one{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             .article_news_one_img{
                 height: 35rem;
                 display: inline-block;
@@ -55,5 +71,44 @@
                 
             }
         }
+        .relacionalNews{
+            display: flex;
+            flex-direction: column;
+         
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            .relacionalNews--title{
+                text-align: center;
+                font-size: 1.8rem;
+                margin-bottom: 3rem;
+            }
+            .relacionalNews--list{
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                flex-grow: 2;
+            }
+        }
+
+    }
+}
+
+@media only screen and (min-width:768px){
+    .container{
+        .content_one_news{
+            .relacionalNews{
+                .relacionalNews--list{
+                
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 2rem;
+                
+                }
+        
+            }
+    
+        }
+
     }
 }

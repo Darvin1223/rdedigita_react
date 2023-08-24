@@ -1,0 +1,10 @@
+.Social_Media_Lists{
+                
+    a{
+        margin-right: 2rem;
+        font-size: 3rem;
+        &:last-of-type{
+            margin-right: 0;
+        }
+    }
+}
