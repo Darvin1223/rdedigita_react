@@ -29,12 +29,19 @@ a{
 }
 .light-mode {
     background-color: white;
-    color: black;
+    p,h1,h2,h3,h4,a{
+        color: black;
+
+    }
+    color:black;
+    .lastNews .news_container .principal_news .news_container .news-extract{
+        color: black;
+    }
 }
 
 .dark-mode {
     background-color: black;
-    color: white;
+    color: white!important;
 }
 
 img{

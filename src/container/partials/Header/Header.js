@@ -39,86 +39,124 @@ const Header = ({ isDarkMode }) => {
     },
     {
       url: "/economia",
-      name:"Economia"
+      name: "Economia",
     },
     {
-      url:"/arteria",
-      name:"Arteria"
+      url: "/arteria",
+      name: "Arteria",
     },
     {
-      url:"/ensamble",
-      name:"Ensamble"
+      url: "/ensamble",
+      name: "Ensamble",
     },
     {
-      url:"/intervista",
-      name:"Intervista"
+      url: "/intervista",
+      name: "Intervista",
     },
     {
       url: "/scout",
-      name: "El Scout"
+      name: "El Scout",
     },
     {
       url: "/menaje",
-      name: "El Menaje"
+      name: "El Menaje",
     },
     {
       url: "/paraiso",
-      name: "Paraíso"
+      name: "Paraíso",
     },
     {
       url: "/chinazo",
-      name: "El Chinazo"
-    }
+      name: "El Chinazo",
+    },
   ];
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const date = new Date();
-  const currentDay = date.getDay()
+  const currentDay = date.getDay();
   const currentDayNumber = date.getDate();
   const currentMoth = date.getMonth();
-  const currentYear = date.getFullYear()
-  const daysOfWeek = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+  const currentYear = date.getFullYear();
+  const daysOfWeek = [
+    "Domingo",
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+  ];
   const monthsOfYear = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   const mesesDelAño = [
-    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
   ];
-  
+
   return (
     <>
-    <header className={`Header ${isDarkMode ? 'dark-mode' : 'light-mode'} `}>
-    <div className={`bar ${isScrolled ? 'scrolled' : ''}`}>
-      {/*  <div className="bar-top">
+      <header className={`Header ${isDarkMode ? "dark-mode" : "light-mode"} `}>
+        <div className={`bar ${isScrolled ? "scrolled" : ""}`}>
+          {/*  <div className="bar-top">
         <Logo />
       </div>  */}
-      <div className={`bar-down`}>
-      <section className="bar-down-container">
-      <span className="material-symbols-outlined icon_menu" onClick={toggleMenu}>menu</span>
-      <Navegation className={`${isMenuOpen ? 'show_menu' : 'hidden_menu'}`}>
-        {links.map((link, index) => (
-          
-          <LinksNavegacion key={index} url={link.url} name={link.name} />
-        ))}
-      </Navegation>
-      <Logo />
-      <span className="material-symbols-outlined search-icon">
-        search
-      </span>
+          <div className={`bar-down`}>
+            <section className="bar-down-container">
+              <span
+                className="material-symbols-outlined icon_menu"
+                onClick={toggleMenu}
+              >
+                menu
+              </span>
+              <Logo />
+              <Navegation
+                className={`${isMenuOpen ? "show_menu" : "hidden_menu"}`}
+              >
+                {links.map((link, index) => (
+                  <LinksNavegacion
+                    key={index}
+                    url={link.url}
+                    name={link.name}
+                  />
+                ))}
+              </Navegation>
+              <span className="material-symbols-outlined search-icon">
+                search
+              </span>
+            </section>
+          </div>
+        </div>
+      </header>
+      <section className="timer-secttion">
+        <p>
+          <span>{`${daysOfWeek[currentDay]},${mesesDelAño[currentMoth]} ${currentDayNumber} ,${currentYear}`}</span>
+        </p>
       </section>
-    
-      </div>
-    </div>
-  </header>
-  <section className="timer-secttion">
-  <p><span>{`${daysOfWeek[currentDay]},${mesesDelAño[currentMoth]} ${currentDayNumber} ,${currentYear}`}</span></p> 
-  </section>
     </>
-   
   );
 };
 
-export  {Header};
+export { Header };

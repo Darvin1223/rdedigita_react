@@ -96,3 +96,27 @@
     }
 }
   
+
+// Desktop
+@media only screen and (min-width: 1024px) {
+    .Header{
+        .bar{
+
+            .bar-down{
+                .bar-down-container{
+                    
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    // Icon hamburguesa
+                    .icon_menu{
+                        display: none;
+                    }
+                    .logo_container{
+                       margin-left: 1rem;
+                    }
+                }
+            }
+        }
+    }
+    
+}

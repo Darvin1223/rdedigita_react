@@ -69,6 +69,7 @@ const News = () => {
             </picture>
             <div className="article_news_one--extrac" dangerouslySetInnerHTML={{ __html: newsData.content }} />
           </article>
+          
           <section className="relacionalNews">
             <h3 className="relacionalNews--title">Noticias Relacionadas</h3>
             <ul className="relacionalNews--list">

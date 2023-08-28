@@ -13,7 +13,6 @@ const Home = () => {
             <Hero />
             <LastNews />
             <SeccionNews />
-            
          </main>
         </React.Fragment>
          

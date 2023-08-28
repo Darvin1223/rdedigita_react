@@ -5,9 +5,9 @@ const RelacionalNews = ({categorie}) => {
 
     const [relacionalCategorie, setRelacionalCategorie] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    console.log(categorie)
     const API_URL = `https://apitest.rdedigital.com/api/postsByCategory/${categorie}`;
-    useEffect(() =>{
+    useEffect(() =>{ 
         fetch(API_URL)
         .then((response) => response.json())
         .then((data) => {
@@ -26,7 +26,7 @@ const RelacionalNews = ({categorie}) => {
         <>
     
         {relacionalCategorie.map((element, index) => {
-          if (index < 10) {
+          if (index < 10 && index >0) {
             return (
               <li key={index} className='news_relational--elements'>
               <Link to={`/news/${element.ID}`}>

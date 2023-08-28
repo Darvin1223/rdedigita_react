@@ -44,3 +44,18 @@
         top: -100vh;
     }
 }
+
+@media only screen and (min-width: 1024px){
+    .Navegation{
+        flex-direction: row;
+        position: initial;
+        // top: 0;
+        // left: 0;
+         height: 100%;
+         width: 70%;
+         align-items: center;
+         justify-content: space-evenly;
+         background-color: transparent;
+         border: none;
+    }
+}
