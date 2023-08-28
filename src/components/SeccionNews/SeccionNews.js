@@ -2,14 +2,26 @@ import React, { useEffect, useState } from "react";
 
 import './SeccionNews.scss';
 
-import elMenaje from "../../assets/img/El menaje.png";
+import elMenaje from "../../assets/img/ElMenaje.png";
 import Intervista from "../../assets/img/Intervista.png";
-import Arteria from "./../../assets/img/Arteria_mobile.png";
-import elScout from "./../../assets/img/Paraiso.png"
+import Arteria from "./../../assets/img/Areria.png";
+import elScout from "./../../assets/img/ElScout.png";
+import Paraiso from "./../../assets/img/Paraiso.png";
+import Politica from "./../../assets/img/Politica.png";
+import Economia from "./../../assets/img/Economia.png";
+import Farandula from './../../assets/img/Farandula.png'
 
 // Mobile
-import ParaisoMobile from "../../assets/img/Paraiso_mobile.png";
-import ArteriaMobile from "../../assets/img/Arteria_mobile.png";
+import elMenaje_Mobile from "../../assets/img/ElMenaje_Mobile.png";
+import Intervista_Mobile from "../../assets/img/Intervista_Mobile.png";
+import Arteria_Mobile from "./../../assets/img/Arteria_Mobile.png";
+import elScout_Mobile from "./../../assets/img/ElScout_Mobile.png";
+import Paraiso_Mobile from "./../../assets/img/Paraiso_Mobile.png";
+import Politica_Mobile from "./../../assets/img/Politica_Mobile.png";
+import Economia_Mobile from "./../../assets/img/Economia_Mobile.png";
+import Farandula_Mobile from "./../../assets/img/Farandula_mobile.png";
+
+// Imports
 import { Link } from "react-router-dom";
 
 
@@ -48,14 +60,14 @@ const SeccionNews = () => {
   }, []);
 
   const categories = [
-    { id: 1, originalName: "Arte_Y_Cultura", ourName: "Arteria", banner: null, banner_mobile: ArteriaMobile, banner_tablet: "" },
-    { id: 2, originalName: "Deportes", ourName: "El Scout", banner: "", banner_mobile: ParaisoMobile, banner_tablet: "" },
-    { id: 3, originalName: "Musica", ourName: "Intervista", banner: Intervista, banner_mobile:ParaisoMobile },
-    { id: 4, originalName: "Politica", ourName: "Politica", banner: null,banner_mobile: ParaisoMobile },
-    { id: 5, originalName: "Comida", ourName: "El Menaje", banner: elMenaje, banner_mobile:ParaisoMobile },
-    { id: 6, originalName: "Turismo", ourName: "Paraíso", banner: "", banner_mobile: ParaisoMobile },
-    { id: 7, originalName: "Economia", ourName: "Economia", banner: null,banner_mobile: ParaisoMobile },
-    { id: 8, originalName: "Frandula", ourName: "Farandula", banner: null,banner_mobile: ParaisoMobile },
+    { id: 1, originalName: "Arte_Y_Cultura", ourName: "Arteria", banner: Arteria, banner_mobile: Arteria_Mobile, banner_tablet:Arteria_Mobile },
+    { id: 2, originalName: "Deportes", ourName: "El Scout", banner: elScout, banner_mobile: elScout_Mobile, banner_tablet:elScout_Mobile },
+    { id: 3, originalName: "Musica", ourName: "Intervista", banner: Intervista, banner_mobile:Intervista_Mobile,banner_tablet:Intervista_Mobile},
+    { id: 4, originalName: "Politica", ourName: "Politica", banner: Politica,banner_mobile: Politica_Mobile,banner_tablet:Politica_Mobile },
+    { id: 5, originalName: "Comida", ourName: "El Menaje", banner: elMenaje, banner_mobile:elMenaje_Mobile,banner_tablet:elMenaje_Mobile },
+    { id: 6, originalName: "Turismo", ourName: "Paraíso", banner: Paraiso, banner_mobile: Paraiso_Mobile,banner_tablet:Paraiso_Mobile },
+    { id: 7, originalName: "Economia", ourName: "Economia", banner: Economia,banner_mobile: Economia_Mobile,banner_tablet:Economia_Mobile },
+    { id: 8, originalName: "Frandula", ourName: "Farandula", banner: Farandula,banner_mobile: Farandula_Mobile,banner_tablet:Farandula_Mobile },
   ];
 
 
@@ -71,6 +83,8 @@ const SeccionNews = () => {
                 categorie.originalName === categoryName ?(
                   <section key={categoryName} className={`section section-${categorie.ourName}`}>
                     <picture className="section_banner">
+                      <source media="(min-width:1024px)" srcSet={categorie.banner} className="section_banner--img"/>
+                      <source media="(min-width:768px)" srcSet={categorie.banner_tablet} className="section_banner--img"/>
                       <img src={categorie.banner_mobile} className="section_banner--img"/>
                     </picture>
                     <h3 className="section--title">{categorie.ourName}</h3>

@@ -11,6 +11,16 @@
     padding: 2rem 0;
     position: relative;
     width: 88%;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 6rem;
+      left: 50%; /* Posiciona el elemento en el centro horizontal */
+      transform: translateX(-50%); /* Centra el elemento en sí mismo */
+      width: 88vw;
+      height: 0.3rem;
+      background-color: #fff;
+    }
   }
   .section_container {
     width: 100%;

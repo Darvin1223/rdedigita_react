@@ -6,6 +6,7 @@ import {Home} from './../views/Home/Home'; // Asegúrate de importar tus compone
 
 import { CategoriesNews } from '../views/CategoriesNews/CategoriesNews';
 import { News } from '../views/News/News';
+import {ElScout} from './../views/ElScout/ElScout';
  
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path="/news/:newsId" element={<News />} />
           <Route  path='/news/category/:nameCategorie' element={<CategoriesNews />} />
+          <Route path='/el_scout' element={<ElScout/>}/>
         </Routes>
       </Layout>
     </Router>

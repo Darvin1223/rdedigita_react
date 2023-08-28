@@ -6,6 +6,9 @@
     .content_one_news{
         width: 90%;
         margin-top: 3rem;
+        .content_one_news--top{
+            display: none;
+        }
         .article_news_one--info{
             p{
                 margin: 2rem 0;
@@ -74,14 +77,26 @@
         .relacionalNews{
             display: flex;
             flex-direction: column;
-         
+            position: relative;
             width: 100%;
             justify-content: center;
-            align-items: center;
+            // align-items: center;
+           
             .relacionalNews--title{
                 text-align: left;
                 font-size: 1.8rem;
                 margin-bottom: 3rem;
+                margin-left: 0.4rem;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 3rem;
+                    left: 50%; /* Posiciona el elemento en el centro horizontal */
+                    transform: translateX(-50%); /* Centra el elemento en sí mismo */
+                    width: 88vw;
+                    height: 0.3rem;
+                    background-color: #fff;
+                  }
             }
             .relacionalNews--list{
                 display: flex;
