@@ -7,6 +7,7 @@ import {Home} from './../views/Home/Home'; // Asegúrate de importar tus compone
 import { CategoriesNews } from '../views/CategoriesNews/CategoriesNews';
 import { News } from '../views/News/News';
 import {ElScout} from './../views/ElScout/ElScout';
+import { Arteria } from '../views/Arteria/Arteria';
  
 function App() {
   return (
@@ -17,7 +18,14 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path="/news/:newsId" element={<News />} />
           <Route  path='/news/category/:nameCategorie' element={<CategoriesNews />} />
-          <Route path='/el_scout' element={<ElScout/>}/>
+          <Route path='/el_scout'  element={<ElScout status={true} view={'ElScout'}/>}/>
+          <Route path='/arteria'  element={<Arteria status={true} view={'Arteria'}/>}/>
+          <Route path='/intervista'  element={<ElScout status={true} view={'Intervista'}/>}/>
+          <Route path='/politica'  element={<ElScout status={true} view={'Politica'}/>}/>
+          <Route path='/el_menaje'  element={<ElScout status={true} view={'ElMenaje'}/>}/>
+          <Route path='/economia'  element={<ElScout status={true} view={'Economia'}/> }/>
+          <Route path='/paraiso'  element={<ElScout status={true} view={'Paraiso'}/>}/>
+          <Route path='/farandula'  element={<ElScout status={true} view={'Farandula'}/>}/>
         </Routes>
       </Layout>
     </Router>

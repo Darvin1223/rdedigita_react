@@ -4,4 +4,18 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    background-image: url('./../../assets/img/construccion/mobile/En\ Construcción\ 320x751\ El\ Scout.png');
+
+}
+@media only screen and (min-width:1024px){
+    .ElScout-View{
+        background-image: url('./../../assets/img/construccion/1024/En\ Construcción\ 1024x800\ El\ Scout.png');
+
+    }
+}
+@media only screen and (min-width:1440px){
+    .ElScout-View{
+        background-image: url('./../../assets/img/construccion/ElScout_mantenimiento.png');
+
+    }
 }

@@ -1,0 +1,21 @@
+.Arteria-View{
+    height: 100vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url('./../../assets/img/construccion/mobile/En_Construcción_320x751_Arteria.png');
+
+}
+@media only screen and (min-width:1024px){
+    .Arteria-View{
+        background-image: url('./../../assets/img/construccion/1024/En\ Construcción\ 1024x800\ Arteria.png');
+
+    }
+}
+@media only screen and (min-width:1440px){
+    .Arteria-View{
+        background-image: url('./../../assets/img/construccion/1440/En\ Construcción\ 1440x1128\ Arteria.png');
+
+    }
+}

@@ -1,4 +1,5 @@
-// 2,6,11
+
+
 .lastNews {
   width: 100%;
   display: flex;
@@ -6,6 +7,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-bottom: 3rem;
   &::after {
     content: "";
     position: absolute;
@@ -16,7 +18,6 @@
     height: 0.1rem;
     background-color: #fff;
   }
-
   .lastNews-section--title {
     font-size: 2.4rem;
     text-align: left;
@@ -34,65 +35,196 @@
       background-color: #fff;
     }
   }
+
+  // Secciones
   .news_container {
-    width: 88%;
-    display: flex;
-    flex-wrap: wrap;
-    .first-news-container{
-      margin-bottom: 3rem;
-      h1.news--title {
-       font-size: 2.8rem;
-       margin-bottom: 3rem;
-       line-height: 3rem;
-     }
-     .news-extract{
-      color: #fff;
-      font-size: 1.7rem;
-      line-height: 2.2rem;
-      margin-bottom: 1.4rem;
-      text-align: left;
-     }
+    width: 80%;
+    .first-news-container {
+      display: grid;
+      width: 100%;
+      article {
+        margin-bottom: 2rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        h1.news--title {
+          font-size: 2.5rem;
+          line-height: 3rem;
+          margin-bottom: 3rem;
+        }
+        .news-image {
+          height: 35rem;
+          margin-bottom: 2rem;
+          position: relative;
+          .news-image--img {
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .news-extract {
+          color: #fff;
+          font-size: 1.7rem;
+          line-height: 2.2rem;
+          margin-bottom: 1.4rem;
+          text-align: left;
+        }
+      }
     }
+    .second-news,
+    .third-news {
+     display: flex;
+     flex-direction: column;
+      width: 100%;
+      article {
+        margin-bottom: 2rem;
+        width: 100%;
+        h2.news--title {
+          font-size: 2rem;
+          margin-bottom: 1.5rem;
+          position: relative;
+          text-align: left;
+           &:after {
+            background-color: hsla(0, 0%, 68%, 0.376);
+            content: "";
+            height: 0.1rem;
+            left: 50%;
+            position: absolute;
+            top: -15%;
+            transform: translateX(-50%);
+            width: 90vw;
+          }
+        }
+        .news-image {
+          height: 35rem;
+          margin-bottom: 2rem;
+          position: relative;
+          display: inline-block;
+          .news-image--img {
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .news-extract {
+          color: #fff;
+          font-size: 1.7rem;
+          line-height: 2.2rem;
+          margin-bottom: 1.4rem;
+          text-align: left;
+        }
+      }
+    }
+  }
 
   }
-}
 
-@media only screen and (min-width: 1024px) {
-  .lastNews {
-    max-width: 1024px;
-    .lastNews-section--title {
+
+  @media only screen and (min-width: 1024px) {
+    .lastNews{
+      max-width: 1024px;
       &::after {
         content: "";
         position: absolute;
-        top: 4rem;
-        left: 60%;
+        top: 100%;
+        left: 50%;
         transform: translateX(-50%);
-        width: 60vw;
-        height: 0.3rem;
+        width: 1024px;
+        height: 0.1rem;
         background-color: #fff;
-      }
     }
-    .news_container {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr; /* Tres columnas de igual ancho */
-      gap: 10px;
-      a {
-        display: inline-block;
-        .post {
-          border: 1px solid #ccc;
-          padding: 10px;
+      .lastNews-section--title{
+        width: 100%;
+        &::after {
+          content: "";
+          position: absolute;
+          top: 3.5rem;
+          left: 60%;
+          transform: translateX(-50%);
+          width: 80rem;
+          height: 0.3rem;
+          background-color: #fff;
+        }
+      }
+      .news_container{
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 1rem;
+        width: 100%;
+        .first-news-container {
           display: flex;
           flex-direction: column;
+          width: 100%;
+          article {
+            margin-bottom: 2rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            h1.news--title {
+              font-size: 2.5rem;
+              line-height: 3rem;
+              margin-bottom: 3rem;
+            }
+            .news-image {
+              height: 20rem;
+              margin-bottom: 2rem;
+              position: relative;
+              .news-image--img {
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+           
+          }
         }
-
-        .first-post {
-          grid-column: 1 / 2; /* Ocupa la primera columna */
+        .second-news,.third-news{
+          h2.news--title {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            position: initial;
+            text-align: left;
+             &:after {
+              display: none;
+            }
+          }
+          article {
+            margin-bottom: 2rem;
+            width: 100%;
+            h2.news--title {
+              font-size: 2rem;
+              margin-bottom: 1.5rem;
+              position: relative;
+              text-align: left;
+               &:after {
+                background-color: hsla(0, 0%, 68%, 0.376);
+                content: "";
+                height: 0.1rem;
+                left: 50%;
+                position: absolute;
+                top: -15%;
+                transform: translateX(-50%);
+                width: 90vw;
+              }
+            }
+            .news-image {
+              height: 20rem;
+              margin-bottom: 2rem;
+              position: relative;
+              display: inline-block;
+              .news-image--img {
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+            .news-extract {
+              color: #fff;
+              font-size: 1.4rem;
+              line-height: 2.2rem;
+              margin-bottom: 1.4rem;
+              text-align: left;
+            }
+          }
         }
-
-        .other-post {
-          grid-column: 2 / 4; /* Ocupa las columnas 2 y 3 */
+          
         }
       }
     }
-  }
-}
+  
