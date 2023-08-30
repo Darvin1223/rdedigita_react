@@ -58,7 +58,7 @@ const Header = ({ isDarkMode }) => {
       name: "El Scout",
     },
     {
-      url: "/menaje",
+      url: "/el_menaje",
       name: "El Menaje",
     },
     {

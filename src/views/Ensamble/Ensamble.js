@@ -1,12 +1,8 @@
 import React from 'react';
-
-import "./ElScout.scss";
-const ElScout = ({status,view}) => {
-    
+import './Ensamble.scss';
+const Ensamble = ({status,view}) => {
     return (
         <>
-      
-          
         {status ? (
             <section className={`${view}-View`}>
             </section>
@@ -16,9 +12,7 @@ const ElScout = ({status,view}) => {
         )}
      
         </>
-       
-      );
-      
+    );
 };
 
-export { ElScout };
+export {Ensamble};

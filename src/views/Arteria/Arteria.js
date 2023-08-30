@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './Arteria.scss';
 const Arteria = ({ status, view }) => {
   return (
