@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './SeccionNews.scss';
+import DOMPurify, { sanitize } from 'dompurify';
+
 
 import elMenaje from "../../assets/img/ElMenaje.png";
 import Intervista from "../../assets/img/Intervista.png";
@@ -88,7 +90,8 @@ const SeccionNews = () => {
                 </picture>
                 <section className="section_element_texts">
                   <h4 className="section_element_texts--title">{element.title}</h4>
-                  <div className="section_element_texts--extrac" dangerouslySetInnerHTML={{ __html: element.content.substring(0, 150) + "..." }}></div>
+                  {sanitize = DOMPurify.sanitize}
+                                  <div className="section_element_texts--extrac" dangerouslySetInnerHTML={{ __html: sanitize(element.content).substring(0, 100) + "..." }}></div>
                 </section>
               </article>
             </Link>
@@ -118,7 +121,6 @@ const SeccionNews = () => {
                         <h3 className="section--title">{categorie.ourName}</h3>
                         <section className="news_container">
                         {sections[categoryName].slice(0, 6).map((element, index) => (
-                         
                           <section className="news_content" key={index}>
                             <Link to={`/news/${element.ID}`} key={index}>
                               <article className="section_element" key={index}>
@@ -126,8 +128,9 @@ const SeccionNews = () => {
                                   <img src={element.feature_image} className="section_element_img-container--img" alt={element.title} />
                                 </picture>
                                 <section className="section_element_texts">
-                                  <h4 className="section_element_texts--title">{element.title}</h4>
-                                  <div className="section_element_texts--extrac" dangerouslySetInnerHTML={{ __html: element.content.substring(0, 150) + "..." }}></div>
+                                  <h4 className="section_element_texts--title">{element.title.substring(0,50)}</h4>
+                                  {sanitize = DOMPurify.sanitize}
+                                  <div className="section_element_texts--extrac" dangerouslySetInnerHTML={{ __html: sanitize(element.content).substring(0, 100) + "..." }}></div>
                                 </section>
                               </article>
                             </Link>

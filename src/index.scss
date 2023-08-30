@@ -1,11 +1,13 @@
-$font_prymarie: 'IBM Plex Serif', serif;;
-$font_secondary: 'Inter', sans-serif;;
-*,*::after,*::before{
+$font_prymarie: 'IBM Plex Serif', serif;
+$font_secondary: 'Inter', sans-serif;
+
+*, *::after, *::before {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
-html{
+
+html {
     font-size: 62.5%;
     width: 100%;
     display: flex;
@@ -13,51 +15,81 @@ html{
     justify-content: center;
     align-items: center;
 }
-body{
+
+body {
     width: 100%;
     height: 100vh;
 }
-h1,h2,h3,h4,h5,h6{
+
+h1, h2, h3, h4, h5, h6 {
     font-family: $font_prymarie;
 }
-a,p,span,button{
+
+a, p, span, button {
     font-family: $font_secondary;
 }
-a{
+
+a {
     text-decoration: none;
     color: #fff;
 }
+
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
 .light-mode {
     background-color: white;
-    p,h1,h2,h3,h4,a{
-        color: black;
+    color: black;
 
+    p, h1, h2, h3, h4, a {
+        color: black;
+        &::after{
+            background-color: #000!important;
+        }
     }
-    .news-extract{
+    section{
+        &::after{
+            background-color: #000!important;
+        }
+    }
+    .news-extract {
         color: #000!important;
     }
-    color:black;
-    .news-extract{
-        color: black;
+    &::after {
+        background-color: #000!important;
     }
 }
 
 .dark-mode {
     background-color: black;
-    color: white!important;
+    color: white;
+
+    p, h1, h2, h3, h4, a {
+        color: white;
+    }
+
+    *::after {
+        background-color: #fff; 
+    }
 }
 
-img{
+img {
     width: 100%;
 }
-.btn{
-   padding: .5rem 2rem;
-   background-color: transparent;
-   color: #fff;
-   outline: none;
-   border: solid 0.2rem #fff;
-   border-radius: 0.2rem;
+
+.btn {
+    padding: .5rem 2rem;
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+    border: solid 0.2rem #fff;
+    border-radius: 0.2rem;
 }
-.text-center{
+
+.text-center {
     text-align: center;
 }

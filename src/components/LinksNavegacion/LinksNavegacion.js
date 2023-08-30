@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './LinksNavegacion.scss';
-const LinksNavegacion = (props) => {
-  
+
+const LinksNavegacion = ({ url, name, onClick }) => {
     return (
-    <React.Fragment>
-         <Link className='link' to={props.url}>{props.name}</Link>
-    </React.Fragment>
+        <Link className='link' to={url} onClick={onClick}>
+            {name}
+        </Link>
     );
 };
 

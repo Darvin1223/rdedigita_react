@@ -19,7 +19,7 @@ const LastNews = () => {
     const thirdNews = lastNews.slice(5);
 
     return (
-      <section className="lastNews">
+      <section className={`lastNews`}>
         <h2 className="lastNews-section--title">Últimas noticias</h2>
         <section className="news_container lastNews_container principal_news">
           <div className="first-news-container">
@@ -32,7 +32,7 @@ const LastNews = () => {
                       <img className="news-image--img" src={firstNews.feature_image} alt={firstNews.title} />
                     )}
                   </picture>
-                  <p className="news-extract">{firstNews.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 150)+ "..."}</p>
+                  <p className="news-extract">{firstNews.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 200)+ "..."}</p>
                 </article>
               </Link>
             )}
@@ -47,7 +47,7 @@ const LastNews = () => {
                       <img className="news-image--img" src={newsElement.feature_image} alt={newsElement.title} />
                     )}
                   </picture>
-                  <p className="news-extract">{newsElement.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 150)+ "..."}</p>
+                  <p className="news-extract">{newsElement.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 200)+ "..."}</p>
                 </article>
               </Link>
             ))}
@@ -66,7 +66,7 @@ const LastNews = () => {
                           <img className="news-image--img" src={newsElement.feature_image} alt={newsElement.title} />
                         )}
                       </picture>
-                      <p className="news-extract">{newsElement.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 150)+ "..."}</p>
+                      <p className="news-extract">{newsElement.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 200)+ "..."}</p>
                     </>
                   ) : (
                     <h2 className="news--title">{newsElement.title}</h2>
@@ -88,7 +88,7 @@ const LastNews = () => {
                           <img className="news-image--img" src={newsElement.feature_image} alt={newsElement.title} />
                         )}
                       </picture>
-                      <p className="news-extract">{newsElement.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 150)+ "..."}</p>
+                      <p className="news-extract">{newsElement.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 200)+ "..."}</p>
                     </>
                   ) : (
                     <h2 className="news--title">{newsElement.title}</h2>

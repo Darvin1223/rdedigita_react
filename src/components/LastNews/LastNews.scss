@@ -52,8 +52,14 @@
           line-height: 3rem;
           margin-bottom: 3rem;
         }
+        h2.news--title{
+          font-size: 2rem;
+          margin-bottom: 1.5rem;
+          position: relative;
+          text-align: left;
+        }
         .news-image {
-          height: 35rem;
+          height: 26rem;
           margin-bottom: 2rem;
           position: relative;
           .news-image--img {
@@ -115,10 +121,10 @@
     }
   }
 
-  }
+}
 
 
-  @media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1024px) {
     .lastNews{
       max-width: 1024px;
       &::after {
@@ -226,5 +232,5 @@
           
         }
       }
-    }
+  }
   

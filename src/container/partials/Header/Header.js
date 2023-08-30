@@ -4,7 +4,8 @@ import LinksNavegacion from "../../../components/LinksNavegacion/LinksNavegacion
 import "./Header.scss";
 import Logo from "../../../components/Logo/Logo";
 
-const Header = ({ isDarkMode }) => {
+const Header = ({isDarkMode}) => {
+  // console.log(isDarkMode)
   const urlCategories = "http://localhost:5000/categories";
   const [dataCategories, setDataCategories] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,16 +22,7 @@ const Header = ({ isDarkMode }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  // useEffect(() => {
-  //   fetch(urlCategories)
-  //     .then((response) => response.json())
-  //     .then((dataCategories) => setDataCategories(dataCategories))
-  //     .catch((error) => console.error(`Error obteniendo la data: ${error}`));
-  // }, []);
-
-  // dataCategories.forEach((categorie, index) => {
-  //   console.table(index, categorie);
-  // });
+ 
 
   const links = [
     {
@@ -118,7 +110,7 @@ const Header = ({ isDarkMode }) => {
 
   return (
     <>
-      <header className={`Header ${isDarkMode ? "dark-mode" : "light-mode"} `}>
+      <header className={`Header ${isDarkMode ? 'dark-mode':'light-mode'}`}>
         <div className={`bar ${isScrolled ? "scrolled" : ""}`}>
           {/*  <div className="bar-top">
         <Logo />
@@ -132,14 +124,13 @@ const Header = ({ isDarkMode }) => {
                 menu
               </span>
               <Logo />
-              <Navegation
-                className={`${isMenuOpen ? "show_menu" : "hidden_menu"}`}
-              >
+              <Navegation className={`${isMenuOpen ? "show_menu" : "hidden_menu"}`}>
                 {links.map((link, index) => (
                   <LinksNavegacion
                     key={index}
                     url={link.url}
                     name={link.name}
+                    onClick={toggleMenu} // Pasa la función toggleMenu como prop
                   />
                 ))}
               </Navegation>

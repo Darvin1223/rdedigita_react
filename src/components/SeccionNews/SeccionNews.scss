@@ -5,6 +5,18 @@
   align-items: center;
   width: 100%;
   margin-right: 2rem;
+  position: relative;
+  margin-bottom: 2rem;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%; /* Posiciona el elemento en el centro horizontal */
+    transform: translateX(-50%); /* Centra el elemento en sí mismo */
+    width: 83vw;
+    height: 0.1rem;
+    background-color: #fff;
+  }
   .section--title {
     font-size: 2.4rem;
     text-align: left;
@@ -33,10 +45,12 @@
           display: flex;
           justify-content: center;
           align-items: center;
+       
         
           .section_element_img-container{
             display: inline-block;
-            height: 35rem;
+            height: 26rem;
+            width: 26rem;
             margin-bottom: 1rem;
             .section_element_img-container--img{
               height: 100%;
@@ -46,9 +60,10 @@
             }
           }
           .section_element_texts{
-  
+           
             .section_element_texts--title{
               font-size: 2rem;
+              line-height: 1;
               margin-bottom: 1rem;
             }
             .section_element_texts--extrac{
@@ -82,6 +97,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%; /* Posiciona el elemento en el centro horizontal */
+      transform: translateX(-50%); /* Centra el elemento en sí mismo */
+      width: 100rem;
+      height: 0.1rem;
+      background-color: #fff;
+    }
     .section_banner--link{
       &:hover{
         cursor: pointer;

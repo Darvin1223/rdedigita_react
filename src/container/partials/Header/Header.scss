@@ -1,14 +1,40 @@
-/* Estilos para el modo claro */
+
 .light-mode {
-    background-color: #fff;
-    color: #000;
+    background-color: white;
+    color: black;
+
+    p, h1, h2, h3, h4, a {
+        color: black;
+        &::after{
+            background-color: #000!important;
+        }
+    }
+    section{
+        &::after{
+            background-color: #000!important;
+        }
+    }
+    .news-extract {
+        color: #000!important;
+    }
+    &::after {
+        background-color: #000!important;
+    }
 }
 
-/* Estilos para el modo oscuro */
 .dark-mode {
-    background-color: #000;
-    color: #fff;
+    background-color: black;
+    color: white;
+
+    p, h1, h2, h3, h4, a {
+        color: white;
+    }
+
+    *::after {
+        background-color: #fff; 
+    }
 }
+
 .Header{
     // background-color: #fff;
     width: 100%;
