@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import "./News.scss";
 import { SocialMediaIcons } from "../../components/SocialMediaIcons/SocialMediaIcons";
 import { RelacionalNews } from "../../components/RelacionalNews/RelacionalNews";
+import { LastNewsComponent } from "./../../components/LastNewsComponent/LastNewsComponent";
 
 const News = () => {
   const { newsId } = useParams();
@@ -30,55 +31,96 @@ const News = () => {
       }
     }
   }, [newsData]);
+
+  console.log(newCat)
   return (
     <section className="container">
       {newsData ? (
-        <section className="content_one_news">
-        <section className="content_one_news--top">
-        <ul className="content_one_news_list--sections">
-            <li className="content_one_news_list--sections--element">
-              <Link to="/">Inicio</Link>
-              <span className="content_one_news_list--sections--element-row">{'>'}</span>
-            </li>
-            <li className="content_one_news_list--sections--element">
-            
-              <Link to={`/news/category/${newCat}`}>
-                {newCat}
-                <span className="content_one_news_list--sections--element-row">{'>'}</span>
-              </Link>
-            </li>
-            <li className="content_one_news_list--sections--element">
-              <p>{newsData.title}</p>
-            </li>
-          </ul>
-          <ul className="content_one_news_social--sections"></ul>
-        </section>
-          
-          <article className="article_news_one">
-          
-          <section className="article_news_one--socialMedia">
-            <SocialMediaIcons />
+        <>
+          <section className="content_one_news">
+            <section className="content_one_news--top">
+              <ul className="content_one_news_list--sections">
+                <li className="content_one_news_list--sections--element">
+                  <Link to="/">Inicio</Link>
+                  <span className="content_one_news_list--sections--element-row">
+                    {">"}
+                  </span>
+                </li>
+                <li className="content_one_news_list--sections--element">
+                  <Link to={`/news/category/${newCat}`}>
+                    {newCat}
+                    <span className="content_one_news_list--sections--element-row">
+                      {">"}
+                    </span>
+                  </Link>
+                </li>
+                <li className="content_one_news_list--sections--element">
+                  <p>{newsData.title}</p>
+                </li>
+              </ul>
+              <ul className="content_one_news_social--sections"></ul>
+            </section>
+            <section className="contenedor">
+              <article className="article_news_one">
+                {/* <section className="article_news_one--socialMedia">
+                  <SocialMediaIcons />
+                </section> */}
+                <h1 className="article_news_one--title">{newsData.title}</h1>
+                <section className="article_news_one--info">
+                  <section className="article_news_one--info--published">
+                    <picture className="article_news_one--info--published_img">
+                      <img src={newsData.author_avatar} className="article_news_one--info--published_img--img" />
+                    </picture>
+                    <section className="article_news_one--info--texts">
+                      <p> <span>Autor por:</span> <br/>{newsData.author_data.post_author}</p>
+                    </section>
+                  </section>
+                  <section className="article_news_one--info--date">
+                    
+                    <section className="article_news_one--info--texts-date">
+                      <p> <span>Publicado:</span> <br/>{newsData.post_date}</p>
+                    </section>
+                  </section>
+                </section>
+                <picture className="article_news_one_img">
+                  <img
+                    src={`${newsData.feature_image}`}
+                    className="article_news_one_img--img"
+                  />
+                </picture>
+                <div
+                  className="article_news_one--extrac"
+                  dangerouslySetInnerHTML={{ __html: newsData.content }}
+                />
+              </article>
+              <section className="content_one_news--extra">
+                <form className="content_one_news--extra-form">
+                  <div className="content_one_news--extra-form-content">
+                    <label className="content_one_news--extra-form-content--label">
+                      Buscar
+                    </label>
+                    <input className="content_one_news--extra-form-content--input" />
+                  </div>
+                  <button type="submit" className="btn btn-search">
+                    Buscar
+                  </button>
+                </form>
+                <section className="content_one_news--extra-last">
+                  <h4 className="content_one_news--extra-last-title">
+                    Ultimas noticias
+                  </h4>
+                  <LastNewsComponent />
+                </section>
+              </section>
+            </section>
+            <section className="relacionalNews">
+              <h3 className="relacionalNews--title">Noticias Relacionadas</h3>
+              <ul className="relacionalNews--list">
+                {newCat && <RelacionalNews categorie={newCat} />}
+              </ul>
+            </section>
           </section>
-          <h1 className="article_news_one--title">{newsData.title}</h1>
-            <picture className="article_news_one_img">
-              <img src={`${newsData.feature_image}`}
-                className="article_news_one_img--img"
-              />
-            </picture>
-            <div className="article_news_one--extrac" dangerouslySetInnerHTML={{ __html: newsData.content }} />
-            <section className="article_news_one--info">
-          <p>Escrito por <span>{newsData.author_data.post_author}</span> el <span>{newsData.post_date}</span></p>
-        </section>
-          </article>
-         
-          <section className="relacionalNews">
-            <h3 className="relacionalNews--title">Noticias Relacionadas</h3>
-            <ul className="relacionalNews--list">
-            {newCat && <RelacionalNews categorie={newCat} />}
-            </ul>
-          </section>
-        </section>
-
+        </>
       ) : (
         <p className="text-center">Cargando...</p>
       )}

@@ -107,6 +107,15 @@ const Header = ({isDarkMode}) => {
     "Noviembre",
     "Diciembre",
   ];
+  const handleSearchClick = () => {
+    // Aquí puedes agregar la lógica de búsqueda que desees
+    // Por ejemplo, abrir un cuadro de diálogo de búsqueda o redirigir a una página de búsqueda.
+    console.log('Se hizo clic en el icono de búsqueda');
+    // También puedes realizar otras acciones aquí, como mostrar un cuadro de diálogo de búsqueda.
+  };
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+const [searchTerm, setSearchTerm] = useState("");
+  
 
   return (
     <>
@@ -134,7 +143,7 @@ const Header = ({isDarkMode}) => {
                   />
                 ))}
               </Navegation>
-              <span className="material-symbols-outlined search-icon">
+              <span className="material-symbols-outlined search-icon" onClick={handleSearchClick}>
                 search
               </span>
             </section>
