@@ -1,129 +1,143 @@
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    .content_one_news{
-        width: 90%;
-        margin-top: 3rem;
-        .content_one_news--top{
-            display: none;
-        }
-        .article_news_one--info{
-            p{
-                margin: 2rem 0;
-                font-size: 1.4rem;
-                span{
-                    font-weight: bold;
-                }
-            }
-        }
-        .article_news_one--socialMedia{
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-           a{
-            text-decoration: none;
-            &:hover{
-                cursor: pointer;
-            }
-           }
-        }
-        .content_one_news_list--sections{
-            display: flex;
-            // flex-direction: column;
-            flex-wrap: wrap;
-            list-style: none;
-            .content_one_news_list--sections--element{
-                font-size: 1.3rem;
-
-            }
-            .content_one_news_list--sections--element-row{
-                margin-left: 0.5rem;
-            }
-            
-        }
-        .article_news_one{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            .article_news_one_img{
-                height: 35rem;
-                display: inline-block;
-              
-                img{
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-            .article_news_one--title{
-                text-align: left;
-                font-size: 2.8rem;
-                margin: 2rem auto;
-                font-weight: bold;
-            }
-            .article_news_one--extrac{
-                font-size: 1.6rem;
-                margin: 3rem 0;
-                font-weight: 300;
-                p,em,strong{
-                    margin: 1.5rem 0;
-                }
-                
-            }
-        }
-        .relacionalNews{
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            width: 100%;
-            justify-content: center;
-            // align-items: center;
-           
-            .relacionalNews--title{
-                text-align: left;
-                font-size: 1.8rem;
-                margin-bottom: 3rem;
-                margin-left: 0.4rem;
-                &::after {
-                    content: "";
-                    position: absolute;
-                    top: 3rem;
-                    left: 50%; /* Posiciona el elemento en el centro horizontal */
-                    transform: translateX(-50%); /* Centra el elemento en sí mismo */
-                    width: 88vw;
-                    height: 0.3rem;
-                    background-color: #fff;
-                  }
-            }
-            .relacionalNews--list{
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-                flex-grow: 2;
-            }
-        }
-
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  .content_one_news {
+    width: 90%;
+    margin-top: 3rem;
+    .content_one_news--top {
+      display: none;
     }
+    .article_news_one--info {
+      p {
+        margin: 2rem 0;
+        font-size: 1.4rem;
+        span {
+          font-weight: bold;
+        }
+      }
+    }
+    .article_news_one--socialMedia {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      a {
+        text-decoration: none;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .content_one_news_list--sections {
+      display: flex;
+      // flex-direction: column;
+      flex-wrap: wrap;
+      list-style: none;
+      .content_one_news_list--sections--element {
+        font-size: 1.3rem;
+      }
+      .content_one_news_list--sections--element-row {
+        margin-left: 0.5rem;
+      }
+    }
+    .article_news_one {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .article_news_one_img {
+        height: 35rem;
+        display: inline-block;
+
+        img {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .article_news_one--title {
+        text-align: left;
+        font-size: 2.8rem;
+        margin: 2rem auto;
+        font-weight: bold;
+      }
+      .article_news_one--extrac {
+        font-size: 1.6rem;
+        margin: 3rem 0;
+        font-weight: 300;
+        p,
+        em,
+        strong {
+          margin: 1.5rem 0;
+        }
+      }
+    }
+    .relacionalNews {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      justify-content: center;
+      // align-items: center;
+
+      .relacionalNews--title {
+        text-align: left;
+        font-size: 1.8rem;
+        margin-bottom: 3rem;
+        margin-left: 0.4rem;
+        &::after {
+          content: "";
+          position: absolute;
+          top: 3rem;
+          left: 50%; /* Posiciona el elemento en el centro horizontal */
+          transform: translateX(-50%); /* Centra el elemento en sí mismo */
+          width: 88vw;
+          height: 0.3rem;
+          background-color: #fff;
+        }
+      }
+      .relacionalNews--list {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex-grow: 2;
+      }
+    }
+  }
 }
 
-@media only screen and (min-width:768px){
-    .container{
-        .content_one_news{
-            .relacionalNews{
-                .relacionalNews--list{
-                
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 2rem;
-                
-                }
-        
-            }
-    
+@media only screen and (min-width: 768px) {
+  .container {
+    .content_one_news {
+      .relacionalNews {
+        .relacionalNews--list {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
         }
-
+      }
     }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    
+    .content_one_news {
+        .relacionalNews {
+            .relacionalNews--list {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 2rem;
+            }
+          }
+      .article_news_one {
+        .article_news_one--extrac {
+          width: 76rem;
+        }
+      }
+    }
+   
+  }
 }

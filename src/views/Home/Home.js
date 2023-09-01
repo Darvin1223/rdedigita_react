@@ -12,7 +12,7 @@ const Home = () => {
          <main className='main-container'>
             <Hero />
             <LastNews />
-            <SeccionNews />
+            <SeccionNews /> 
          </main>
         </React.Fragment>
          

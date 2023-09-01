@@ -55,9 +55,7 @@ const News = () => {
         </section>
           
           <article className="article_news_one">
-          <section className="article_news_one--info">
-            <p>Escrito por <span>{newsData.author_data.post_author}</span> el <span>{newsData.post_date}</span></p>
-          </section>
+          
           <section className="article_news_one--socialMedia">
             <SocialMediaIcons />
           </section>
@@ -68,8 +66,11 @@ const News = () => {
               />
             </picture>
             <div className="article_news_one--extrac" dangerouslySetInnerHTML={{ __html: newsData.content }} />
+            <section className="article_news_one--info">
+          <p>Escrito por <span>{newsData.author_data.post_author}</span> el <span>{newsData.post_date}</span></p>
+        </section>
           </article>
-          
+         
           <section className="relacionalNews">
             <h3 className="relacionalNews--title">Noticias Relacionadas</h3>
             <ul className="relacionalNews--list">
