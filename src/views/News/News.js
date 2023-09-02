@@ -4,7 +4,8 @@ import "./News.scss";
 import { SocialMediaIcons } from "../../components/SocialMediaIcons/SocialMediaIcons";
 import { RelacionalNews } from "../../components/RelacionalNews/RelacionalNews";
 import { LastNewsComponent } from "./../../components/LastNewsComponent/LastNewsComponent";
-
+import Btn from "../../components/Btn/Btn";
+import Arteria from './../../assets/img/Economia_Mobile.png';
 const News = () => {
   const { newsId } = useParams();
   const [newsData, setNewsData] = useState(null);
@@ -87,6 +88,7 @@ const News = () => {
                     src={`${newsData.feature_image}`}
                     className="article_news_one_img--img"
                   />
+                  <p className="pie_pagina">{newsData.title} <br /> <span>nombre y apellido</span></p>
                 </picture>
                 <div
                   className="article_news_one--extrac"
@@ -111,6 +113,9 @@ const News = () => {
                   </h4>
                   <LastNewsComponent />
                 </section>
+                <picture className="Anuncio">
+                  <img src={Arteria} />
+                </picture>
               </section>
             </section>
             <section className="relacionalNews">
@@ -118,6 +123,7 @@ const News = () => {
               <ul className="relacionalNews--list">
                 {newCat && <RelacionalNews categorie={newCat} />}
               </ul>
+              <Btn text="Cargar mas"/>
             </section>
           </section>
         </>

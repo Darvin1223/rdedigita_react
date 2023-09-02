@@ -240,6 +240,7 @@
               transform: translateX(-50%);
               width: 90vw;
             }
+            
           }
           .news-image {
             height: 16rem;
@@ -298,7 +299,7 @@
                 height: 0.1rem;
                 left: 12.5rem;
                 position: absolute;
-                top: 111%;
+                top: 4.5rem;
                 transform: translateX(-50%);
                 width: 25rem;
               }
@@ -310,35 +311,12 @@
             .news-extract {
               position: relative;
               &:after {
-                background-color: hsla(0, 0%, 68%, 0.376);
-                content: "";
-                height: 0.1rem;
-                left: 12.5rem;
-                position: absolute;
-                top: 111%;
-                transform: translateX(-50%);
-                width: 25rem;
+                display: none;
               }
             }
           }
         }
-        a:nth-child(4) {
-          article {
-            .news-extract {
-              position: relative;
-              &:after {
-                background-color: hsla(0, 0%, 68%, 0.376);
-                content: "";
-                height: 0.1rem;
-                left: 12.5rem;
-                position: absolute;
-                top: 111%;
-                transform: translateX(-50%);
-                width: 25rem;
-              }
-            }
-          }
-        }
+     
       }
       .third-news {
         // border-right: solid 0.1rem #fff;
@@ -389,7 +367,7 @@
                 height: 0.1rem;
                 left: 12.5rem;
                 position: absolute;
-                top: 111%;
+                top: 6.5rem;
                 transform: translateX(-50%);
                 width: 25rem;
               }
@@ -401,14 +379,7 @@
             .news-extract {
               position: relative;
               &:after {
-                background-color: hsla(0, 0%, 68%, 0.376);
-                content: "";
-                height: 0.1rem;
-                left: 12.5rem;
-                position: absolute;
-                top: 111%;
-                transform: translateX(-50%);
-                width: 25rem;
+                display: none;
               }
             }
           }
