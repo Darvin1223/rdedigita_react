@@ -6,6 +6,7 @@ import { RelacionalNews } from "../../components/RelacionalNews/RelacionalNews";
 import { LastNewsComponent } from "./../../components/LastNewsComponent/LastNewsComponent";
 import Btn from "../../components/Btn/Btn";
 import Arteria from './../../assets/img/Economia_Mobile.png';
+import DOMPurify from 'dompurify';
 const News = () => {
   const { newsId } = useParams();
   const [newsData, setNewsData] = useState(null);
@@ -32,11 +33,15 @@ const News = () => {
       }
     }
   }, [newsData]);
-
-  console.log(newCat)
+  let sanitizedHtml = "";
+  if (newsData) {
+    sanitizedHtml = DOMPurify.sanitize(newsData.content);
+  }
+  // console.log(newCat)
   return (
     <section className="container">
       {newsData ? (
+        sanitizedHtml = DOMPurify.sanitize(newsData.content),
         <>
           <section className="content_one_news">
             <section className="content_one_news--top">
@@ -94,6 +99,10 @@ const News = () => {
                   className="article_news_one--extrac"
                   dangerouslySetInnerHTML={{ __html: newsData.content }}
                 />
+                {/* <div
+                  className="article_news_one--extrac"
+                  dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
+                /> */}
               </article>
               <section className="content_one_news--extra">
                 <form className="content_one_news--extra-form">

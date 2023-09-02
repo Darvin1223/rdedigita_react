@@ -94,7 +94,7 @@
         .news_content--info{
           display: flex;
           justify-content: start;
-          margin-bottom: 1rem;
+          // margin-bottom: 1rem;
           .news_content--info_cat,.news_content--info_author{
             .news-cat,.news-cat-author{
               background-color: #ed3b24;
@@ -102,12 +102,13 @@
               padding: 0.5rem 0.5rem ;
               font-weight: 600;
               margin-right: 2rem;
+              letter-spacing: 0.5px;
             }
           }
         }
         h2.news--title:nth-child(2) {
-          font-size: 2rem;
-          margin-bottom: 1.5rem;
+          font-size: 2.3rem;
+          margin-bottom: 1.2rem;
           position: relative;
           text-align: left;
           &:after {
@@ -135,7 +136,7 @@
           color: #fff;
           font-size: 1.7rem;
           line-height: 2.2rem;
-          margin-bottom: 1.4rem;
+          margin-bottom: 1.2rem;
           text-align: left;
         }
         .oculto {
@@ -148,34 +149,49 @@
 
 @media only screen and (min-width: 1024px) {
   .lastNews {
-    max-width: 1024px;
-    width: 1024px;
+    max-width: 110rem;
+    width: 110rem;
+    margin-bottom: 6rem;
     &::after {
       content: "";
+    position: absolute;
+    top: 88.5rem;
+    left: 54rem;
+    transform: translateX(-50%);
+    width: 110rem;
+    height: 0.1rem;
+    background-color: #fff;
+    }
+    &::before {
+      content: "";
       position: absolute;
-      top: 100%;
-      left: 50%;
+      top: 90.5rem;
+      left: 54rem;
       transform: translateX(-50%);
-      width: 1024px;
-      height: 0.1rem;
+      width: 110rem;
+      height: 0.4rem;
       background-color: #fff;
     }
     .lastNews-section--title {
       width: 100%;
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 2rem;
       &::after {
         content: "";
         position: absolute;
-        top: 3.5rem;
-        left: 60%;
+        top: 5.8rem;
+        left: 55rem;
         transform: translateX(-50%);
-        width: 80rem;
+        width: 110rem;
         height: 0.3rem;
         background-color: #fff;
       }
+     
     }
     .news_container {
       display: grid;
-      grid-template-columns: 40% 1fr 1fr;
+      grid-template-columns: 562px repeat(2, 265px);
       gap: 2rem;
       width: 100%;
       .first-news-container {
@@ -191,20 +207,23 @@
           display: flex;
           flex-direction: column;
           h1.news--title {
-            font-size: 2.5rem;
-            line-height: 2.5rem;
+            font-size: 3.5rem;
+            line-height: 3.7rem;
             margin-bottom: 1rem;
-            text-wrap: balance;
-            letter-spacing: -1px;
+            /* text-wrap: balance; */
+            letter-spacing: 0;
           }
           .news-image {
             height: 40rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             position: relative;
             .news-image--img {
               height: 100%;
               object-fit: cover;
             }
+          }
+          .news-extract{
+            // letter-spacing: 1.5px;
           }
         }
       }
@@ -223,9 +242,10 @@
           margin-bottom: 2rem;
           width: 100%;
           h2.news--title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 2.3rem;
+            margin-bottom: 1.8rem;
             position: relative;
+            text-align: left;
             text-align: left;
             line-height: 2.5rem;
             text-wrap: balance;
@@ -243,9 +263,9 @@
             
           }
           .news-image {
-            height: 16rem;
-            width: 28rem;
-            margin-bottom: 2rem;
+            height: 15rem;
+            width: 23.6rem;
+            margin-bottom: 1rem;
             position: relative;
             display: inline-block;
             .news-image--img {
@@ -258,11 +278,11 @@
           }
           .news-extract {
             color: #fff;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             line-height: 2.2rem;
-            margin-bottom: 1.4rem;
+            margin-bottom: 2rem;
             text-align: left;
-            letter-spacing: -1px;
+            letter-spacing: 0;
             text-wrap: balance;
             line-height: 2rem;
           }
@@ -282,9 +302,9 @@
                 height: 0.1rem;
                 left: 46%;
                 position: absolute;
-                top: 111%;
+                top: 7rem;
                 transform: translateX(-50%);
-                width: 25rem;
+                width: 22rem;
               }
             }
           }
@@ -299,7 +319,7 @@
                 height: 0.1rem;
                 left: 12.5rem;
                 position: absolute;
-                top: 4.5rem;
+                top: 9.5rem;
                 transform: translateX(-50%);
                 width: 25rem;
               }
@@ -350,7 +370,7 @@
                 height: 0.1rem;
                 left: 47%;
                 position: absolute;
-                top: 111%;
+                top: 9rem;
                 transform: translateX(-50%);
                 width: 25rem;
               }
@@ -367,7 +387,7 @@
                 height: 0.1rem;
                 left: 12.5rem;
                 position: absolute;
-                top: 6.5rem;
+                top: 9rem;
                 transform: translateX(-50%);
                 width: 25rem;
               }

@@ -44,11 +44,13 @@ a {
 .light-mode {
     background-color: white;
     color: black;
+    &:not(.lastNews-section--title){
 
-    p, h1, h2, h3, h4, a {
-        color: black;
-        &::after{
-            background-color: #000!important;
+        p, h1, h2, h3, h4, a {
+            color: black;
+            &::after{
+                background-color: #000!important;
+            }
         }
     }
     section{
@@ -61,6 +63,9 @@ a {
     }
     &::after {
         background-color: #000!important;
+    }
+    .first-news-container,.second-news{
+        border-color: #000!important;
     }
 }
 

@@ -33,7 +33,7 @@ const LastNews = () => {
                 </picture>
                 <section className="news_content--info">
                     <section className="news_content--info_cat">
-                    {firstNews.categories_name.length > 1 ? (
+                    {/* {firstNews.categories_name.length > 1 ? (
                       firstNews.categories_name.map((category, index) => (
                         category !== 'Noticiero' ? (
                           <p className="news-cat" key={index}>{category}</p>
@@ -43,7 +43,7 @@ const LastNews = () => {
                       ))
                     ) : (
                       <p className="news-cat">{firstNews.categories_name[0]}</p>
-                    )}                
+                    )}                 */}
                     </section>
                    
                 </section>
@@ -65,7 +65,7 @@ const LastNews = () => {
            
             <section className="news_content--info">
               <section className="news_content--info_cat">
-                {newsElement.categories_name.length > 1 ? (
+                {/* {newsElement.categories_name.length > 1 ? (
                   newsElement.categories_name.map((category, index) => (
                     category !== 'Noticiero' ? (
                       <p className="news-cat" key={index}>{category}</p>
@@ -75,7 +75,7 @@ const LastNews = () => {
                   ))
                 ) : (
                   <p className="news-cat">{newsElement.categories_name[0]}</p>
-                )}
+                )} */}
               </section>
             </section>
             <h2 className="news--title">{newsElement.title}</h2>
@@ -91,7 +91,7 @@ const LastNews = () => {
         </picture>
           <section className="news_content--info">
           <section className="news_content--info_cat">
-            {newsElement.categories_name.length > 1 ? (
+            {/* {newsElement.categories_name.length > 1 ? (
               newsElement.categories_name.map((category, index) => (
                 category !== 'Noticiero' ? (
                   <p className="news-cat" key={index}>{category}</p>
@@ -101,7 +101,7 @@ const LastNews = () => {
               ))
             ) : (
               <p className="news-cat">{newsElement.categories_name[0]}</p>
-            )}
+            )} */}
           </section>
         </section>
        
@@ -111,7 +111,7 @@ const LastNews = () => {
           <>
           <section className="news_content--info">
           <section className="news_content--info_cat">
-            {newsElement.categories_name.length > 1 ? (
+            {/* {newsElement.categories_name.length > 1 ? (
               newsElement.categories_name.map((category, index) => (
                 category !== 'Noticiero' ? (
                   <p className="news-cat" key={index}>{category}</p>
@@ -121,7 +121,7 @@ const LastNews = () => {
               ))
             ) : (
               <p className="news-cat">{newsElement.categories_name[0]}</p>
-            )}
+            )} */}
           </section>
         </section>
         <h2 className="news--title">{newsElement.title}</h2>
@@ -150,7 +150,7 @@ const LastNews = () => {
                 </picture>
                     <section className="news_content--info">
                     <section className="news_content--info_cat">
-                    {newsElement.categories_name.length > 1 ? (
+                    {/* {newsElement.categories_name.length > 1 ? (
                       newsElement.categories_name.map((category, index) => (
                         category !== 'Noticiero' ? (
                           <p className="news-cat" key={index}>{category}</p>
@@ -160,7 +160,7 @@ const LastNews = () => {
                       ))
                     ) : (
                       <p className="news-cat">{newsElement.categories_name[0]}</p>
-                    )}                
+                    )}                 */}
                     </section>
                   
                 </section>
@@ -171,7 +171,7 @@ const LastNews = () => {
                     <>
                     <section className="news_content--info">
                     <section className="news_content--info_cat">
-                    {newsElement.categories_name.length > 1 ? (
+                    {/* {newsElement.categories_name.length > 1 ? (
                       newsElement.categories_name.map((category, index) => (
                         category !== 'Noticiero' ? (
                           <p className="news-cat" key={index}>{category}</p>
@@ -181,7 +181,7 @@ const LastNews = () => {
                       ))
                     ) : (
                       <p className="news-cat">{newsElement.categories_name[0]}</p>
-                    )}                
+                    )}                 */}
                     </section>
                    
                 </section>

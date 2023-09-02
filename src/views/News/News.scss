@@ -85,11 +85,24 @@
         font-size: 1.6rem;
         margin: 3rem 0;
         font-weight: 300;
+        font-family: inter;
         p,
         em,
         strong {
-          margin: 1.5rem 0;
+          margin: 1.8rem 0;
+          letter-spacing: 0.5px;
         }
+        ol{
+          padding-left: 2rem;
+          width: 93%;
+        }
+        // img{
+        //   height: auto;
+        //   max-width: 100%;
+        //   border: none;
+        //   border-radius: 0;
+        //   box-shadow: none;
+        // }
       }
     }
     .relacionalNews {
@@ -231,7 +244,7 @@
           .article_news_one--socialMedia{
             width: 56%;
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
             .Social_Media_Lists{
               i{
                 font-size: 2.5rem;

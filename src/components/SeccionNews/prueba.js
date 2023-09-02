@@ -140,341 +140,326 @@ const Prueba = () => {
   ];
 
   return (
-    <div>
-      {isDataLoaded ? (
-        <div>
-          {Object.keys(sections).map((categoryName) => {
-            if (categoryName !== "Politica") {
-              return sections[categoryName].length > 0
-                ? categories.map((categorie) =>
-                    categorie.originalName === categoryName ? (
-                      <section
-                        key={categoryName}
-                        className={`section section-${categorie.ourName}`}
+    <>
+    {isDataLoaded ? (
+        <>
+
+        {Object.keys(sections).map((categoryName) => {
+          if (categoryName !== "Noticiero") {
+            return sections[categoryName].length > 0
+              ? categories.map((categorie) =>
+                  categorie.originalName === categoryName ? (
+                    <section
+                      key={categoryName}
+                      className={`section section-${categorie.ourName}`}
+                    >
+                      <Link
+                        to={`${categorie.url}`}
+                        className="section_banner--link"
                       >
-                        <Link
-                          to={`${categorie.url}`}
-                          className="section_banner--link"
-                        >
-                          <picture className="section_banner">
-                            <source
-                              media="(min-width:1024px)"
-                              srcSet={categorie.banner}
-                              className="section_banner--img"
-                            />
-                            <source
-                              media="(min-width:768px)"
-                              srcSet={categorie.banner_tablet}
-                              className="section_banner--img"
-                            />
-                            <img
-                              src={categorie.banner_mobile}
-                              className="section_banner--img"
-                              alt={`Banner de ${categorie.ourName}`}
-                            />
-                          </picture>
-                        </Link>
+                        <picture className="section_banner">
+                          <source
+                            media="(min-width:1024px)"
+                            srcSet={categorie.banner}
+                            className="section_banner--img"
+                          />
+                          <source
+                            media="(min-width:768px)"
+                            srcSet={categorie.banner_tablet}
+                            className="section_banner--img"
+                          />
+                          <img
+                            src={categorie.banner_mobile}
+                            className="section_banner--img"
+                            alt={`Banner de ${categorie.ourName}`}
+                          />
+                        </picture>
+                      </Link>
 
-                        <h3 className="section--title">{categorie.ourName}</h3>
-                        <section className="news_container">
-                          <section className="first-news-container">
-                            {sections[categoryName]
-                              .slice(0, 1)
-                              .map((newsElement, index) => (
-                                <Link
-                                  className="news_container--link"
-                                  key={newsElement.ID}
-                                  to={`/news/${newsElement.ID}`}
+                      <h3 className="section--title">{categorie.ourName}</h3>
+                      <section className="news_container">
+                        <section className="first-news-container">
+                          {sections[categoryName]
+                            .slice(0, 1)
+                            .map((newsElement, index) => (
+                              <Link
+                                className="news_container--link"
+                                key={newsElement.ID}
+                                to={`/news/${newsElement.ID}`}
+                              >
+                                <article className="first-post">
+                                  <picture className="news-image">
+                                    {newsElement.feature_image && (
+                                      <img
+                                        className="news-image--img"
+                                        src={newsElement.feature_image}
+                                        alt={newsElement.title}
+                                      />
+                                    )}
+                                  </picture>
+                                  <section className="news_content--info">
+                                   
+                                  </section>
+                                  <h1 className="news--title">
+                                    {newsElement.title}
+                                  </h1>
+                                  <p className="news-extract">
+                                    {newsElement.content
+                                      .replace(/<\/?[^>]+(>|$)/g, "")
+                                      .substring(0, 200) + "..."}
+                                  </p>
+                                </article>
+                              </Link>
+                            ))}
+                        </section>
+                        <section className="second-news">
+                          {sections[categoryName]
+                            .slice(1, 4)
+                            .map((newsElement, index) => (
+                              <Link
+                                className="news_container--link"
+                                key={newsElement.ID}
+                                to={`/news/${newsElement.ID}`}
+                              >
+                                <article
+                                  key={index}
                                 >
-                                  <article className="first-post">
-                                    <picture className="news-image">
-                                      {newsElement.feature_image && (
-                                        <img
-                                          className="news-image--img"
-                                          src={newsElement.feature_image}
-                                          alt={newsElement.title}
-                                        />
-                                      )}
-                                    </picture>
-                                    <section className="news_content--info">
-                                      <section className="news_content--info_cat">
-                                        {newsElement.categories_name.length >
-                                        1 ? (
-                                          newsElement.categories_name.map(
-                                            (category, index) =>
-                                              category !== "Noticiero" ? (
-                                                <p
-                                                  className="news-cat"
-                                                  key={index}
-                                                >
-                                                  {category}
-                                                </p>
-                                              ) : null
-                                          )
-                                        ) : (
-                                          <p className="news-cat">
-                                            {newsElement.categories_name[0]}
-                                          </p>
-                                        )}
+                                  {index === 0 ? (
+                                    <>
+                                      <section className="news_content--info">
+                                        <section className="news_content--info_cat">
+                                          {/* {newsElement.categories_name
+                                            .length > 1 ? (
+                                            newsElement.categories_name.map(
+                                              (category, index) =>
+                                                category !== "Noticiero" ? (
+                                                  <p
+                                                    className="news-cat"
+                                                    key={index}
+                                                  >
+                                                    {category}
+                                                  </p>
+                                                ) : null
+                                            )
+                                          ) : (
+                                            <p className="news-cat">
+                                              {newsElement.categories_name[0]}
+                                            </p>
+                                          )} */}
+                                        </section>
                                       </section>
-                                    </section>
-                                    <h1 className="news--title">
-                                      {newsElement.title}
-                                    </h1>
-                                    <p className="news-extract">
-                                      {newsElement.content
-                                        .replace(/<\/?[^>]+(>|$)/g, "")
-                                        .substring(0, 200) + "..."}
-                                    </p>
-                                  </article>
-                                </Link>
-                              ))}
-                          </section>
-                          <section className="second-news">
-                            {sections[categoryName]
-                              .slice(1, 4)
-                              .map((newsElement, index) => (
-                                <Link
-                                  className="news_container--link"
-                                  key={newsElement.ID}
-                                  to={`/news/${newsElement.ID}`}
-                                >
-                                  <article
-                                    key={index}
-                                  >
-                                    {index === 0 ? (
-                                      <>
-                                        <section className="news_content--info">
-                                          <section className="news_content--info_cat">
-                                            {newsElement.categories_name
-                                              .length > 1 ? (
-                                              newsElement.categories_name.map(
-                                                (category, index) =>
-                                                  category !== "Noticiero" ? (
-                                                    <p
-                                                      className="news-cat"
-                                                      key={index}
-                                                    >
-                                                      {category}
-                                                    </p>
-                                                  ) : null
-                                              )
-                                            ) : (
-                                              <p className="news-cat">
-                                                {newsElement.categories_name[0]}
-                                              </p>
-                                            )}
-                                          </section>
+                                      <h2 className="news--title">
+                                        {newsElement.title}
+                                      </h2>
+                                      <div
+                                        className="news-extract"
+                                        dangerouslySetInnerHTML={{
+                                          __html:
+                                            newsElement.content
+                                              .replace(/<\/?[^>]+(>|$)/g, "")
+                                              .substring(0, 100) + "...",
+                                        }}
+                                      ></div>
+                                    </>
+                                  ) : index === 1 ? (
+                                    <>
+                                      <h2 className="news--title">
+                                        {newsElement.title}
+                                      </h2>
+                                      <picture className="news-image">
+                                        {newsElement.feature_image && (
+                                          <img
+                                            className="news-image--img"
+                                            src={newsElement.feature_image}
+                                            alt={newsElement.title}
+                                          />
+                                        )}
+                                      </picture>
+                                      <section className="news_content--info">
+                                        <section className="news_content--info_cat">
+                                          {/* {newsElement.categories_name
+                                            .length > 1 ? (
+                                            newsElement.categories_name.map(
+                                              (category, index) =>
+                                                category !== "Noticiero" ? (
+                                                  <p
+                                                    className="news-cat"
+                                                    key={index}
+                                                  >
+                                                    {category}
+                                                  </p>
+                                                ) : null
+                                            )
+                                          ) : (
+                                            <p className="news-cat">
+                                              {newsElement.categories_name[0]}
+                                            </p>
+                                          )} */}
                                         </section>
-                                        <h2 className="news--title">
-                                          {newsElement.title}
-                                        </h2>
-                                        <div
-                                          className="news-extract"
-                                          dangerouslySetInnerHTML={{
-                                            __html:
-                                              newsElement.content
-                                                .replace(/<\/?[^>]+(>|$)/g, "")
-                                                .substring(0, 100) + "...",
-                                          }}
-                                        ></div>
-                                      </>
-                                    ) : index === 1 ? (
-                                      <>
-                                        <h2 className="news--title">
-                                          {newsElement.title}
-                                        </h2>
-                                        <picture className="news-image">
-                                          {newsElement.feature_image && (
-                                            <img
-                                              className="news-image--img"
-                                              src={newsElement.feature_image}
-                                              alt={newsElement.title}
-                                            />
-                                          )}
-                                        </picture>
-                                        <section className="news_content--info">
-                                          <section className="news_content--info_cat">
-                                            {newsElement.categories_name
-                                              .length > 1 ? (
-                                              newsElement.categories_name.map(
-                                                (category, index) =>
-                                                  category !== "Noticiero" ? (
-                                                    <p
-                                                      className="news-cat"
-                                                      key={index}
-                                                    >
-                                                      {category}
-                                                    </p>
-                                                  ) : null
-                                              )
-                                            ) : (
-                                              <p className="news-cat">
-                                                {newsElement.categories_name[0]}
-                                              </p>
-                                            )}
-                                          </section>
-                                        </section>
+                                      </section>
 
-                                        <div
-                                          className="news-extract oculto"
-                                          dangerouslySetInnerHTML={{
-                                            __html:
-                                              newsElement.content
-                                                .replace(/<\/?[^>]+(>|$)/g, "")
-                                                .substring(0, 100) + "...",
-                                          }}
-                                        ></div>
-                                      </>
-                                    ) : (
-                                      <>
-                                        <section className="news_content--info">
-                                          <section className="news_content--info_cat">
-                                            {newsElement.categories_name
-                                              .length > 1 ? (
-                                              newsElement.categories_name.map(
-                                                (category, index) =>
-                                                  category !== "Noticiero" ? (
-                                                    <p
-                                                      className="news-cat"
-                                                      key={index}
-                                                    >
-                                                      {category}
-                                                    </p>
-                                                  ) : null
-                                              )
-                                            ) : (
-                                              <p className="news-cat">
-                                                {newsElement.categories_name[0]}
-                                              </p>
-                                            )}
-                                          </section>
+                                      <div
+                                        className="news-extract oculto"
+                                        dangerouslySetInnerHTML={{
+                                          __html:
+                                            newsElement.content
+                                              .replace(/<\/?[^>]+(>|$)/g, "")
+                                              .substring(0, 100) + "...",
+                                        }}
+                                      ></div>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <section className="news_content--info">
+                                        <section className="news_content--info_cat">
+                                          {/* {newsElement.categories_name
+                                            .length > 1 ? (
+                                            newsElement.categories_name.map(
+                                              (category, index) =>
+                                                category !== "Noticiero" ? (
+                                                  <p
+                                                    className="news-cat"
+                                                    key={index}
+                                                  >
+                                                    {category}
+                                                  </p>
+                                                ) : null
+                                            )
+                                          ) : (
+                                            <p className="news-cat">
+                                              {newsElement.categories_name[0]}
+                                            </p>
+                                          )} */}
                                         </section>
-                                        <h2 className="news--title">
-                                          {newsElement.title}
-                                        </h2>
-                                        <div
-                                          className="news-extract oculto"
-                                          dangerouslySetInnerHTML={{
-                                            __html:
-                                              newsElement.content
-                                                .replace(/<\/?[^>]+(>|$)/g, "")
-                                                .substring(0, 100) + "...",
-                                          }}
-                                        ></div>
-                                      </>
-                                    )}
-                                  </article>
-                                </Link>
-                              ))}
-                          </section>
-                          <section className="third-news">
-                            {sections[categoryName]
-                              .slice(4, 7)
-                              .map((newsElement, index) => (
-                                <Link
-                                  className="news_container--link"
-                                  key={newsElement.ID}
-                                  to={`/news/${newsElement.ID}`}
+                                      </section>
+                                      <h2 className="news--title">
+                                        {newsElement.title}
+                                      </h2>
+                                      <div
+                                        className="news-extract oculto"
+                                        dangerouslySetInnerHTML={{
+                                          __html:
+                                            newsElement.content
+                                              .replace(/<\/?[^>]+(>|$)/g, "")
+                                              .substring(0, 100) + "...",
+                                        }}
+                                      ></div>
+                                    </>
+                                  )}
+                                </article>
+                              </Link>
+                            ))}
+                        </section>
+                        <section className="third-news">
+                          {sections[categoryName]
+                            .slice(4, 7)
+                            .map((newsElement, index) => (
+                              <Link
+                                className="news_container--link"
+                                key={newsElement.ID}
+                                to={`/news/${newsElement.ID}`}
+                              >
+                                <article
+                                  
+                                  key={index}
                                 >
-                                  <article
-                                    
-                                    key={index}
-                                  >
-                                    {index === 0 ? (
-                                      <>
-                                        <h2 className="news--title">
-                                          {newsElement.title}
-                                        </h2>
-                                        <picture className="news-image">
-                                          {newsElement.feature_image && (
-                                            <img
-                                              className="news-image--img"
-                                              src={newsElement.feature_image}
-                                              alt={newsElement.title}
-                                            />
-                                          )}
-                                        </picture>
-                                        <section className="news_content--info">
-                                          <section className="news_content--info_cat">
-                                            {newsElement.categories_name
-                                              .length > 1 ? (
-                                              newsElement.categories_name.map(
-                                                (category, index) =>
-                                                  category !== "Noticiero" ? (
-                                                    <p
-                                                      className="news-cat"
-                                                      key={index}
-                                                    >
-                                                      {category}
-                                                    </p>
-                                                  ) : null
-                                              )
-                                            ) : (
-                                              <p className="news-cat">
-                                                {newsElement.categories_name[0]}
-                                              </p>
-                                            )}
-                                          </section>
+                                  {index === 0 ? (
+                                    <>
+                                      <h2 className="news--title">
+                                        {newsElement.title}
+                                      </h2>
+                                      <picture className="news-image">
+                                        {newsElement.feature_image && (
+                                          <img
+                                            className="news-image--img"
+                                            src={newsElement.feature_image}
+                                            alt={newsElement.title}
+                                          />
+                                        )}
+                                      </picture>
+                                      <section className="news_content--info">
+                                        <section className="news_content--info_cat">
+                                          {/* {newsElement.categories_name
+                                            .length > 1 ? (
+                                            newsElement.categories_name.map(
+                                              (category, index) =>
+                                                category !== "Noticiero" ? (
+                                                  <p
+                                                    className="news-cat"
+                                                    key={index}
+                                                  >
+                                                    {category}
+                                                  </p>
+                                                ) : null
+                                            )
+                                          ) : (
+                                            <p className="news-cat">
+                                              {newsElement.categories_name[0]}
+                                            </p>
+                                          )} */}
                                         </section>
+                                      </section>
 
-                                        <div
-                                          className="news-extract"
-                                          dangerouslySetInnerHTML={{
-                                            __html:
-                                              newsElement.content
-                                                .replace(/<\/?[^>]+(>|$)/g, "")
-                                                .substring(0, 100) + "...",
-                                          }}
-                                        ></div>
-                                      </>
-                                    ) : (
-                                      <>
-                                        <section className="news_content--info">
-                                          <section className="news_content--info_cat">
-                                            {newsElement.categories_name
-                                              .length > 1 ? (
-                                              <p className="news-cat" key={0}>
-                                                {newsElement.categories_name[0]}
-                                              </p>
-                                            ) : (
-                                              <p className="news-cat">
-                                                {newsElement.categories_name[0]}
-                                              </p>
-                                            )}
-                                          </section>
+                                      <div
+                                        className="news-extract"
+                                        dangerouslySetInnerHTML={{
+                                          __html:
+                                            newsElement.content
+                                              .replace(/<\/?[^>]+(>|$)/g, "")
+                                              .substring(0, 100) + "...",
+                                        }}
+                                      ></div>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <section className="news_content--info">
+                                        <section className="news_content--info_cat">
+                                          {/* {newsElement.categories_name
+                                            .length > 1 ? (
+                                            <p className="news-cat" key={0}>
+                                              {newsElement.categories_name[0]}
+                                            </p>
+                                          ) : (
+                                            <p className="news-cat">
+                                              {newsElement.categories_name[0]}
+                                            </p>
+                                          )} */}
                                         </section>
-                                        <h2 className="news--title">
-                                          {newsElement.title}
-                                        </h2>
-                                        <div
-                                          className="news-extract oculto"
-                                          dangerouslySetInnerHTML={{
-                                            __html:
-                                              newsElement.content
-                                                .replace(/<\/?[^>]+(>|$)/g, "")
-                                                .substring(0, 100) + "...",
-                                          }}
-                                        ></div>
-                                      </>
-                                    )}
-                                  </article>
-                                </Link>
-                              ))}
-                          </section>
+                                      </section>
+                                      <h2 className="news--title">
+                                        {newsElement.title}
+                                      </h2>
+                                      <div
+                                        className="news-extract oculto"
+                                        dangerouslySetInnerHTML={{
+                                          __html:
+                                            newsElement.content
+                                              .replace(/<\/?[^>]+(>|$)/g, "")
+                                              .substring(0, 100) + "...",
+                                        }}
+                                      ></div>
+                                    </>
+                                  )}
+                                </article>
+                              </Link>
+                            ))}
                         </section>
                       </section>
-                    ) : null
-                  )
-                : null;
-            }
-            return null;
-          })}
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+                    </section>
+                  ) : null
+                )
+              : null;
+          }
+          return null;
+        })}
+        </>
+      
+    ) : (
+      <p>Loading...</p>
+    )}
+    
+    </>
+   
   );
 };
 
