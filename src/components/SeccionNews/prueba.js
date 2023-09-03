@@ -149,34 +149,36 @@ const Prueba = () => {
             return sections[categoryName].length > 0
               ? categories.map((categorie) =>
                   categorie.originalName === categoryName ? (
+                    <section className="conteiner_news_break">
+                    <Link
+                      to={`${categorie.url}`}
+                      className="section_banner--link"
+                    >
+                      <picture className="section_banner">
+                        <source
+                          media="(min-width:1024px)"
+                          srcSet={categorie.banner}
+                          className="section_banner--img"
+                        />
+                        <source
+                          media="(min-width:768px)"
+                          srcSet={categorie.banner_tablet}
+                          className="section_banner--img"
+                        />
+                        <img
+                          src={categorie.banner_mobile}
+                          className="section_banner--img"
+                          alt={`Banner de ${categorie.ourName}`}
+                        />
+                      </picture>
+                    </Link>
                     <section
                       key={categoryName}
                       className={`section section-${categorie.ourName}`}
                     >
-                      <Link
-                        to={`${categorie.url}`}
-                        className="section_banner--link"
-                      >
-                        <picture className="section_banner">
-                          <source
-                            media="(min-width:1024px)"
-                            srcSet={categorie.banner}
-                            className="section_banner--img"
-                          />
-                          <source
-                            media="(min-width:768px)"
-                            srcSet={categorie.banner_tablet}
-                            className="section_banner--img"
-                          />
-                          <img
-                            src={categorie.banner_mobile}
-                            className="section_banner--img"
-                            alt={`Banner de ${categorie.ourName}`}
-                          />
-                        </picture>
-                      </Link>
-
+                      <Link to={`/news/category/${categoryName}`} key={categoryName}>
                       <h3 className="section--title">{categorie.ourName}</h3>
+                      </Link>
                       <section className="news_container">
                         <section className="first-news-container">
                           {sections[categoryName]
@@ -221,35 +223,15 @@ const Prueba = () => {
                                 key={newsElement.ID}
                                 to={`/news/${newsElement.ID}`}
                               >
+                                
                                 <article
                                   key={index}
                                 >
                                   {index === 0 ? (
                                     <>
-                                      <section className="news_content--info">
-                                        <section className="news_content--info_cat">
-                                          {/* {newsElement.categories_name
-                                            .length > 1 ? (
-                                            newsElement.categories_name.map(
-                                              (category, index) =>
-                                                category !== "Noticiero" ? (
-                                                  <p
-                                                    className="news-cat"
-                                                    key={index}
-                                                  >
-                                                    {category}
-                                                  </p>
-                                                ) : null
-                                            )
-                                          ) : (
-                                            <p className="news-cat">
-                                              {newsElement.categories_name[0]}
-                                            </p>
-                                          )} */}
-                                        </section>
-                                      </section>
+                             
                                       <h2 className="news--title">
-                                        {newsElement.title}
+                                      {newsElement.title.length > 50 ? newsElement.title.substring(0,50) + " ..." : newsElement.title}
                                       </h2>
                                       <div
                                         className="news-extract"
@@ -264,7 +246,7 @@ const Prueba = () => {
                                   ) : index === 1 ? (
                                     <>
                                       <h2 className="news--title">
-                                        {newsElement.title}
+                                      {newsElement.title.length > 50 ? newsElement.title.substring(0,50) + " ..." : newsElement.title}
                                       </h2>
                                       <picture className="news-image">
                                         {newsElement.feature_image && (
@@ -333,7 +315,7 @@ const Prueba = () => {
                                         </section>
                                       </section>
                                       <h2 className="news--title">
-                                        {newsElement.title}
+                                      {newsElement.title.length > 50 ? newsElement.title.substring(0,50) + " ..." : newsElement.title}
                                       </h2>
                                       <div
                                         className="news-extract oculto"
@@ -366,7 +348,7 @@ const Prueba = () => {
                                   {index === 0 ? (
                                     <>
                                       <h2 className="news--title">
-                                        {newsElement.title}
+                                      {newsElement.title.length > 50 ? newsElement.title.substring(0,50) + " ..." : newsElement.title}
                                       </h2>
                                       <picture className="news-image">
                                         {newsElement.feature_image && (
@@ -427,7 +409,7 @@ const Prueba = () => {
                                         </section>
                                       </section>
                                       <h2 className="news--title">
-                                        {newsElement.title}
+                                      {newsElement.title.length > 50 ? newsElement.title.substring(0,50) + " ..." : newsElement.title}
                                       </h2>
                                       <div
                                         className="news-extract oculto"
@@ -445,6 +427,7 @@ const Prueba = () => {
                             ))}
                         </section>
                       </section>
+                    </section>
                     </section>
                   ) : null
                 )

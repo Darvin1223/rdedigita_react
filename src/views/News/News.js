@@ -41,9 +41,9 @@ const News = () => {
   return (
     <section className="container">
       {newsData ? (
-        sanitizedHtml = DOMPurify.sanitize(newsData.content),
         <>
           <section className="content_one_news">
+          <h1 className="article_news_one--title">{newsData.title}</h1>
             <section className="content_one_news--top">
               <ul className="content_one_news_list--sections">
                 <li className="content_one_news_list--sections--element">
@@ -71,7 +71,7 @@ const News = () => {
                 {/* <section className="article_news_one--socialMedia">
                   <SocialMediaIcons />
                 </section> */}
-                <h1 className="article_news_one--title">{newsData.title}</h1>
+               
                 <section className="article_news_one--info">
                   <section className="article_news_one--info--published">
                     <picture className="article_news_one--info--published_img">

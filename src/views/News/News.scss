@@ -164,6 +164,12 @@
       flex-direction: column;
       width: 100%;
       max-width: 1012px;
+      .article_news_one--title {
+          width: 100%;
+          font-size: 4rem;
+          letter-spacing: -0.5px;
+          line-height: 1.2;
+        }
       .contenedor {
         display: grid;
         grid-template-columns: 70% 1fr;
@@ -173,6 +179,7 @@
       .relacionalNews {
         width: 678.031px;
         // overflow: hidden;
+        
         .relacionalNews--title {
           &::after {
             content: "";
@@ -217,12 +224,12 @@
           top: 100%;
           left: 0rem;
         }
-        .article_news_one--title {
-          width: 100%;
-          font-size: 3.5rem;
-          letter-spacing: -0.5px;
-          line-height: 1.2;
-        }
+        // .article_news_one--title {
+        //   width: 100%;
+        //   font-size: 3.5rem;
+        //   letter-spacing: -0.5px;
+        //   line-height: 1.2;
+        // }
         
         .article_news_one--info{
           display: flex;
@@ -256,8 +263,12 @@
           width: 100%;
         }
         .article_news_one--extrac {
+          font-size: 1.7rem;
           p{
-          //  text-align: justify;
+            font-size: 1.7rem;
+          }
+          li{
+            font-size: 1.7rem;
           }
         }
       }
@@ -267,7 +278,7 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      padding-top: 19rem;
+      padding-top: 7rem;
       .content_one_news--extra-form {
         display: flex;
         margin-bottom: 2rem;
@@ -302,20 +313,23 @@
           a{
 
             li{
-              margin-bottom: 3rem;
+              margin-bottom: 2rem;
               font-size: 1.8rem;
               position: relative;
               font-family: 'IBM Plex Serif', serif;
-              &::after{
-                content: "";
-                position: absolute;
-                background-color: #ffffff75;
-                height: 0.1rem;
-                width: 28rem;
-                top: 90px;
-                left: 0;
-              }
-              
+              border-bottom: solid 0.1rem #fff;
+              padding-bottom: 2rem;
+            }
+          }
+          a:last-child{
+
+            li{
+              margin-bottom: 2rem;
+              font-size: 1.8rem;
+              position: relative;
+              font-family: 'IBM Plex Serif', serif;
+              border-bottom: none;
+              padding-bottom: 1rem;
             }
           }
         }
