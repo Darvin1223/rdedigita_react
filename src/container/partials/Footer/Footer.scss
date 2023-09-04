@@ -1,16 +1,97 @@
+$primer_color: #ed3b24;
+$segundo_color: #992614;
+$tercer_color: #000000;
 .footer{
     display: flex;
     width: 100%;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: $primer_color;
     border-top: 0.1rem solid #000;
-    // position: absolute;
-    // top: 100vh;
-    p{
-        color: #000;
-        font-size: 1.4rem;
+   
+   
+}
+@media screen and (min-width:1024px){
+    .footer{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        border-top: 0.1rem solid #000;
+        color: #fff!important;
+        flex-direction: column;
+       .footer_social_media{
+            width: 100%;
+            background-color: $primer_color;
+            display: flex;
+            justify-content: center;
+            .footer_social_media--container{
+                display: flex;
+                flex-direction: row;
+                padding: 1.8rem 0;
+                justify-content: space-between;
+                align-items: center;
+                width: 1200px;
+                .Social_Media_Lists{
+                    a{
+                        font-size: 2.2rem;
+                    }
+                }
+            }
+            .footer_social_media-text{
+                font-size: 1.8rem;
+                // font-weight: 500;
+            }
+       }
+       .footer_company_information_container{
+        width: 100%;
+        background-color: $segundo_color;
+        display: flex;
+        justify-content: center;
+        .footer_company_information_content{
+            width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 2rem;
+            justify-content: center;
+            padding: 3rem 0;
+        .company_information{
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            height: 100%;
+            .company_information--title{
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+        }
+        }
+       }
+       .company_information--category{
+            .company_information--category--title{
+                font-size: 2rem;
+            }
+       }
+       .company_information--contact{
+            .company_information--contact--title{
+                font-size: 2rem;
+            }
+       }
+       .footer_copyright{
+        background-color: $tercer_color;
+        width: 100%;
         text-align: center;
-        padding: 2rem 0;
+        height: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        p{
+            color: #fff;
+        }
+       }
     }
+    
 }

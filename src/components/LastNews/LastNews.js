@@ -26,12 +26,13 @@ const LastNews = () => {
             {firstNews && (
               <Link className="news_container--link" key={firstNews.ID} to={`/news/${firstNews.ID}`}>
                 <article className="first-post news_content">
+             
                 <picture className="news-image">
                   {firstNews.feature_image && (
                     <img className="news-image--img" src={firstNews.feature_image} alt={firstNews.title} />
                   )}
                 </picture>
-               
+                  <p className="news-image-pie">{firstNews.title}</p>
                   <h1 className="news--title">{firstNews.title}</h1>
                   <p className="news-extract">{firstNews.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 200)+ "..."}</p>
                 </article>

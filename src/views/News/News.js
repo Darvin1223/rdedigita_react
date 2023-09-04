@@ -68,9 +68,7 @@ const News = () => {
             </section>
             <section className="contenedor">
               <article className="article_news_one">
-                {/* <section className="article_news_one--socialMedia">
-                  <SocialMediaIcons />
-                </section> */}
+                
                
                 <section className="article_news_one--info">
                   <section className="article_news_one--info--published">
@@ -87,6 +85,9 @@ const News = () => {
                       <p> <span>Publicado:</span> <br/>{newsData.post_date}</p>
                     </section>
                   </section>
+                  <section className="article_news_one--socialMedia">
+                  <SocialMediaIcons />
+                </section> 
                 </section>
                 <picture className="article_news_one_img">
                   <img

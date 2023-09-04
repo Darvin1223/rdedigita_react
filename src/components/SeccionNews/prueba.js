@@ -176,7 +176,7 @@ const Prueba = () => {
                       key={categoryName}
                       className={`section section-${categorie.ourName}`}
                     >
-                      <Link to={`/news/category/${categoryName}`} key={categoryName}>
+                      <Link to={`/news/category/${categoryName}`} className="section--link" key={categoryName}>
                       <h3 className="section--title">{categorie.ourName}</h3>
                       </Link>
                       <section className="news_container">
@@ -199,9 +199,8 @@ const Prueba = () => {
                                       />
                                     )}
                                   </picture>
-                                  <section className="news_content--info">
-                                   
-                                  </section>
+                               
+                                  <p className="news-image-pie">{newsElement.title}</p>
                                   <h1 className="news--title">
                                     {newsElement.title}
                                   </h1>

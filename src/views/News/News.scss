@@ -181,6 +181,7 @@
         // overflow: hidden;
         
         .relacionalNews--title {
+          font-size: 2.5rem;
           &::after {
             content: "";
             position: absolute;
@@ -208,7 +209,12 @@
           .news_relational--elements-title{
             font-size: 1.6rem;
             font-weight: 700;
+            font-family: 'IBM Plex Serif', serif;
           }
+        }
+        .btn-link{
+          display: flex;
+          justify-content: center;
         }
       }
       .article_news_one {
@@ -254,7 +260,7 @@
             justify-content: flex-end;
             .Social_Media_Lists{
               i{
-                font-size: 2.5rem;
+                font-size: 2.2rem;
               }
             }
           }
@@ -264,11 +270,17 @@
         }
         .article_news_one--extrac {
           font-size: 1.7rem;
+          font-family: 'IBM Plex Serif', serif!important;
+          font-weight: 200;
           p{
             font-size: 1.7rem;
+            font-family: 'IBM Plex Serif', serif!important;
+            font-weight: 200;
           }
           li{
             font-size: 1.7rem;
+            font-family: 'IBM Plex Serif', serif!important;
+            font-weight: 200;
           }
         }
       }

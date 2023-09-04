@@ -41,6 +41,7 @@
     position: sticky;
     top: 0;
     z-index: 9900;
+    background-color: #ed3b24;
     .bar{
         display: flex;
         flex-direction: column;
@@ -106,8 +107,8 @@
   }
 
 .timer-secttion{
-    background-color: #dad9d9;
-    color: #000;
+    background-color: #992614;
+    color: #fff!important;
     text-align: center;
     height: 3rem;
     display: flex;
@@ -115,7 +116,7 @@
     align-items: center;
     p{
         font-size: 1.2rem;
-        color: #000;
+        color: #fff!important;
         span{
             font-weight: bold;
         }
@@ -126,11 +127,12 @@
 // Desktop
 @media only screen and (min-width: 1024px) {
     .Header{
+        background-color: #ed3b24;
         .bar{
 
             .bar-down{
                 .bar-down-container{
-                    
+                    color: #fff;
                     flex-direction: row;
                     justify-content: space-evenly;
                     width: 1200px;
@@ -140,6 +142,12 @@
                     }
                     .logo_container{
                        margin-left: 1rem;
+                    }
+                    .Navegation{
+                        a{
+                            color: #fff!important;
+
+                        }
                     }
                 }
             }

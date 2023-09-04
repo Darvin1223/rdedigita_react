@@ -1,5 +1,6 @@
 import React from 'react';
-import Logotipo from "./../../assets/img/Logordé.svg";
+import Logotipo from "./../../assets/img/LogordeBlanco.svg";
+
 import { Link } from 'react-router-dom';
 
 const Logo = () => {
