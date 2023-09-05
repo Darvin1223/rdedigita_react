@@ -8,7 +8,7 @@ const SocialMediaIcons = () => {
         {element:"fa-brands fa-instagram", className:"Instagramicon", url:"#"},
         {element:"fa-brands fa-x-twitter", className:"Xicon", url:"#"},
         {element:"fa-brands fa-youtube", className:"Youtubeicon", url:"https://www.youtube.com/channel/UCoNQaZF-AFNaFgPU1Y0anpw"},
-        {element:"fa-brands fa-linkedin-in", className:"Linkedinicon", url:"https://www.linkedin.com/in/rd%C3%A9-digital-35027a289/"},
+        // {element:"fa-brands fa-linkedin-in", className:"Linkedinicon", url:"https://www.linkedin.com/in/rd%C3%A9-digital-35027a289/"},
     ];
 
     return (

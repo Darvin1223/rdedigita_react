@@ -5,9 +5,12 @@ import { SocialMediaIcons } from "../../components/SocialMediaIcons/SocialMediaI
 import { RelacionalNews } from "../../components/RelacionalNews/RelacionalNews";
 import { LastNewsComponent } from "./../../components/LastNewsComponent/LastNewsComponent";
 import Btn from "../../components/Btn/Btn";
-import Arteria from './../../assets/img/Economia_Mobile.png';
-import DOMPurify from 'dompurify';
+import Arteria from "./../../assets/img/Economia_Mobile.png";
+import DOMPurify from "dompurify";
 const News = () => {
+  const [newsCount, setNewsCount] = useState(1); // Contador de noticias cargadas
+  const [additionalNews, setAdditionalNews] = useState([]);
+
   const { newsId } = useParams();
   const [newsData, setNewsData] = useState(null);
   const [dataAllCat, setDataAllCat] = useState([]);
@@ -23,6 +26,20 @@ const News = () => {
         console.error("Error fetching news details:", error);
       });
   }, [newsId]);
+  const loadMoreNews = () => {
+    const nextPage = newsCount + 1;
+    fetch(`https://apitest.rdedigital.com/api/post/${newsId}?page=${nextPage}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length > 0) {
+          setAdditionalNews([...additionalNews, ...data]);
+          setNewsCount(nextPage);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching additional news:", error);
+      });
+  };
 
   useEffect(() => {
     if (newsData) {
@@ -43,7 +60,7 @@ const News = () => {
       {newsData ? (
         <>
           <section className="content_one_news">
-          <h1 className="article_news_one--title">{newsData.title}</h1>
+            <h1 className="article_news_one--title">{newsData.title}</h1>
             <section className="content_one_news--top">
               <ul className="content_one_news_list--sections">
                 <li className="content_one_news_list--sections--element">
@@ -68,33 +85,45 @@ const News = () => {
             </section>
             <section className="contenedor">
               <article className="article_news_one">
-                
-               
                 <section className="article_news_one--info">
-                  <section className="article_news_one--info--published">
-                    <picture className="article_news_one--info--published_img">
-                      <img src={newsData.author_avatar} className="article_news_one--info--published_img--img" />
-                    </picture>
-                    <section className="article_news_one--info--texts">
-                      <p> <span>Autor por:</span> <br/>{newsData.author_data.post_author}</p>
+                  <section className="article_news_one--info-container">
+                    <section className="article_news_one--info--published">
+                      <picture className="article_news_one--info--published_img">
+                        <img
+                          src={newsData.author_avatar}
+                          className="article_news_one--info--published_img--img"
+                        />
+                      </picture>
+                      <section className="article_news_one--info--texts">
+                        <p>
+                          {" "}
+                          <span>Autor por:</span> <br />
+                          {newsData.author_data.post_author}
+                        </p>
+                      </section>
                     </section>
-                  </section>
-                  <section className="article_news_one--info--date">
+                    <section className="article_news_one--info--date">
                     
-                    <section className="article_news_one--info--texts-date">
-                      <p> <span>Publicado:</span> <br/>{newsData.post_date}</p>
+                      <section className="article_news_one--info--texts-date">
+                        <p>
+                          {" "}
+                          <span>Publicado:</span> <br />
+                          {newsData.post_date}
+                        </p>
+                      </section>
                     </section>
+                    <span class="material-symbols-outlined icon_share">share</span>
                   </section>
                   <section className="article_news_one--socialMedia">
-                  <SocialMediaIcons />
-                </section> 
+                    <SocialMediaIcons />
+                  </section>
                 </section>
                 <picture className="article_news_one_img">
                   <img
                     src={`${newsData.feature_image}`}
                     className="article_news_one_img--img"
                   />
-                  <p className="pie_pagina">{newsData.title} <br /> <span>nombre y apellido</span></p>
+                  <p className="pie_pagina">{newsData.title}</p>
                 </picture>
                 <div
                   className="article_news_one--extrac"
@@ -106,17 +135,7 @@ const News = () => {
                 /> */}
               </article>
               <section className="content_one_news--extra">
-                <form className="content_one_news--extra-form">
-                  <div className="content_one_news--extra-form-content">
-                    <label className="content_one_news--extra-form-content--label">
-                      Buscar
-                    </label>
-                    <input className="content_one_news--extra-form-content--input" />
-                  </div>
-                  <button type="submit" className="btn btn-search">
-                    Buscar
-                  </button>
-                </form>
+               
                 <section className="content_one_news--extra-last">
                   <h4 className="content_one_news--extra-last-title">
                     Ultimas noticias
@@ -133,7 +152,8 @@ const News = () => {
               <ul className="relacionalNews--list">
                 {newCat && <RelacionalNews categorie={newCat} />}
               </ul>
-              <Btn text="Cargar mas"/>
+
+              <Btn onClick={loadMoreNews} text="Cargar mas" />
             </section>
           </section>
         </>

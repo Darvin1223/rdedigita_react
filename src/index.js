@@ -1,4 +1,6 @@
 import React from 'react';
+import { StrictMode } from 'react';
+
 import { createRoot } from 'react-dom/client'; // Importa createRoot desde react-dom/client
 import './index.scss';
 import App from './routes/App';
@@ -22,8 +24,10 @@ handleThemeChange(darkModeMediaQuery); // Llama a la función para aplicar el te
 
 const root = createRoot(document.getElementById('root'));
 root.render(
- 
-    <App />
+  <StrictMode>
+  
+  <App />
+  </StrictMode>
 
 );
 

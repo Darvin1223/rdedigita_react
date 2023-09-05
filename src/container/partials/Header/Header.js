@@ -4,14 +4,13 @@ import LinksNavegacion from "../../../components/LinksNavegacion/LinksNavegacion
 import "./Header.scss";
 import Logo from "../../../components/Logo/Logo";
 import { Currency } from "../../../components/Currency/Currency";
+import ModalSearch from "../../../components/ModalSearch/ModalSearch";
 
 const Header = ({ isDarkMode }) => {
-  // console.log(isDarkMode)
-  const urlCategories = "http://localhost:5000/categories";
-  const [dataCategories, setDataCategories] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const [shouldHideMenu, setShouldHideMenu] = useState(); // Nuevo estado
+  const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 80);
@@ -62,13 +61,35 @@ const Header = ({ isDarkMode }) => {
       name: "El Chinazo",
     },
   ];
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    setShouldHideMenu(false); // Cuando se abre el menú, no se debe ocultar
   };
+
+  const closeMenu = () => {
+    setShouldHideMenu(true); // Cuando se cierra el menú, se debe ocultar
+    setIsMenuOpen(false);
+  };
+
+  const handleSearchClick = () => {
+    // Aquí puedes agregar la lógica de búsqueda que desees
+    // Por ejemplo, abrir un cuadro de diálogo de búsqueda o redirigir a una página de búsqueda.
+    console.log("Se hizo clic en el icono de búsqueda");
+    // También puedes realizar otras acciones aquí, como mostrar un cuadro de diálogo de búsqueda.
+  };
+  const openModal = () => {
+    setIsModalOpen(!isMenuOpen);
+  };
+  
+
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const date = new Date();
   const currentDay = date.getDay();
   const currentDayNumber = date.getDate();
-  const currentMoth = date.getMonth();
+  const currentMonth = date.getMonth();
   const currentYear = date.getFullYear();
   const daysOfWeek = [
     "Domingo",
@@ -78,20 +99,6 @@ const Header = ({ isDarkMode }) => {
     "Jueves",
     "Viernes",
     "Sábado",
-  ];
-  const monthsOfYear = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
   ];
   const mesesDelAño = [
     "Enero",
@@ -107,22 +114,11 @@ const Header = ({ isDarkMode }) => {
     "Noviembre",
     "Diciembre",
   ];
-  const handleSearchClick = () => {
-    // Aquí puedes agregar la lógica de búsqueda que desees
-    // Por ejemplo, abrir un cuadro de diálogo de búsqueda o redirigir a una página de búsqueda.
-    console.log("Se hizo clic en el icono de búsqueda");
-    // También puedes realizar otras acciones aquí, como mostrar un cuadro de diálogo de búsqueda.
-  };
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <>
       <header className={`Header ${isDarkMode ? "dark-mode" : "light-mode"}`}>
         <div className={`bar ${isScrolled ? "scrolled" : ""}`}>
-          {/*  <div className="bar-top">
-        <Logo />
-      </div>  */}
           <div className={`bar-down`}>
             <section className="bar-down-container">
               <span
@@ -133,23 +129,26 @@ const Header = ({ isDarkMode }) => {
               </span>
               <Logo />
               <Navegation
-                className={`${isMenuOpen ? "show_menu" : "hidden_menu"}`}
+                className={`${isMenuOpen ? "show_menu" : ""} ${
+                  shouldHideMenu ? "hidden_menu" : ""
+                }`}
               >
                 {links.map((link, index) => (
                   <LinksNavegacion
                     key={index}
                     url={link.url}
                     name={link.name}
-                    onClick={toggleMenu} // Pasa la función toggleMenu como prop
+                    onClick={closeMenu} // Cerrar el menú cuando se hace clic en un enlace
                   />
                 ))}
               </Navegation>
               <span
                 className="material-symbols-outlined search-icon"
-                onClick={handleSearchClick}
+                onClick={openModal}
               >
                 search
               </span>
+              
             </section>
           </div>
         </div>
@@ -157,12 +156,14 @@ const Header = ({ isDarkMode }) => {
       <section className="info-section">
         <section className="info-section--container">
           <p className="timer-date-information">
-            <span>{`${daysOfWeek[currentDay]},${mesesDelAño[currentMoth]} ${currentDayNumber} ,${currentYear}`}</span>
+            <span>{`${daysOfWeek[currentDay]}, ${mesesDelAño[currentMonth]} ${currentDayNumber}, ${currentYear}`}</span>
             <span className="line">|</span>
           </p>
           <Currency bank="bpd" />
         </section>
       </section>
+     
+
     </>
   );
 };
