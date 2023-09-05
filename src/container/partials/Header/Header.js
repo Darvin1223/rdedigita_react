@@ -3,8 +3,9 @@ import Navegation from "../../../components/Navegation/Navegation";
 import LinksNavegacion from "../../../components/LinksNavegacion/LinksNavegacion";
 import "./Header.scss";
 import Logo from "../../../components/Logo/Logo";
+import { Currency } from "../../../components/Currency/Currency";
 
-const Header = ({isDarkMode}) => {
+const Header = ({ isDarkMode }) => {
   // console.log(isDarkMode)
   const urlCategories = "http://localhost:5000/categories";
   const [dataCategories, setDataCategories] = useState([]);
@@ -22,7 +23,6 @@ const Header = ({isDarkMode}) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
- 
 
   const links = [
     {
@@ -110,16 +110,15 @@ const Header = ({isDarkMode}) => {
   const handleSearchClick = () => {
     // Aquí puedes agregar la lógica de búsqueda que desees
     // Por ejemplo, abrir un cuadro de diálogo de búsqueda o redirigir a una página de búsqueda.
-    console.log('Se hizo clic en el icono de búsqueda');
+    console.log("Se hizo clic en el icono de búsqueda");
     // También puedes realizar otras acciones aquí, como mostrar un cuadro de diálogo de búsqueda.
   };
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-const [searchTerm, setSearchTerm] = useState("");
-  
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <>
-      <header className={`Header ${isDarkMode ? 'dark-mode':'light-mode'}`}>
+      <header className={`Header ${isDarkMode ? "dark-mode" : "light-mode"}`}>
         <div className={`bar ${isScrolled ? "scrolled" : ""}`}>
           {/*  <div className="bar-top">
         <Logo />
@@ -133,7 +132,9 @@ const [searchTerm, setSearchTerm] = useState("");
                 menu
               </span>
               <Logo />
-              <Navegation className={`${isMenuOpen ? "show_menu" : "hidden_menu"}`}>
+              <Navegation
+                className={`${isMenuOpen ? "show_menu" : "hidden_menu"}`}
+              >
                 {links.map((link, index) => (
                   <LinksNavegacion
                     key={index}
@@ -143,17 +144,24 @@ const [searchTerm, setSearchTerm] = useState("");
                   />
                 ))}
               </Navegation>
-              <span className="material-symbols-outlined search-icon" onClick={handleSearchClick}>
+              <span
+                className="material-symbols-outlined search-icon"
+                onClick={handleSearchClick}
+              >
                 search
               </span>
             </section>
           </div>
         </div>
       </header>
-      <section className="timer-secttion">
-        <p>
-          <span>{`${daysOfWeek[currentDay]},${mesesDelAño[currentMoth]} ${currentDayNumber} ,${currentYear}`}</span>
-        </p>
+      <section className="info-section">
+        <section className="info-section--container">
+          <p className="timer-date-information">
+            <span>{`${daysOfWeek[currentDay]},${mesesDelAño[currentMoth]} ${currentDayNumber} ,${currentYear}`}</span>
+            <span className="line">|</span>
+          </p>
+          <Currency bank="bpd" />
+        </section>
       </section>
     </>
   );

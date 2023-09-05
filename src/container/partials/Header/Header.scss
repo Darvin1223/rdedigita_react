@@ -54,7 +54,7 @@
             display: flex;
             justify-content: center;
             width: 100%;
-            border-bottom: 0.1rem #000 solid;
+            border-bottom:none;
             height: 6rem;
             .logo_container{
                 display: inline-block;
@@ -74,7 +74,7 @@
             align-items: center;
             width: 100%;
             height: 8rem;
-            border-bottom: 0.1rem #000 solid;
+            
             // height: 100%;
            .bar-down-container{
             display: flex;
@@ -106,19 +106,28 @@
     display: none;
   }
 
-.timer-secttion{
+.info-section{
     background-color: #992614;
     color: #fff!important;
     text-align: center;
-    height: 3rem;
+    height: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    p{
-        font-size: 1.2rem;
-        color: #fff!important;
-        span{
-            font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    .info-section--container{
+        display: flex;
+        flex-direction: column;
+        p{
+            margin-bottom: .5rem;
+            font-size: 1.2rem;
+            color: #fff!important;
+            span{
+                font-weight: bold;
+            }
         }
     }
 }
@@ -135,7 +144,8 @@
                     color: #fff;
                     flex-direction: row;
                     justify-content: space-evenly;
-                    width: 1200px;
+                    width: 100%;
+                    max-width: 1200px;
                     // Icon hamburguesa
                     .icon_menu{
                         display: none;
@@ -153,5 +163,26 @@
             }
         }
     }
-    
+    .info-section{
+        height: 3rem;
+        .info-section--container{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            p{
+                margin-bottom: .5rem;
+                font-size: 1.2rem;
+                color: #fff!important;
+                span{
+                    font-weight: bold;
+                }
+                .line{
+                    padding: 0 1rem;
+                }
+            }
+           
+        }
+    }
 }

@@ -53,10 +53,19 @@ a {
             }
         }
     }
+    article{
+
+        border-color: #000!important;
+    }
+    .news-extract{
+        border-color: #000!important;
+    }
+    border-color: #000!important;
     section{
-        &::after{
-            background-color: #000!important;
-        }
+        border-color: #000!important;
+    }
+    .section_banner--link{
+        border-color: #000!important;
     }
     .news-extract {
         color: #000!important;

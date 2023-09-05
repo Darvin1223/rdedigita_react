@@ -182,6 +182,7 @@
         padding-right: 2rem;
         height: 96%;
         article {
+          border-bottom: none;
           margin-bottom: 2rem;
           width: 100%;
           display: flex;
@@ -205,6 +206,9 @@
           .news-image-pie{
             margin-bottom: 1rem;
             font-size: 1.2rem;
+          }
+          .news-extract{
+            border-bottom: none;
           }
          
         }
