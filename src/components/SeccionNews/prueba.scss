@@ -142,6 +142,10 @@
       }
     }
   }
+  .italic{
+    font-style: italic!important;
+    letter-spacing: -0.2px!important;
+  }
 }
 @media only screen and (min-width: 1024px) {
   .conteiner_news_break{
@@ -349,6 +353,6 @@
         }
     }
   }
-  
+ 
 }
 

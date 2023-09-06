@@ -110,29 +110,49 @@
     display: none;
   }
 
-.info-section{
-    background-color: #992614;
-    color: #fff!important;
-    text-align: center;
-    height: 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  .info-section{
+    height: 4rem;
+    
+    position: relative;
+    overflow-x: hidden;
     .info-section--container{
-        display: flex;
-        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        padding: 1rem 0;
+        
+
+        background-color: #992614;
+        color: white;
+
+        font-family: Gelasio;
+        font-size: 14px;
         p{
+            display: inline-block; /* Important to give the content a width */
+
+            width: 150%;
+            transform: translateX(100%); /* Animation start out of the screen */
+          
+            /* Add the animation */
+            animation: move 50s linear infinite /* infinite make reapeat the animation indefinitely */;
             margin-bottom: .5rem;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: #fff!important;
+            word-wrap: normal;
             span{
                 font-weight: bold;
+                display: inline-block;
+            }
+            .line{
+                padding: 0 1rem;
             }
         }
+        @keyframes move {
+            to { transform: translateX(-100%); }
+          }
+       
     }
 }
   
@@ -168,16 +188,34 @@
         }
     }
     .info-section{
-        height: 3rem;
+        height: 4rem;
+        
+        position: relative;
+        overflow-x: hidden;
         .info-section--container{
-            display: flex;
-            flex-direction: row;
+            position: absolute;
+            top: 0;
+            left: 0;
+
             width: 100%;
-            justify-content: center;
-            align-items: center;
+            padding: 1rem 0;
+            
+
+            background-color: #992614;
+            color: white;
+
+            font-family: Gelasio;
+            font-size: 18px;
             p{
+                display: block; /* Important to give the content a width */
+
+                width: 100%;
+                transform: translateX(100%); /* Animation start out of the screen */
+              
+                /* Add the animation */
+                animation: move 50s linear infinite /* infinite make reapeat the animation indefinitely */;
                 margin-bottom: .5rem;
-                font-size: 1.2rem;
+                font-size: 1.5rem;
                 color: #fff!important;
                 span{
                     font-weight: bold;
@@ -186,6 +224,9 @@
                     padding: 0 1rem;
                 }
             }
+            @keyframes move {
+                to { transform: translateX(-100%); }
+              }
            
         }
     }

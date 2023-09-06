@@ -50,7 +50,7 @@ const LastNews = () => {
           <>
            
             
-            <h2 className="news--title">{newsElement.title}</h2>
+            <h2 className="news--title italic">{newsElement.title}</h2>
             <div className="news-extract" dangerouslySetInnerHTML={{ __html: newsElement.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 100) + "..." }}></div>
           </>
         ) : index === 1 ? (
@@ -82,7 +82,7 @@ const LastNews = () => {
             )} */}
           </section>
         </section>
-        <h2 className="news--title">{newsElement.title}</h2>
+        <h2 className="news--title italic">{newsElement.title}</h2>
         <div className="news-extract oculto" dangerouslySetInnerHTML={{ __html: newsElement.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 100) + "..." }}></div>
           </>
         )}
@@ -110,7 +110,7 @@ const LastNews = () => {
                 </>
               ) : (
                 <>
-                  <h2 className="news--title">{newsElement.title}</h2>
+                  <h2 className="news--title italic">{newsElement.title}</h2>
                   <div className={`news-extract ${index === 1 ? "" : "oculto"}`} dangerouslySetInnerHTML={{ __html: newsElement.content.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 100) + "..." }}></div>
                 </>
               )}

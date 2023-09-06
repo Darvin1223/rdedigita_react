@@ -29,6 +29,13 @@ const ModelSearch = ({ stado }) => {
 
     fetchData();
   }, []);
+  
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // Agrega un desplazamiento suave
+    });
+  };
 
   const filteredResults = searchResults.filter((dato) =>
     dato.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -36,6 +43,11 @@ const ModelSearch = ({ stado }) => {
 
   const handleStateChange = () => {
     setIsState(!isState);
+  };
+
+  const handleItemClick = () => {
+    handleStateChange(); // Cambia el estado del modal
+    scrollToTop(); // Realiza el desplazamiento suave hacia arriba
   };
 
   return (
@@ -54,7 +66,7 @@ const ModelSearch = ({ stado }) => {
           <ul>
             {filteredResults.slice(0, 5).map((dato) => (
               <Link to={`/news/${dato.ID}`} key={dato.id}>
-                <li onClick={handleStateChange}>{dato.title}</li>
+                <li onClick={handleItemClick}>{dato.title}</li>
               </Link>
             ))}
           </ul>

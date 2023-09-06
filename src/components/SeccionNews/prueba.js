@@ -229,7 +229,7 @@ const Prueba = () => {
                                   {index === 0 ? (
                                     <>
                              
-                                      <h2 className="news--title">
+                                      <h2 className="news--title italic">
                                       {newsElement.title.length > 50 ? newsElement.title.substring(0,50) + " ..." : newsElement.title}
                                       </h2>
                                       <div
@@ -313,7 +313,7 @@ const Prueba = () => {
                                           )} */}
                                         </section>
                                       </section>
-                                      <h2 className="news--title">
+                                      <h2 className="news--title italic">
                                       {newsElement.title.length > 50 ? newsElement.title.substring(0,50) + " ..." : newsElement.title}
                                       </h2>
                                       <div
@@ -407,7 +407,7 @@ const Prueba = () => {
                                           )} */}
                                         </section>
                                       </section>
-                                      <h2 className="news--title">
+                                      <h2 className="news--title italic">
                                       {newsElement.title.length > 50 ? newsElement.title.substring(0,50) + " ..." : newsElement.title}
                                       </h2>
                                       <div

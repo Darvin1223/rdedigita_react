@@ -13,6 +13,36 @@ const Header = ({ isDarkMode }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [shouldHideMenu, setShouldHideMenu] = useState(); // Nuevo estado
+  const [currencyData, setCurrencyData] = useState([]);
+  const [status, setStatus] = useState('loading');
+  let Buy;
+  let Sell;
+  const API = `https://api.indexa.do/api/rates?bank=bpd`;
+  useEffect(() => {
+    fetch(API)
+      .then((response) => response.json())
+      .then((data) => {
+        setCurrencyData(data);
+        setStatus('loaded');
+      })
+      .catch((error) => {
+        setStatus('error');
+        console.error(`Error fetching currency Data: ${error}`);
+      });
+  }, []);
+
+  // Verificar si currencyData.data existe antes de mapearlo
+  if (currencyData.data && currencyData.data.length > 0) {
+    currencyData.data.forEach((element) => {
+      if (element.currency === "USD") {
+        if (element.type === "buy") {
+          Buy = element.rate;
+        } else {
+          Sell = element.rate;
+        }
+      }
+    });
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -163,8 +193,9 @@ const Header = ({ isDarkMode }) => {
           <p className="timer-date-information">
             <span>{`${daysOfWeek[currentDay]}, ${mesesDelAño[currentMonth]} ${currentDayNumber}, ${currentYear}`}</span>
             <span className="line">|</span>
+            <span>Compra:</span> {Buy} DOP <span>/</span> <span>Venta:</span> {Sell} DOP
           </p>
-          <Currency bank="bpd" />
+         
         </section>
       </section>
       {isModalOpen && <ModelSearch stado={isModalOpen} />}
