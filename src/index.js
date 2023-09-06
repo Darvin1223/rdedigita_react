@@ -24,10 +24,10 @@ handleThemeChange(darkModeMediaQuery); // Llama a la función para aplicar el te
 
 const root = createRoot(document.getElementById('root'));
 root.render(
-  <StrictMode>
+
   
   <App />
-  </StrictMode>
+
 
 );
 

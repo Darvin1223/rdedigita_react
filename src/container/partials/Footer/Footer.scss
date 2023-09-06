@@ -1,128 +1,92 @@
-$primer_color: #ed3b24;
-$segundo_color: #992614;
-$tercer_color: #000000;
-.footer{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: $primer_color;
-    border-top: 0.1rem solid #000;
-   .footer_social_media{
-    padding: 2rem 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .footer_social_media-text{
-        font-size: 1.4rem;
-        margin-bottom: 2rem;
+.site-footer {
+    background-color: #26272b;
+    padding: 45px 0 20px;
+    font-size: 15px;
+    line-height: 24px;
+    color: #737373;
+  
+    hr {
+      border-top-color: #bbb;
+      opacity: 0.5;
+  
+      &.small {
+        margin: 20px 0;
+      }
     }
-    .Social_Media_Lists{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  
+    h6 {
+      color: #fff;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin-top: 5px;
+      letter-spacing: 2px;
     }
-   }
-   .footer_company_information_container{
-        display: none;
-   }
-   .footer_copyright{
-    background-color: #000;
-    width: 100%;
-    padding: 1rem 0 2rem;
-    p{
+  
+    a {
+      color: #737373;
+  
+      &:hover {
+        color: #3366cc;
+        text-decoration: none;
+      }
+    }
+  
+    .footer-links {
+      padding-left: 0;
+      list-style: none;
+  
+      li {
+        display: block;
+  
+        a {
+          color: #737373;
+  
+          &:active,
+          &:focus,
+          &:hover {
+            color: #3366cc;
+            text-decoration: none;
+          }
+        }
+      }
+  
+      &.inline {
+        li {
+          display: inline-block;
+        }
+      }
+    }
+  
+    .social-icons {
+      text-align: right;
+  
+      a {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 6px;
+        margin-right: 0;
+        border-radius: 100%;
+        background-color: #33353d;
+      }
+    }
+  
+    .copyright-text {
+      margin: 0;
+    }
+  
+    @media (max-width: 991px) {
+      [class^="col-"] {
+        margin-bottom: 30px;
+      }
+    }
+  
+    @media (max-width: 767px) {
+      padding-bottom: 0;
+      
+      .copyright-text, .social-icons {
         text-align: center;
-        font-size: 1.2rem;
+      }
     }
-   }
-}
-@media screen and (min-width:1024px){
-    .footer{
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        background-color: #fff;
-        border-top: 0.1rem solid #000;
-        color: #fff!important;
-        flex-direction: column;
-       .footer_social_media{
-            width: 100%;
-            background-color: $primer_color;
-            display: flex;
-            justify-content: center;
-            .footer_social_media--container{
-                display: flex;
-                flex-direction: row;
-                padding: 1.8rem 0;
-                justify-content: space-between;
-                align-items: center;
-                width: 1200px;
-                .Social_Media_Lists{
-                    a{
-                        font-size: 2.2rem;
-                    }
-                }
-            }
-            .footer_social_media-text{
-                font-size: 1.8rem;
-                // font-weight: 500;
-            }
-       }
-       .footer_company_information_container{
-        width: 100%;
-        background-color: $segundo_color;
-        display: flex;
-        justify-content: center;
-        .footer_company_information_content{
-            width: 1200px;
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            gap: 2rem;
-            justify-content: center;
-            padding: 3rem 0;
-        .company_information{
-            display: flex;
-            flex-direction: column;
-            width: 60%;
-            height: 100%;
-            .company_information--title{
-                font-size: 2rem;
-                margin-bottom: 1rem;
-            }
-        }
-        }
-        display: none;
-       }
-       .company_information--category{
-            display: none;
-            .company_information--category--title{
-                font-size: 2rem;
-            }
-       }
-       .company_information--contact{
-        display: none;
-            .company_information--contact--title{
-                font-size: 2rem;
-            }
-       }
-       .footer_copyright{
-        background-color: $tercer_color;
-        width: 100%;
-        text-align: center;
-        height: 4rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        p{
-            color: #fff;
-        }
-       }
-    }
-    
-}
+  }
+  

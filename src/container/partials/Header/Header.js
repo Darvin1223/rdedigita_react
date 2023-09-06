@@ -4,13 +4,16 @@ import LinksNavegacion from "../../../components/LinksNavegacion/LinksNavegacion
 import "./Header.scss";
 import Logo from "../../../components/Logo/Logo";
 import { Currency } from "../../../components/Currency/Currency";
-import ModalSearch from "../../../components/ModalSearch/ModalSearch";
+import { ModelSearch } from "../../../components/ModalSearch/ModelSearch";
+
+
 
 const Header = ({ isDarkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [shouldHideMenu, setShouldHideMenu] = useState(); // Nuevo estado
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [shouldHideMenu, setShouldHideMenu] = useState(); // Nuevo estado
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 80);
@@ -66,7 +69,10 @@ const Header = ({ isDarkMode }) => {
     setIsMenuOpen(!isMenuOpen);
     setShouldHideMenu(false); // Cuando se abre el menú, no se debe ocultar
   };
-
+  const toggleModal = () => {
+ 
+    setIsModalOpen(!isModalOpen);
+  }
   const closeMenu = () => {
     setShouldHideMenu(true); // Cuando se cierra el menú, se debe ocultar
     setIsMenuOpen(false);
@@ -78,9 +84,7 @@ const Header = ({ isDarkMode }) => {
     console.log("Se hizo clic en el icono de búsqueda");
     // También puedes realizar otras acciones aquí, como mostrar un cuadro de diálogo de búsqueda.
   };
-  const openModal = () => {
-    setIsModalOpen(!isMenuOpen);
-  };
+
   
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -143,11 +147,12 @@ const Header = ({ isDarkMode }) => {
                 ))}
               </Navegation>
               <span
-                className="material-symbols-outlined search-icon"
-                onClick={openModal}
-              >
-                search
-              </span>
+            className="material-symbols-outlined search-icon"
+            onClick={toggleModal}
+          >
+            search
+          </span>
+            
               
             </section>
           </div>
@@ -162,7 +167,7 @@ const Header = ({ isDarkMode }) => {
           <Currency bank="bpd" />
         </section>
       </section>
-     
+      {isModalOpen && <ModelSearch stado={isModalOpen} />}
 
     </>
   );
