@@ -281,15 +281,21 @@
           }
           .last-news{
             width: 100%;
+            
             a{
   
-              li{
+              li.last-news--element{
                 margin-bottom: 2rem;
+                list-style-type: decimal;
                 font-size: 2.2rem;
                 position: relative;
                 font-family: 'IBM Plex Serif', serif;
                 border-bottom: solid 0.1rem #fff;
                 padding-bottom: 2rem;
+                &::marker{
+                  font-size: 2rem;
+                  // padding-left: 2rem;
+                }
               }
             }
             a:last-child{

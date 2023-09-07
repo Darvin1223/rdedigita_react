@@ -7,6 +7,7 @@ import { LastNewsComponent } from "./../../components/LastNewsComponent/LastNews
 import Btn from "../../components/Btn/Btn";
 import Arteria from "./../../assets/img/Economia_Mobile.png";
 import DOMPurify from "dompurify";
+import TextToSpeech from "../../components/TextsToSpeak/TextToSpeak";
 const News = () => {
   const [newsCount, setNewsCount] = useState(1); // Contador de noticias cargadas
   const [additionalNews, setAdditionalNews] = useState([]);
@@ -61,6 +62,7 @@ const News = () => {
         <>
           <section className="content_one_news">
             <h1 className="article_news_one--title">{newsData.title}</h1>
+           {/*  <TextToSpeech /> */}
             <section className="content_one_news--top">
               <ul className="content_one_news_list--sections">
                 <li className="content_one_news_list--sections--element">
