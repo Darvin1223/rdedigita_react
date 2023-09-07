@@ -14,14 +14,14 @@ const LastNewsComponent = () => {
       }, []);
     
     return (
-        <ul className='last-news'>
+        <ol className='last-news'>
             {lastNews.map((element,index) => (
                 <Link to={`/news/${element.ID}`} key={index}>
                   <li className='last-news--element' key={index}>{element.title}</li>
                 </Link>
               
             ))}
-        </ul>
+        </ol>
     );
 };
 
