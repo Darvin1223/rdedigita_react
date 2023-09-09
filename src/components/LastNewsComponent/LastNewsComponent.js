@@ -16,7 +16,7 @@ const LastNewsComponent = () => {
     return (
         <ol className='last-news'>
             {lastNews.map((element,index) => (
-                <Link to={`/news/${element.ID}`} key={index}>
+                <Link to={`/news/${element.ID}`} className='last-news-link--element' key={index}>
                   <li className='last-news--element' key={index}>{element.title}</li>
                 </Link>
               

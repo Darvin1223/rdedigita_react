@@ -16,7 +16,10 @@ import { Paraiso } from '../views/Paraiso/Paraiso';
 import { Farandula } from '../views/Farandula/Farandula';
 import { ElChinazo } from '../views/ElChinazo/ElChinazo';
 import { Ensamble } from '../views/Ensamble/Ensamble';
+import { Prueba_news } from '../views/News/Prueba';
  
+
+
 function App() {
   return (
     <ThemeProvider>

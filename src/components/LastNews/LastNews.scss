@@ -216,6 +216,14 @@
           }
          
         }
+        .anuncios{
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          img{
+            width: 22rem;
+          }
+        }
       }
       .second-news,
       .third-news {

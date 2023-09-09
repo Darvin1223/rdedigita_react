@@ -1,49 +1,71 @@
-.inactivo{
-    display: none;
+.inactivo {
+  display: none;
 }
-.activo{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000000e2;
-    z-index: 999;
-    input{
-        width: 80%;
-        height: 5rem;
-        background-color: transparent;
-        
-        outline: none;
-        border: none;
-        color: #fff;
-        font-size: 2.3rem;
-        font-family: 'IBM Plex Serif', serif;
-        font-weight: 400;
-        border-bottom: solid .1rem #fff;
-        &::placeholder{
-            color: #fff;
-        }
-    }
-    .Modal-results{
-        width: 80%;
-        .Modal_not_found{
-            font-size: 1.5rem;
-            margin-top: 1rem;
-        }
-        ul{
-            padding-left: 2.5rem;
-            a{
-                li{
+.activo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000e2;
+  z-index: 999;
+  input {
+    width: 80%;
+    height: 5rem;
+    background-color: transparent;
 
-                    margin: 2rem 0;
-                    font-size: 1.8rem;
-                }
-            }
-        }
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 2.3rem;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 400;
+    border-bottom: solid 0.1rem #fff;
+    &::placeholder {
+      color: #fff;
     }
+  }
+  .Modal-results {
+    width: 80%;
+    .Modal_not_found {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
+    ul {
+      list-style: disc;
+
+      padding-left: 2.5rem;
+      a {
+        li {
+          &:hover {
+            animation: list_animation 0.6s ease-in-out forwards;
+            &::marker {
+                font-size: 2.5rem;
+              background-color: #ed3b24;
+              color: #ed3b24;
+            }
+          }
+
+          margin: 2rem 0;
+          font-size: 1.8rem;
+          padding: 1rem 0;
+        }
+        @keyframes list_animation {
+          0% {
+            font-size: 1.8rem;
+          }
+          100% {
+            font-size: 2rem;
+            background-color: #ed3b24;
+            color: #fff;
+            padding-left: 1rem;
+          }
+        }
+      }
+    }
+  }
 }

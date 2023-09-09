@@ -1,21 +1,11 @@
 .Ensamble-View{
-    height: 100vh;
+    display: inline-block;
     width: 100vw;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-image: url('./../../assets/img/construccion/mobile/En_Construcción_El_ensamble.png');
 
-}
-@media only screen and (min-width:1024px){
-    .Ensamble-View{
-        background-image: url('./../../assets/img/construccion/1024/En_Construcción_1024_Ensamble.png');
-
-    }
-}
-@media only screen and (min-width:1440px){
-    .Ensamble-View{
-        background-image: url('./../../assets/img/construccion/1440/En_Construcción_1440_ensamble.png');
-
+    height: 100vh;
+    img{
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
     }
 }

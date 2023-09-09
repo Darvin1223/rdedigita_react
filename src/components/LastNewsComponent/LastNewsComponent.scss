@@ -1,7 +1,12 @@
 .last-news{
+    list-style-type: decimal;
     .last-news--element{
-        list-style: none;
+        list-style-type: decimal;
         font-size: 1.6rem;
         margin-bottom: 0.5rem;
+        &::marker{
+            font-size: 1.8rem;
+            margin-left: 1rem;
+        }
     }
 }

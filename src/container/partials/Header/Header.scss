@@ -94,7 +94,7 @@
             .logo_container{
                 width: 10rem;
             }
-            .search-icon{
+            .search-icon,.close-icon{
                 margin-right: 3rem;
                 font-size: 3rem;
             }
@@ -112,8 +112,10 @@
 
   .info-section{
     height: 4rem;
-    
-    position: relative;
+    z-index: 1;
+    position: sticky;
+    top: 80px;
+    z-index: 8888;
     overflow-x: hidden;
     .info-section--container{
         position: absolute;
@@ -127,7 +129,7 @@
         background-color: #992614;
         color: white;
 
-        font-family: Gelasio;
+        font-family: 'Lora', serif;
         font-size: 14px;
         p{
             display: inline-block; /* Important to give the content a width */
@@ -177,6 +179,11 @@
                     .logo_container{
                        margin-left: 1rem;
                     }
+                    .search-icon,.close-icon{
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
                     .Navegation{
                         a{
                             color: #fff!important;
@@ -189,8 +196,10 @@
     }
     .info-section{
         height: 4rem;
-        
-        position: relative;
+        z-index: 1;
+        position: sticky;
+        top: 80px;
+        z-index: 9999999;
         overflow-x: hidden;
         .info-section--container{
             position: absolute;

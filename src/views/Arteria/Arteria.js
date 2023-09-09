@@ -7,8 +7,8 @@ import './Arteria.scss';
   return (
     <>
       {status ? (
-        <section className={`${view}-View mantenimiento`}>
-          <picture>
+        <section className={``}>
+          <picture className='${view}-View'>
             <source media='(min-width:1440px)' srcSet={bg_img_1440} />
             <source media='(min-width:1024px)' srcSet={bg_img_1024} />
             <img src={bg_img_mobile} />

@@ -11,7 +11,7 @@ const Home = () => {
     return (
         <React.Fragment>
          <main className='main-container'>
-            <Hero />
+            {/* <Hero /> */}
             <LastNews />
            
             <Prueba />

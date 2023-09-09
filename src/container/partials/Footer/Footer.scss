@@ -6,12 +6,13 @@
   .row{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
   ul{
     list-style: none;
   }
   .footer{
-    background-color: #24262b;
+    background-color: #ed3b24;
       padding: 70px 0;
   }
   .footer-col{
@@ -31,10 +32,15 @@
     position: absolute;
     left:0;
     bottom: -10px;
-    background-color: #e91e63;
+    background-color: #fff;
     height: 2px;
     box-sizing: border-box;
     width: 50px;
+  }
+  .footer-col .footer-col_logo_container{
+    display: inline-block;
+   width: 11rem;
+   height: 11rem;
   }
   .footer-col ul li:not(:last-child){
     margin-bottom: 10px;

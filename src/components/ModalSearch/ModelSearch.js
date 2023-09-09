@@ -60,7 +60,9 @@ const ModelSearch = ({ stado }) => {
       />
       {isLoading && <p>Cargando...</p>}
       <div className='Modal-results'>
-        {filteredResults.length === 0 ? (
+        {searchTerm.length === 0 ? (
+          <p className='Modal_not_found'>Ingresa un término de búsqueda.</p>
+        ) : filteredResults.length === 0 ? (
           <p className='Modal_not_found'>No se encontraron resultados.</p>
         ) : (
           <ul>

@@ -7,26 +7,32 @@ import { LastNewsComponent } from "./../../components/LastNewsComponent/LastNews
 import Btn from "../../components/Btn/Btn";
 import Arteria from "./../../assets/img/Economia_Mobile.png";
 import DOMPurify from "dompurify";
-import TextToSpeech from "../../components/TextsToSpeak/TextToSpeak";
+
 const News = () => {
   const [newsCount, setNewsCount] = useState(1); // Contador de noticias cargadas
-  const [additionalNews, setAdditionalNews] = useState([]);
-
+  const [additionalNews, setAdditionalNews] = useState({});
+  const [isShared, setIsShared] = useState(false);
   const { newsId } = useParams();
   const [newsData, setNewsData] = useState(null);
   const [dataAllCat, setDataAllCat] = useState([]);
   const [newCat, setNewCat] = useState(""); // State for newCat
+  const [isLoading, setIsLoading] = useState(true); //
 
   useEffect(() => {
-    fetch(`https://apitest.rdedigital.com/api/post/${newsId}`)
+    // fetch(`https://apitest.rdedigital.com/api/v1/posts/${newsId}`)
+    fetch(`https://apitest.rdedigital.com/api/v1/posts/${newsId}`)
       .then((response) => response.json())
       .then((data) => {
         setNewsData(data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching news details:", error);
+        setIsLoading(false);
       });
   }, [newsId]);
+
+  console.log(newsData);
   const loadMoreNews = () => {
     const nextPage = newsCount + 1;
     fetch(`https://apitest.rdedigital.com/api/post/${newsId}?page=${nextPage}`)
@@ -35,77 +41,62 @@ const News = () => {
         if (data.length > 0) {
           setAdditionalNews([...additionalNews, ...data]);
           setNewsCount(nextPage);
+          setIsLoading(false);
         }
       })
       .catch((error) => {
         console.error("Error fetching additional news:", error);
+        setIsLoading(false);
       });
   };
 
   useEffect(() => {
     if (newsData) {
-      const categoriesName = newsData.categories_name;
+      const categoriesName = newsData.category;
       setDataAllCat(categoriesName);
       if (categoriesName.length > 1) {
         setNewCat(categoriesName[1]); // Set newCat based on your logic
+        setIsLoading(false);
       }
     }
   }, [newsData]);
-  let sanitizedHtml = "";
-  if (newsData) {
-    sanitizedHtml = DOMPurify.sanitize(newsData.content);
-  }
-  // console.log(newCat)
+
+
+  const handleIsShared = () => {
+    setIsShared(!isShared);
+  };
+
   return (
     <section className="container">
       {newsData ? (
         <>
           <section className="content_one_news">
-            <h1 className="article_news_one--title">{newsData.title}</h1>
-           {/*  <TextToSpeech /> */}
-            <section className="content_one_news--top">
-              <ul className="content_one_news_list--sections">
-                <li className="content_one_news_list--sections--element">
-                  <Link to="/">Inicio</Link>
-                  <span className="content_one_news_list--sections--element-row">
-                    {">"}
-                  </span>
-                </li>
-                <li className="content_one_news_list--sections--element">
-                  <Link to={`/news/category/${newCat}`}>
-                    {newCat}
-                    <span className="content_one_news_list--sections--element-row">
-                      {">"}
-                    </span>
-                  </Link>
-                </li>
-                <li className="content_one_news_list--sections--element">
-                  <p>{newsData.title}</p>
-                </li>
-              </ul>
-              <ul className="content_one_news_social--sections"></ul>
-            </section>
+            <h1 className="article_news_one--title">
+              {newsData.title.rendered}
+            </h1>
             <section className="contenedor">
               <article className="article_news_one">
                 <section className="article_news_one--info">
-                  <section className="article_news_one--info-container">
+                  <section
+                    className={`article_news_one--info-container ${
+                      isShared ? "show" : "hidden"
+                    }_media`}
+                  >
                     <section className="article_news_one--info--published">
                       <picture className="article_news_one--info--published_img">
                         <img
-                          src={newsData.author_avatar}
+                          src={newsData.author.avatar_urls[96]}
                           className="article_news_one--info--published_img--img"
                         />
                       </picture>
                       <section className="article_news_one--info--texts">
                         <p>
-                          {" "}
                           <span>Autor por:</span> <br />
-                          {newsData.author_data.post_author}
+                          {newsData.author.name}
                         </p>
                       </section>
                     </section>
                     <section className="article_news_one--info--date">
-                    
                       <section className="article_news_one--info--texts-date">
                         <p>
                           {" "}
@@ -114,39 +105,51 @@ const News = () => {
                         </p>
                       </section>
                     </section>
-                    <span class="material-symbols-outlined icon_share">share</span>
+                    <span
+                      onClick={handleIsShared}
+                      className={`material-symbols-outlined icon_share `}
+                    >
+                      share
+                    </span>
                   </section>
-                  <section className="article_news_one--socialMedia">
+                  <section
+                    className={`article_news_one--socialMedia ${
+                      isShared ? "show" : "hidden"
+                    }_social_media_container`}
+                  >
                     <SocialMediaIcons />
                   </section>
                 </section>
                 <picture className="article_news_one_img">
                   <img
-                    src={`${newsData.feature_image}`}
+                    src={`${newsData.media}`}
                     className="article_news_one_img--img"
                   />
-                  <p className="pie_pagina">{newsData.title}</p>
+                  <p className="pie_pagina">{newsData.title.rendered}</p>
                 </picture>
-                <div
-                  className="article_news_one--extrac"
-                  dangerouslySetInnerHTML={{ __html: newsData.content }}
-                />
-                {/* <div
-                  className="article_news_one--extrac"
-                  dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-                /> */}
+
+                <div className="article_news_one--extrac">
+                  {newsData.content.rendered && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: newsData.content.rendered,
+                      }}
+                    />
+                  )}
+                </div>
               </article>
               <section className="content_one_news--extra">
-               
                 <section className="content_one_news--extra-last">
                   <h4 className="content_one_news--extra-last-title">
                     Ultimas noticias
                   </h4>
-                  <LastNewsComponent />
+                  <section className="content_one_news--extra-last_section_container">
+                    <LastNewsComponent />
+                  </section>
+                  <picture className="Anuncio">
+                    <img src={Arteria} />
+                  </picture>
                 </section>
-                <picture className="Anuncio">
-                  <img src={Arteria} />
-                </picture>
               </section>
             </section>
             <section className="relacionalNews">

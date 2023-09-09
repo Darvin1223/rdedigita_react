@@ -5,8 +5,8 @@ import "./Header.scss";
 import Logo from "../../../components/Logo/Logo";
 import { Currency } from "../../../components/Currency/Currency";
 import { ModelSearch } from "../../../components/ModalSearch/ModelSearch";
-
-
+import { ProgramsBar } from "../../../components/ProgramsBar/ProgramsBar";
+import { BannerSlider } from "../../../components/BannerSlider/BannerSlider";
 
 const Header = ({ isDarkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +14,8 @@ const Header = ({ isDarkMode }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [shouldHideMenu, setShouldHideMenu] = useState(); // Nuevo estado
   const [currencyData, setCurrencyData] = useState([]);
-  const [status, setStatus] = useState('loading');
+ 
+  const [status, setStatus] = useState("loading");
   let Buy;
   let Sell;
   const API = `https://api.indexa.do/api/rates?bank=bpd`;
@@ -23,10 +24,10 @@ const Header = ({ isDarkMode }) => {
       .then((response) => response.json())
       .then((data) => {
         setCurrencyData(data);
-        setStatus('loaded');
+        setStatus("loaded");
       })
       .catch((error) => {
-        setStatus('error');
+        setStatus("error");
         console.error(`Error fetching currency Data: ${error}`);
       });
   }, []);
@@ -58,51 +59,48 @@ const Header = ({ isDarkMode }) => {
 
   const links = [
     {
-      url: "/politica",
-      name: "Politica",
+      url: "/",
+      name: "Portada",
+    },
+    {
+      url: "/opinion",
+      name: "Opinión",
+    },
+    {
+      url: "/el_pais",
+      name: "El País",
     },
     {
       url: "/economia",
-      name: "Economia",
+      name: "Economía",
     },
     {
-      url: "/arteria",
-      name: "Arteria",
+      url: "/tecnologia",
+      name: "Tecnología",
     },
     {
-      url: "/ensamble",
-      name: "Ensamble",
+      url: "/cultura",
+      name: "Cultura",
     },
     {
-      url: "/intervista",
-      name: "Intervista",
+      url: "/deporte",
+      name: "Deportes",
     },
     {
-      url: "/el_scout",
-      name: "El Scout",
+      url: "/trending",
+      name: "Trending",
     },
-    {
-      url: "/el_menaje",
-      name: "El Menaje",
-    },
-    {
-      url: "/paraiso",
-      name: "Paraíso",
-    },
-    {
-      url: "/chinazo",
-      name: "El Chinazo",
-    },
+   
   ];
-  
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+
     setShouldHideMenu(false); // Cuando se abre el menú, no se debe ocultar
   };
   const toggleModal = () => {
- 
     setIsModalOpen(!isModalOpen);
-  }
+  };
   const closeMenu = () => {
     setShouldHideMenu(true); // Cuando se cierra el menú, se debe ocultar
     setIsMenuOpen(false);
@@ -114,8 +112,6 @@ const Header = ({ isDarkMode }) => {
     console.log("Se hizo clic en el icono de búsqueda");
     // También puedes realizar otras acciones aquí, como mostrar un cuadro de diálogo de búsqueda.
   };
-
-  
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -176,30 +172,38 @@ const Header = ({ isDarkMode }) => {
                   />
                 ))}
               </Navegation>
-              <span
-            className="material-symbols-outlined search-icon"
-            onClick={toggleModal}
-          >
-            search
-          </span>
-            
-              
+              {isModalOpen ? (
+                <span
+                  class="material-symbols-outlined close-icon"
+                  onClick={toggleModal}
+                >
+                  close
+                </span>
+              ) : (
+                <span
+                  className="material-symbols-outlined search-icon"
+                  onClick={toggleModal}
+                >
+                  search
+                </span>
+              )}
             </section>
           </div>
         </div>
       </header>
+      <ProgramsBar />
       <section className="info-section">
         <section className="info-section--container">
           <p className="timer-date-information">
             <span>{`${daysOfWeek[currentDay]}, ${mesesDelAño[currentMonth]} ${currentDayNumber}, ${currentYear}`}</span>
             <span className="line">|</span>
-            <span>Compra:</span> {Buy} DOP <span>/</span> <span>Venta:</span> {Sell} DOP
+            <span>Compra:</span> {Buy} DOP <span>/</span> <span>Venta:</span>{" "}
+            {Sell} DOP
           </p>
-         
         </section>
       </section>
+      <BannerSlider />
       {isModalOpen && <ModelSearch stado={isModalOpen} />}
-
     </>
   );
 };
