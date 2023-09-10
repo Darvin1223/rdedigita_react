@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./LastNews.scss"; // Asegúrate de tener el archivo de estilos correcto
 import { Link } from "react-router-dom";
 
-import arteria from '../../assets/img/Arteria_mobile.png';
+import arteria from "../../assets/img/Arteria_mobile.png";
 
 const LastNews = () => {
   const urlApiLatestPosts = "https://api.rdedigital.com/api/v2/lastestPost";
@@ -13,7 +13,7 @@ const LastNews = () => {
     fetch(urlApiLatestPosts)
       .then((response) => response.json())
       .then((data) => {
-        setLastNews(data.slice(0,10));
+        setLastNews(data.slice(0, 10));
         setIsLoading(false); // Marcamos que la carga ha finalizado
       })
       .catch((error) => {
@@ -22,118 +22,132 @@ const LastNews = () => {
       });
   }, []);
 
-  console.log(lastNews)
-  
+  console.log(lastNews);
+
   if (lastNews.length > 0) {
     const firstNews = lastNews[0];
     const secondNews = lastNews.slice(1, 5);
     const thirdNews = lastNews.slice(5);
-    
+
     return (
       <section className={`lastNews`}>
         <h2 className="lastNews-section--title">Noticias en portada</h2>
         <section className="news_container lastNews_container principal_news">
           <section className="first-news-container">
             {firstNews && (
-             <React.Fragment>
-             <Link
-               className="news_container--link"
-               key={firstNews.id}
-               to={`/news/${firstNews.id}`}
-             >
-               <article className="first-post news_content" key={firstNews.id}>
-                 <picture className="news-image" key={firstNews.id}>
-                   {firstNews.media_post && (
-                     <img
-                       className="news-image--img"
-                       src={firstNews.media_post}
-                       alt={firstNews.title_post}
-                     />
-                   )}
-                 </picture>
-                 <p className="news-image-pie">{firstNews.title_post}</p>
-                 <h1 className="news--title">{firstNews.title_post}</h1>
-                 <p className="news-extract">
-                   {firstNews.content_post
-                     .replace(/<\/?[^>]+(>|$)/g, "")
-                     .substring(0, 200) + "..."}
-                 </p>
-               </article>
-             </Link>
-             <picture className="anuncios">
-             <a> <img src={arteria} className="anuncio"/></a>
-             <a> <img src={arteria} className="anuncio"/></a>
-             </picture>
-             </React.Fragment>
-
+              <React.Fragment>
+                <Link
+                  className="news_container--link"
+                  key={firstNews.id}
+                  to={`/news/${firstNews.id}`}
+                >
+                  <article
+                    className="first-post news_content"
+                    key={firstNews.id}
+                  >
+                    <picture className="news-image" key={firstNews.id}>
+                      {firstNews.media_post && (
+                        <img
+                          className="news-image--img"
+                          src={firstNews.media_post}
+                          alt={firstNews.title_post}
+                        />
+                      )}
+                    </picture>
+                    <p className="news-image-pie">{firstNews.title_post}</p>
+                    <h1 className="news--title">{firstNews.title_post}</h1>
+                    <p className="news-extract">
+                      {firstNews.content_post
+                        .replace(/<\/?[^>]+(>|$)/g, "")
+                        .substring(0, 200) + "..."}
+                    </p>
+                  </article>
+                </Link>
+                <picture className="anuncios desktop_show">
+                  <a>
+                    {" "}
+                    <img src={arteria} className="anuncio" />
+                  </a>
+                  
+                    <Link class="news_container--link news_container_first" to="/news/">
+                      <article class="news_content third-news-posts tercero news_container_first">
+                        <section class="news_content--info">
+                          <section class="news_content--info_cat"></section>
+                        </section>
+                        <h2 class="news--title italic">
+                          {firstNews.title_post}
+                        </h2>
+                        <div class="news-extract oculto">
+                        {firstNews.content_post
+                        .replace(/<\/?[^>]+(>|$)/g, "")
+                        .substring(0, 200) + "..."}
+                        </div>
+                      </article>
+                    </Link>
+                
+                </picture>
+              </React.Fragment>
             )}
-
           </section>
 
           {/* A continuación, puedes dividir los elementos restantes en dos contenedores */}
           <div className="second-news">
-            {secondNews
-              .slice(1)
-              .map((newsElement, index) => (
-             
-                <Link
-                  className="news_container--link"
-                  key={newsElement.id}
-                  to={`/news/${newsElement.id}`}
+            {secondNews.slice(1).map((newsElement, index) => (
+              <Link
+                className="news_container--link"
+                key={newsElement.id}
+                to={`/news/${newsElement.id}`}
+              >
+                <article
+                  className={`news_content third-news-posts ${
+                    index === 1 ? "segunda" : ""
+                  } ${index === 2 ? "tercero" : ""}`}
+                  key={index}
                 >
-                  <article
-                    className={`news_content third-news-posts ${
-                      index === 1 ? "segunda" : ""
-                    } ${index === 2 ? "tercero" : ""}`}
-                    key={index}
-                  >
-                    {index === 0 ? (
-                      <>
-                   
-                        <h2 className="news--title italic">
-                          {newsElement.title_post}
-                        </h2>
+                  {index === 0 ? (
+                    <>
+                      <h2 className="news--title italic">
+                        {newsElement.title_post}
+                      </h2>
 
-                        <div
-                          className="news-extract"
-                          dangerouslySetInnerHTML={{
-                            __html:
-                              newsElement.content_post
-                                .replace(/<\/?[^>]+(>|$)/g, "")
-                                .substring(0, 100) + "...",
-                          }}
-                        ></div>
-                      </>
-                    ) : index === 1 ? (
-                      <>
-                        <h2 className="news--title">
-                          {newsElement.title_post}
-                        </h2>
-                        <picture className="news-image">
-                          {firstNews.media_post && (
-                            <img
-                              className="news-image--img"
-                              src={newsElement.media_post}
-                              alt={newsElement.title_post}
-                            />
-                          )}
-                        </picture>
+                      <div
+                        className="news-extract"
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            newsElement.content_post
+                              .replace(/<\/?[^>]+(>|$)/g, "")
+                              .substring(0, 100) + "...",
+                        }}
+                      ></div>
+                    </>
+                  ) : index === 1 ? (
+                    <>
+                      <h2 className="news--title">{newsElement.title_post}</h2>
+                      <picture className="news-image">
+                        {firstNews.media_post && (
+                          <img
+                            className="news-image--img"
+                            src={newsElement.media_post}
+                            alt={newsElement.title_post}
+                          />
+                        )}
+                      </picture>
 
-                        <div
-                          className="news-extract oculto"
-                          dangerouslySetInnerHTML={{
-                            __html:
-                              newsElement.content_post
-                                .replace(/<\/?[^>]+(>|$)/g, "")
-                                .substring(0, 100) + "...",
-                          }}
-                        ></div>
-                      </>
-                    ) : (
-                      <>
-                        <section className="news_content--info">
-                          <section className="news_content--info_cat">
-                            {/* {newsElement.categories_name.length > 1 ? (
+                      <div
+                        className="news-extract oculto"
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            newsElement.content_post
+                              .replace(/<\/?[^>]+(>|$)/g, "")
+                              .substring(0, 100) + "...",
+                        }}
+                      ></div>
+                    </>
+                  ) : (
+                    <>
+                      <section className="news_content--info">
+                        <section className="news_content--info_cat">
+                          {/* {newsElement.categories_name.length > 1 ? (
               newsElement.categories_name.map((category, index) => (
                 category !== 'Noticiero' ? (
                   <p className="news-cat" key={index}>{category}</p>
@@ -144,25 +158,25 @@ const LastNews = () => {
             ) : (
               <p className="news-cat">{newsElement.categories_name[0]}</p>
             )} */}
-                          </section>
                         </section>
-                        <h2 className="news--title italic">
-                          {newsElement.title_post}
-                        </h2>
-                        <div
-                          className="news-extract oculto"
-                          dangerouslySetInnerHTML={{
-                            __html:
-                              newsElement.content_post
-                                .replace(/<\/?[^>]+(>|$)/g, "")
-                                .substring(0, 100) + "...",
-                          }}
-                        ></div>
-                      </>
-                    )}
-                  </article>
-                </Link>
-              ))}
+                      </section>
+                      <h2 className="news--title italic">
+                        {newsElement.title_post}
+                      </h2>
+                      <div
+                        className="news-extract oculto"
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            newsElement.content_post
+                              .replace(/<\/?[^>]+(>|$)/g, "")
+                              .substring(0, 100) + "...",
+                        }}
+                      ></div>
+                    </>
+                  )}
+                </article>
+              </Link>
+            ))}
           </div>
 
           <div className="third-news">
@@ -180,9 +194,7 @@ const LastNews = () => {
                 >
                   {index === 0 ? (
                     <>
-                      <h2 className="news--title">
-                        {newsElement.title_post}
-                      </h2>
+                      <h2 className="news--title">{newsElement.title_post}</h2>
                       <picture className="news-image">
                         {firstNews.media_post && (
                           <img
@@ -204,11 +216,13 @@ const LastNews = () => {
                     </>
                   ) : index === 1 ? (
                     <>
-                    <picture className="anuncios">
-                    <a> <img src={arteria} className="anuncio"/></a>
-                    </picture>
+                      <picture className="anuncios">
+                        <a>
+                          {" "}
+                          <img src={arteria} className="anuncio" />
+                        </a>
+                      </picture>
                     </>
-                  
                   ) : (
                     <>
                       <h2 className="news--title italic">

@@ -99,14 +99,9 @@
           text-align: left;
         }
       }
-      .anuncios{
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        img{
-          width: 22rem;
-        }
-      }
+     .anuncios{
+      display: none;
+     }
     }
     .second-news,
     .third-news {
@@ -144,6 +139,9 @@
           margin-bottom: 2rem;
           text-align: left;
         }
+      }
+      .anuncios{
+        display: none;
       }
     }
   }
@@ -251,6 +249,14 @@
             .news-image-pie {
               margin-bottom: 1rem;
               font-size: 1.2rem;
+            }
+          }
+          .anuncios{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            img{
+              width: 22rem;
             }
           }
         }

@@ -11,6 +11,7 @@ import Cultura from "./../../assets/img/Cultura.png";
 import El_Pais from "./../../assets/img/El Pais.png";
 import Economia from "./../../assets/img/Economia.png";
 import Farandula from "./../../assets/img/Farandula.png";
+import Internacional from "./../../assets/img/rde 2.png";
 
 import elMenaje_Mobile from "../../assets/img/ElMenaje_Mobile.png";
 import Intervista_Mobile from "../../assets/img/Intervista_Mobile.png";
@@ -78,9 +79,9 @@ const Prueba = () => {
       originalName: "Internacional",
       url: "/internacional",
       ourName: "Internacional",
-      banner: Deportes,
-      banner_mobile: Deportes,
-      banner_tablet: Deportes,
+      banner: Internacional,
+      banner_mobile: Internacional,
+      banner_tablet: Internacional,
     },
     {
       id: 3,
