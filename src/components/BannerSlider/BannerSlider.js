@@ -1,12 +1,15 @@
 import React, {useState,useEffect} from 'react';
+
+
 import Opinion from "../../assets/img/Opinion.png";
 import Sociedad from "../../assets/img/Sociedad.png";
 import Treding from "./../../assets/img/Trending.png";
 import Deportes from "./../../assets/img/Deportes.png";
 import Cultura from "./../../assets/img/Cultura.png";
 import El_Pais from "./../../assets/img/El Pais.png";
-import Economia from "./../../assets/img/Economia.png";
-import Farandula from "./../../assets/img/Farandula.png";
+import Economia from "./../../assets/img/PesoOro.png";
+import Farandula from "./../../assets/img/Deportes 2.png";
+import rde from "./../../assets/img/rde 1.png";
 
 import elMenaje_Mobile from "../../assets/img/ElMenaje_Mobile.png";
 import Intervista_Mobile from "../../assets/img/Intervista_Mobile.png";
@@ -30,6 +33,7 @@ const BannerSlider = () => {
         El_Pais,
         Economia,
         Farandula,
+        rde
       ];
       const [currentImageIndex, setCurrentImageIndex] = useState(0);
 

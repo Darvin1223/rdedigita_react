@@ -5,24 +5,30 @@ import { Link } from "react-router-dom";
 import arteria from '../../assets/img/Arteria_mobile.png';
 
 const LastNews = () => {
-  const urlApiLatestPosts = "https://apitest.rdedigital.com/api/v1/latestPost"; // Cambia la URL a donde esté corriendo tu servidor backend
-  // const urlApiLatestPosts = "https://apitest.rdedigital.com/api/v1/posts"; // Cambia la URL a donde esté corriendo tu servidor backend
-  // const urlApiLatestPosts = "https://apitest.rdedigital.com/api/latestPosts"; // Cambia la URL a donde esté corriendo tu servidor backend
+  const urlApiLatestPosts = "https://api.rdedigital.com/api/v2/lastestPost";
+  const [isLoading, setIsLoading] = useState(true);
   const [lastNews, setLastNews] = useState([]);
 
   useEffect(() => {
     fetch(urlApiLatestPosts)
       .then((response) => response.json())
-      .then((data) => setLastNews(data.slice(0, 8)))
-      .catch((error) => console.error("Error fetching latest posts:", error));
+      .then((data) => {
+        setLastNews(data.slice(0,10));
+        setIsLoading(false); // Marcamos que la carga ha finalizado
+      })
+      .catch((error) => {
+        console.error("Error fetching latest posts:", error);
+        setIsLoading(false); // En caso de error, también marcamos que la carga ha finalizado
+      });
   }, []);
 
   console.log(lastNews)
+  
   if (lastNews.length > 0) {
     const firstNews = lastNews[0];
     const secondNews = lastNews.slice(1, 5);
     const thirdNews = lastNews.slice(5);
-    console.log(firstNews)
+    
     return (
       <section className={`lastNews`}>
         <h2 className="lastNews-section--title">Noticias en portada</h2>
@@ -37,18 +43,18 @@ const LastNews = () => {
              >
                <article className="first-post news_content" key={firstNews.id}>
                  <picture className="news-image" key={firstNews.id}>
-                   {firstNews.media && (
+                   {firstNews.media_post && (
                      <img
                        className="news-image--img"
-                       src={firstNews.media}
-                       alt={firstNews.title.rendered}
+                       src={firstNews.media_post}
+                       alt={firstNews.title_post}
                      />
                    )}
                  </picture>
-                 <p className="news-image-pie">{firstNews.title.rendered}</p>
-                 <h1 className="news--title">{firstNews.title.rendered}</h1>
+                 <p className="news-image-pie">{firstNews.title_post}</p>
+                 <h1 className="news--title">{firstNews.title_post}</h1>
                  <p className="news-extract">
-                   {firstNews.content.rendered
+                   {firstNews.content_post
                      .replace(/<\/?[^>]+(>|$)/g, "")
                      .substring(0, 200) + "..."}
                  </p>
@@ -85,14 +91,14 @@ const LastNews = () => {
                       <>
                    
                         <h2 className="news--title italic">
-                          {newsElement.title.rendered}
+                          {newsElement.title_post}
                         </h2>
 
                         <div
                           className="news-extract"
                           dangerouslySetInnerHTML={{
                             __html:
-                              newsElement.content.rendered
+                              newsElement.content_post
                                 .replace(/<\/?[^>]+(>|$)/g, "")
                                 .substring(0, 100) + "...",
                           }}
@@ -101,14 +107,14 @@ const LastNews = () => {
                     ) : index === 1 ? (
                       <>
                         <h2 className="news--title">
-                          {newsElement.title.rendered}
+                          {newsElement.title_post}
                         </h2>
                         <picture className="news-image">
-                          {firstNews.media && (
+                          {firstNews.media_post && (
                             <img
                               className="news-image--img"
-                              src={newsElement.media}
-                              alt={newsElement.title.rendered}
+                              src={newsElement.media_post}
+                              alt={newsElement.title_post}
                             />
                           )}
                         </picture>
@@ -117,7 +123,7 @@ const LastNews = () => {
                           className="news-extract oculto"
                           dangerouslySetInnerHTML={{
                             __html:
-                              newsElement.content.rendered
+                              newsElement.content_post
                                 .replace(/<\/?[^>]+(>|$)/g, "")
                                 .substring(0, 100) + "...",
                           }}
@@ -141,13 +147,13 @@ const LastNews = () => {
                           </section>
                         </section>
                         <h2 className="news--title italic">
-                          {newsElement.title.rendered}
+                          {newsElement.title_post}
                         </h2>
                         <div
                           className="news-extract oculto"
                           dangerouslySetInnerHTML={{
                             __html:
-                              newsElement.content.rendered
+                              newsElement.content_post
                                 .replace(/<\/?[^>]+(>|$)/g, "")
                                 .substring(0, 100) + "...",
                           }}
@@ -175,14 +181,14 @@ const LastNews = () => {
                   {index === 0 ? (
                     <>
                       <h2 className="news--title">
-                        {newsElement.title.rendered}
+                        {newsElement.title_post}
                       </h2>
                       <picture className="news-image">
-                        {firstNews.media && (
+                        {firstNews.media_post && (
                           <img
                             className="news-image--img"
-                            src={newsElement.media}
-                            alt={newsElement.title.rendered}
+                            src={newsElement.media_post}
+                            alt={newsElement.title_post}
                           />
                         )}
                       </picture>
@@ -190,7 +196,7 @@ const LastNews = () => {
                         className="news-extract"
                         dangerouslySetInnerHTML={{
                           __html:
-                            newsElement.content.rendered
+                            newsElement.content_post
                               .replace(/<\/?[^>]+(>|$)/g, "")
                               .substring(0, 100) + "...",
                         }}
@@ -206,7 +212,7 @@ const LastNews = () => {
                   ) : (
                     <>
                       <h2 className="news--title italic">
-                        {newsElement.title.rendered}
+                        {newsElement.title_post}
                       </h2>
                       <div
                         className={`news-extract ${
@@ -214,7 +220,7 @@ const LastNews = () => {
                         }`}
                         dangerouslySetInnerHTML={{
                           __html:
-                            newsElement.content.rendered
+                            newsElement.content_post
                               .replace(/<\/?[^>]+(>|$)/g, "")
                               .substring(0, 100) + "...",
                         }}

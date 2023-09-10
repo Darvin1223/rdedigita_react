@@ -21,7 +21,7 @@ import Politica_Mobile from "./../../assets/img/Politica_Mobile.png";
 import Economia_Mobile from "./../../assets/img/Economia_Mobile.png";
 import Farandula_Mobile from "./../../assets/img/Farandula_mobile.png";
 import Arteria from "./../../assets/img/Economia_Mobile.png";
-const API_POSTS = "https://apitest.rdedigital.com/api/v1/posts/category/";
+const API_POSTS = "https://api.rdedigital.com/api/v2/posts/";
 const POSTS_PER_CATEGORY = 6;
 
 const Prueba = () => {
@@ -190,31 +190,31 @@ const Prueba = () => {
                               {sections[categoryName]
                                 .slice(0, 1)
                                 .map((newsElement, index) => (
-                                  <React.Fragment key={newsElement.ID}>
+                                  <React.Fragment key={newsElement.id}>
                                     <section>
                                       <Link
                                         className="news_container--link"
-                                        key={newsElement.ID}
-                                        to={`/news/${newsElement.ID}`}
+                                        key={newsElement.id}
+                                        to={`/news/${newsElement.id}`}
                                       >
                                         <article className="first-post">
                                           <picture className="news-image">
-                                            {newsElement.media && (
+                                            {newsElement.media_post && (
                                               <img
                                                 className="news-image--img"
-                                                src={newsElement.media}
-                                                alt={newsElement.title.rendered}
+                                                src={newsElement.media_post}
+                                                alt={newsElement.title_post}
                                               />
                                             )}
                                           </picture>
                                           <p className="news-image-pie">
-                                            {newsElement.title.rendered}
+                                            {newsElement.title_post}
                                           </p>
                                           <h1 className="news--title">
-                                            {newsElement.title.rendered}
+                                            {newsElement.title_post}
                                           </h1>
                                           <p className="news-extract">
-                                            {newsElement.content.rendered
+                                            {newsElement.content_post
                                               .replace(/<\/?[^>]+(>|$)/g, "")
                                               .substring(0, 200) + "..."}
                                           </p>
@@ -237,20 +237,20 @@ const Prueba = () => {
                                 .map((newsElement, index) => (
                                   <Link
                                     className="news_container--link"
-                                    key={newsElement.ID}
-                                    to={`/news/${newsElement.ID}`}
+                                    key={newsElement.id}
+                                    to={`/news/${newsElement.id}`}
                                   >
                                     <article key={index}>
                                       {index === 0 ? (
                                         <>
                                           <h2 className="news--title italic">
-                                            {newsElement.title.rendered}
+                                            {newsElement.title_post}
                                           </h2>
                                           <div
                                             className="news-extract"
                                             dangerouslySetInnerHTML={{
                                               __html:
-                                                newsElement.content.rendered
+                                                newsElement.content_post
                                                   .replace(
                                                     /<\/?[^>]+(>|$)/g,
                                                     ""
@@ -262,14 +262,14 @@ const Prueba = () => {
                                       ) : index === 1 ? (
                                         <>
                                           <h2 className="news--title">
-                                            {newsElement.title.rendered}
+                                            {newsElement.title_post}
                                           </h2>
                                           <picture className="news-image">
-                                            {newsElement.media && (
+                                            {newsElement.media_post && (
                                               <img
                                                 className="news-image--img"
-                                                src={newsElement.media}
-                                                alt={newsElement.title.rendered}
+                                                src={newsElement.media_post}
+                                                alt={newsElement.title_post}
                                               />
                                             )}
                                           </picture>
@@ -299,7 +299,7 @@ const Prueba = () => {
                                             className="news-extract oculto"
                                             dangerouslySetInnerHTML={{
                                               __html:
-                                                newsElement.content.rendered
+                                                newsElement.content_post
                                                   .replace(
                                                     /<\/?[^>]+(>|$)/g,
                                                     ""
@@ -333,13 +333,13 @@ const Prueba = () => {
                                             </section>
                                           </section>
                                           <h2 className="news--title italic">
-                                            {newsElement.title.rendered}
+                                            {newsElement.title_post}
                                           </h2>
                                           <div
                                             className="news-extract oculto"
                                             dangerouslySetInnerHTML={{
                                               __html:
-                                                newsElement.content.rendered
+                                                newsElement.content_post
                                                   .replace(
                                                     /<\/?[^>]+(>|$)/g,
                                                     ""
@@ -359,21 +359,21 @@ const Prueba = () => {
                                 .map((newsElement, index) => (
                                   <Link
                                     className="news_container--link"
-                                    key={newsElement.ID}
-                                    to={`/news/${newsElement.ID}`}
+                                    key={newsElement.id}
+                                    to={`/news/${newsElement.id}`}
                                   >
                                     <article key={index}>
                                       {index === 0 ? (
                                         <>
                                           <h2 className="news--title">
-                                            {newsElement.title.rendered}
+                                            {newsElement.title_post}
                                           </h2>
                                           <picture className="news-image">
-                                            {newsElement.media && (
+                                            {newsElement.media_post && (
                                               <img
                                                 className="news-image--img"
-                                                src={newsElement.media}
-                                                alt={newsElement.title.rendered}
+                                                src={newsElement.media_post}
+                                                alt={newsElement.title_post}
                                               />
                                             )}
                                           </picture>
@@ -386,7 +386,7 @@ const Prueba = () => {
                                             className="news-extract"
                                             dangerouslySetInnerHTML={{
                                               __html:
-                                                newsElement.content.rendered
+                                                newsElement.content_post
                                                   .replace(
                                                     /<\/?[^>]+(>|$)/g,
                                                     ""
@@ -418,13 +418,13 @@ const Prueba = () => {
                                           </section>
                                         </section>
                                         <h2 className="news--title italic">
-                                          {newsElement.title.rendered}
+                                          {newsElement.title_post}
                                         </h2>
                                         <div
                                           className="news-extract oculto"
                                           dangerouslySetInnerHTML={{
                                             __html:
-                                              newsElement.content.rendered
+                                              newsElement.content_post
                                                 .replace(
                                                   /<\/?[^>]+(>|$)/g,
                                                   ""

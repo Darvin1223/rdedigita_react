@@ -202,7 +202,7 @@ const Header = ({ isDarkMode }) => {
           </p>
         </section>
       </section>
-      <BannerSlider />
+      
       {isModalOpen && <ModelSearch stado={isModalOpen} />}
     </>
   );
