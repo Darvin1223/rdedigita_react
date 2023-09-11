@@ -1,48 +1,48 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import arteria from "../../assets/img/Arteria_mobile.png";
-import "./../../components/LastNews/LastNews.scss"
+import "./../../components/LastNews/LastNews.scss";
 import "./AllViews.scss";
 const AllViews = ({ categorie, status }) => {
-    
-    console.log(categorie)
-    const API_URL = "https://api.rdedigital.com/api/v2/posts/";
-    const [isLoading, setIsLoading] = useState(true);
-    const [lastNews, setLastNews] = useState([]);
-    const [firstNews, setFirstNews] = useState(null);
-    const [secondNews, setSecondNews] = useState([]);
-    const [thirdNews, setThirdNews] = useState([]);
-  
-    useEffect(() => {
-      fetch(`${API_URL}${categorie}`)
-        .then((response) => response.json())
-        .then((data) => {
-          const slicedNews = data.slice(0, 10);
-          setLastNews(slicedNews);
-          setFirstNews(slicedNews[0]);
-          setSecondNews(slicedNews.slice(1, 5));
-          setThirdNews(slicedNews.slice(5));
-          setIsLoading(false); // Marcamos que la carga ha finalizado
-        })
-        .catch((error) => {
-          console.error("Error fetching latest posts:", error);
-          setIsLoading(false); // En caso de error, también marcamos que la carga ha finalizado
-        });
-    }, []);
+  console.log(categorie);
+  const API_URL = "https://api.rdedigital.com/api/v2/posts/";
+  const [isLoading, setIsLoading] = useState(true);
+  const [lastNews, setLastNews] = useState([]);
+  const [firstNews, setFirstNews] = useState(null);
+  const [secondNews, setSecondNews] = useState([]);
+  const [thirdNews, setThirdNews] = useState([]);
+  const [moreNews, setMoreNews] = useState([]);
 
+  useEffect(() => {
+    fetch(`${API_URL}${categorie}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const slicedNews = data.slice(0, 10);
+        setLastNews(slicedNews);
+        setMoreNews(slicedNews.slice(1, 10));
+        setFirstNews(slicedNews[0]);
+        setSecondNews(slicedNews.slice(1, 5));
+        setThirdNews(slicedNews.slice(5));
+        setIsLoading(false); // Marcamos que la carga ha finalizado
+      })
+      .catch((error) => {
+        console.error("Error fetching latest posts:", error);
+        setIsLoading(false); // En caso de error, también marcamos que la carga ha finalizado
+      });
+  }, []);
 
-    return (
+  isLoading ? console.log(moreNews) : <p>"Cargando</p>;
+  return (
+    <>
+      {status ? (
+        <section className={``}>
+          {/* Contenido cuando 'status' es verdadero */}
+        </section>
+      ) : (
         <>
-          {status ? (
-            <section className={``}>
-              {/* Contenido cuando 'status' es verdadero */}
-            </section>
-          ) : (
-            <>
-              {lastNews.length > 0 ? (
-                <section className="section_interns">
-
-                <section className={`lastNews`}>
+          {lastNews.length > 0 ? (
+            <section className="section_interns">
+              <section className={`lastNews`}>
                 <h2 className="lastNews-section--title">{categorie}</h2>
                 <section className="news_container lastNews_container principal_news">
                   <section className="first-news-container">
@@ -57,7 +57,10 @@ const AllViews = ({ categorie, status }) => {
                             className="first-post news_content"
                             key={firstNews.id_wordpress}
                           >
-                            <picture className="news-image" key={firstNews.id_wordpress}>
+                            <picture
+                              className="news-image"
+                              key={firstNews.id_wordpress}
+                            >
                               {firstNews.media_post && (
                                 <img
                                   className="news-image--img"
@@ -66,8 +69,12 @@ const AllViews = ({ categorie, status }) => {
                                 />
                               )}
                             </picture>
-                            <p className="news-image-pie">{firstNews.title_post}</p>
-                            <h1 className="news--title">{firstNews.title_post}</h1>
+                            <p className="news-image-pie">
+                              {firstNews.title_post}
+                            </p>
+                            <h1 className="news--title">
+                              {firstNews.title_post}
+                            </h1>
                             <p className="news-extract">
                               {firstNews.content_post
                                 .replace(/<\/?[^>]+(>|$)/g, "")
@@ -80,28 +87,30 @@ const AllViews = ({ categorie, status }) => {
                             {" "}
                             <img src={arteria} className="anuncio" />
                           </a>
-                          
-                            <Link class="news_container--link news_container_first" to="/news/">
-                              <article class="news_content third-news-posts tercero news_container_first">
-                                <section class="news_content--info">
-                                  <section class="news_content--info_cat"></section>
-                                </section>
-                                <h2 class="news--title italic">
-                                  {firstNews.title_post}
-                                </h2>
-                                <div class="news-extract oculto">
+
+                          <Link
+                            class="news_container--link news_container_first"
+                            to="/news/"
+                          >
+                            <article class="news_content third-news-posts tercero news_container_first">
+                              <section class="news_content--info">
+                                <section class="news_content--info_cat"></section>
+                              </section>
+                              <h2 class="news--title italic">
+                                {firstNews.title_post}
+                              </h2>
+                              <div class="news-extract oculto">
                                 {firstNews.content_post
-                                .replace(/<\/?[^>]+(>|$)/g, "")
-                                .substring(0, 200) + "..."}
-                                </div>
-                              </article>
-                            </Link>
-                        
+                                  .replace(/<\/?[^>]+(>|$)/g, "")
+                                  .substring(0, 200) + "..."}
+                              </div>
+                            </article>
+                          </Link>
                         </picture>
                       </React.Fragment>
                     )}
                   </section>
-        
+
                   {/* A continuación, puedes dividir los elementos restantes en dos contenedores */}
                   <div className="second-news">
                     {secondNews.slice(1).map((newsElement, index) => (
@@ -121,7 +130,7 @@ const AllViews = ({ categorie, status }) => {
                               <h2 className="news--title italic">
                                 {newsElement.title_post}
                               </h2>
-        
+
                               <div
                                 className="news-extract"
                                 dangerouslySetInnerHTML={{
@@ -134,7 +143,9 @@ const AllViews = ({ categorie, status }) => {
                             </>
                           ) : index === 1 ? (
                             <>
-                              <h2 className="news--title">{newsElement.title_post}</h2>
+                              <h2 className="news--title">
+                                {newsElement.title_post}
+                              </h2>
                               <picture className="news-image">
                                 {firstNews.media_post && (
                                   <img
@@ -144,7 +155,7 @@ const AllViews = ({ categorie, status }) => {
                                   />
                                 )}
                               </picture>
-        
+
                               <div
                                 className="news-extract oculto"
                                 dangerouslySetInnerHTML={{
@@ -190,7 +201,7 @@ const AllViews = ({ categorie, status }) => {
                       </Link>
                     ))}
                   </div>
-        
+
                   <div className="third-news">
                     {thirdNews.map((newsElement, index) => (
                       <Link
@@ -206,7 +217,9 @@ const AllViews = ({ categorie, status }) => {
                         >
                           {index === 0 ? (
                             <>
-                              <h2 className="news--title">{newsElement.title_post}</h2>
+                              <h2 className="news--title">
+                                {newsElement.title_post}
+                              </h2>
                               <picture className="news-image">
                                 {firstNews.media_post && (
                                   <img
@@ -259,14 +272,33 @@ const AllViews = ({ categorie, status }) => {
                   </div>
                 </section>
               </section>
-                </section>
-              ) : (
-                <p className="text-center">No hay noticias disponibles</p>
-              )}
-            </>
+              <section className="more_news">
+              <h2 className="lastNews-section--title">Mas noticias</h2>
+                {moreNews.map((element, index) => (
+                  <li key={index} className="news_relational--elements">
+                    <Link to={`/news/${element.id}`}>
+                      <picture className="news_relational--elements-imgContainer">
+                        <img
+                          src={element.media_post}
+                          alt={element.title_post}
+                          className="news_relational--elements-imgContainer-img"
+                        />
+                      </picture>
+                      <p className="news_relational--elements-title">
+                        {element.title_post}{" "}
+                      </p>
+                    </Link>
+                  </li>
+                ))}
+              </section>
+            </section>
+          ) : (
+            <p className="text-center">No hay noticias disponibles</p>
           )}
         </>
-      );
+      )}
+    </>
+  );
 };
 
 export { AllViews };

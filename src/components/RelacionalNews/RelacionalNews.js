@@ -6,7 +6,7 @@ const RelacionalNews = ({categorie}) => {
     const [relacionalCategorie, setRelacionalCategorie] = useState([]);
     const [loading, setLoading] = useState(true);
     // console.log(categorie)
-    const API_URL = `https://apitest.rdedigital.com/api/postsByCategory/${categorie}`;
+    const API_URL = `https://api.rdedigital.com/api/v2/posts/${categorie}`;
     useEffect(() =>{ 
         fetch(API_URL)
         .then((response) => response.json())

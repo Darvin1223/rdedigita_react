@@ -51,7 +51,7 @@ const ProgramsBar = () => {
         <ul>
             {programs.map((element, index) => (
                 <li key={index}>
-                    <Link to={element.url}>{element.name}</Link>
+                    <Link to={`${element.url}`}>{element.name}</Link>
                 </li>
             ))}
         </ul>

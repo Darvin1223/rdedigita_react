@@ -65,7 +65,7 @@ function App() {
  <Router>
       <Layout>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route exact path='/' element={<Home />} />
           <Route path="/news/:newsId" element={<News />} />
           <Route  path='/news/category/:nameCategorie' element={<CategoriesNews />} />
           {categories.map((Element, index) => (
