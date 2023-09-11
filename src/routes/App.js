@@ -6,7 +6,7 @@ import {Home} from './../views/Home/Home'; // Asegúrate de importar tus compone
 
 import { CategoriesNews } from '../views/CategoriesNews/CategoriesNews';
 import { News } from '../views/News/News';
-import {ElScout} from './../views/ElScout/ElScout';
+import {Opinion} from '../views/ElScout/Opinion';
 import { Arteria } from '../views/Arteria/Arteria';
 import { Intervista } from '../views/Intervista/Intervista';
 import { Politica } from '../views/Politica/Politica';
@@ -43,7 +43,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path="/news/:newsId" element={<News />} />
           <Route  path='/news/category/:nameCategorie' element={<CategoriesNews />} />
-          <Route path='/el_scout'  element={<ElScout status={true} view={'ElScout'}/>}/>
+          <Route path='/opinion'  element={<Opinion status={false} view={'Opinion'}/>}/>
           <Route path='/arteria'  element={<Arteria status={true} view={'Arteria'}/>}/>
           <Route path='/intervista'  element={<Intervista status={true} view={'Intervista'}/>}/>
           <Route path='/politica'  element={<Politica status={true} view={'Politica'}/>}/>

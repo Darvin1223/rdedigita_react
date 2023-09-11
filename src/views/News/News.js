@@ -9,21 +9,21 @@ import Arteria from "./../../assets/img/Economia_Mobile.png";
 import DOMPurify from "dompurify";
 
 const News = () => {
-  const [newsCount, setNewsCount] = useState(1); // Contador de noticias cargadas
+  const [newsCount, setNewsCount] = useState(1); 
   const [additionalNews, setAdditionalNews] = useState({});
   const [isShared, setIsShared] = useState(false);
   const { newsId } = useParams();
   const [newsData, setNewsData] = useState({});
   const [dataAllCat, setDataAllCat] = useState([]);
-  const [newCat, setNewCat] = useState(""); // State for newCat
-  const [isLoading, setIsLoading] = useState(true); //
+  const [newCat, setNewCat] = useState(""); 
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
     
     fetch(`https://api.rdedigital.com/api/v2/post/${newsId}`)
       .then((response) => response.json())
       .then((data) => {
-        setNewsData(data);
+        setNewsData(data[0]);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -50,23 +50,23 @@ const News = () => {
   //     });
   // };
 
-  useEffect(() => {
-    if (newsData) {
-      const categoriesName = newsData.category;
-      setDataAllCat(categoriesName);
-      if (categoriesName.length > 1) {
-        setNewCat(categoriesName[1]); // Set newCat based on your logic
-        setIsLoading(false);
-      }
-    }
-  }, [newsData]);
+  // useEffect(() => {
+  //   if (newsData) {
+  //     const categoriesName = newsData.category;
+  //     setDataAllCat(categoriesName);
+  //     if (categoriesName.length > 1) {
+  //       setNewCat(categoriesName[1]); // Set newCat based on your logic
+  //       setIsLoading(false);
+  //     }
+  //   }
+  // }, [newsData]);
 
 
   const handleIsShared = () => {
     setIsShared(!isShared);
   };
 
-
+  console.log(newsData)
 
   return (
     <section className="container">
@@ -134,10 +134,11 @@ const News = () => {
                   {newsData.content && (
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: newsData.content,
+                        __html: newsData.content_post,
                       }}
                     />
                   )}
+                  {newsData.content_post}
                 </div>
               </article>
               <section className="content_one_news--extra">

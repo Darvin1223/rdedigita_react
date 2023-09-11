@@ -1,12 +1,12 @@
 import React from 'react';
 
-import "./ElScout.scss";
+import "./Opinion.scss";
 
 
 import mobile from '../../assets/img/construccion/mobile/En_Construcción_320_El_Scout.png';
 import desktop_1024 from "../../assets/img/construccion/1024/En_Construcción_1024_El_Scout.png";
 import desktop_1440 from "../../assets/img/construccion/1440/En_Construcción_1440_Paraiso.png";
-const ElScout = ({status,view}) => {
+const Opinion = ({status,view}) => {
     
     return (
         <>
@@ -31,4 +31,4 @@ const ElScout = ({status,view}) => {
       
 };
 
-export { ElScout };
+export { Opinion };
