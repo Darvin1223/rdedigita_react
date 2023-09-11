@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import {Layout} from './../container/Layout';
 import { ThemeProvider } from './../Context/ThemeContext';
@@ -17,10 +17,28 @@ import { Farandula } from '../views/Farandula/Farandula';
 import { ElChinazo } from '../views/ElChinazo/ElChinazo';
 import { Ensamble } from '../views/Ensamble/Ensamble';
 import { Prueba_news } from '../views/News/Prueba';
+import { AllViews } from '../views/AllViews/AllViews';
  
 
 
 function App() {
+  const [categories,setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  
+  useEffect(() => {
+    // Realiza la solicitud sin procesar la respuesta
+    fetch('https://api.rdedigital.com/api/v2/categories')
+    .then((response) => response.json())
+      .then((data) => {
+        setCategories(data);
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        // Maneja cualquier error que pueda ocurrir durante la solicitud
+        console.error('Error en la solicitud:', error);
+      });
+  }, []); 
   useEffect(() => {
     // Realiza la solicitud sin procesar la respuesta
     fetch('https://back.rdedigital.com/', {
@@ -35,7 +53,14 @@ function App() {
         console.error('Error en la solicitud:', error);
       });
   }, []); 
+  if(isLoading){
+    console.log("cargando")
+  }else{
+
+    console.log(categories)
+  }
   return (
+
     <ThemeProvider>
  <Router>
       <Layout>
@@ -43,7 +68,15 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path="/news/:newsId" element={<News />} />
           <Route  path='/news/category/:nameCategorie' element={<CategoriesNews />} />
-          <Route path='/opinion'  element={<Opinion status={false} view={'Opinion'}/>}/>
+          {categories.map((Element, index) => (
+  <Route
+    path={`/${Element.category_post}`}
+    key={index}
+    element={<AllViews status={false} categorie={Element.category_post} />}
+  />
+))}
+
+          {/* <Route path='/opinion'  element={<Opinion status={false} view={'Opinion'}/>}/>
           <Route path='/arteria'  element={<Arteria status={true} view={'Arteria'}/>}/>
           <Route path='/intervista'  element={<Intervista status={true} view={'Intervista'}/>}/>
           <Route path='/politica'  element={<Politica status={true} view={'Politica'}/>}/>
@@ -52,7 +85,7 @@ function App() {
           <Route path='/paraiso'  element={<Paraiso status={true} view={'Paraiso'}/>}/>
           <Route path='/farandula'  element={<Farandula status={true} view={'Farandula'}/>}/>
           <Route path='/chinazo'  element={<ElChinazo status={true} view={'El_Chinazo'}/>}/>
-          <Route path='/ensamble'  element={<Ensamble status={true} view={'Ensamble'}/>}/>
+          <Route path='/ensamble'  element={<Ensamble status={true} view={'Ensamble'}/>}/> */}
         </Routes>
       </Layout>
     </Router>

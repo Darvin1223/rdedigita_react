@@ -14,7 +14,22 @@ const Header = ({ isDarkMode }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [shouldHideMenu, setShouldHideMenu] = useState(); // Nuevo estado
   const [currencyData, setCurrencyData] = useState([]);
- 
+  const [categories,setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    // Realiza la solicitud sin procesar la respuesta
+    fetch('https://api.rdedigital.com/api/v2/categories')
+    .then((response) => response.json())
+      .then((data) => {
+        setCategories(data);
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        // Maneja cualquier error que pueda ocurrir durante la solicitud
+        console.error('Error en la solicitud:', error);
+      });
+  }, []); 
   const [status, setStatus] = useState("loading");
   let Buy;
   let Sell;
@@ -92,6 +107,19 @@ const Header = ({ isDarkMode }) => {
     },
    
   ];
+  const enlaces = [ {
+    url: "/",
+    name: "Portada",
+  }];
+  console.log(categories)
+  categories.map((element,index) =>{
+    if(element.category_post != "Noticiero"){
+      
+      let data = {url:`/${element.category_post}`,name:`${element.category_post}`};
+      enlaces.push(data);
+    }
+ 
+  })
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -145,6 +173,7 @@ const Header = ({ isDarkMode }) => {
     "Diciembre",
   ];
 
+  console.log(enlaces)
   return (
     <>
       <header className={`Header ${isDarkMode ? "dark-mode" : "light-mode"}`}>
@@ -163,11 +192,11 @@ const Header = ({ isDarkMode }) => {
                   shouldHideMenu ? "hidden_menu" : ""
                 }`}
               >
-                {links.map((link, index) => (
+                {enlaces.map((enlace, index) => (
                   <LinksNavegacion
                     key={index}
-                    url={link.url}
-                    name={link.name}
+                    url={enlace.url}
+                    name={enlace.name}
                     onClick={closeMenu} // Cerrar el menú cuando se hace clic en un enlace
                   />
                 ))}

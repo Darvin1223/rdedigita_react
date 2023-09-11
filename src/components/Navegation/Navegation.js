@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Navegation.scss";
 import { ProgressBar } from "react-bootstrap";
 import { SocialMediaIcons } from "../SocialMediaIcons/SocialMediaIcons";
@@ -41,7 +41,10 @@ const programs = [
   },
 ];
 
+
+
 const Navegation = ({ children, className }) => {
+  
   return (
     <nav className={`Navegation ${className}`}>
       <section className="Navegation--header">
