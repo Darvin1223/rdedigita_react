@@ -38,14 +38,14 @@ const LastNews = () => {
               <React.Fragment>
                 <Link
                   className="news_container--link"
-                  key={firstNews.id}
-                  to={`/news/${firstNews.id}`}
+                  key={firstNews.id_wordpress}
+                  to={`/news/${firstNews.id_wordpress}`}
                 >
                   <article
                     className="first-post news_content"
-                    key={firstNews.id}
+                    key={firstNews.id_wordpress}
                   >
-                    <picture className="news-image" key={firstNews.id}>
+                    <picture className="news-image" key={firstNews.id_wordpress}>
                       {firstNews.media_post && (
                         <img
                           className="news-image--img"
@@ -95,8 +95,8 @@ const LastNews = () => {
             {secondNews.slice(1).map((newsElement, index) => (
               <Link
                 className="news_container--link"
-                key={newsElement.id}
-                to={`/news/${newsElement.id}`}
+                key={newsElement.id_wordpress}
+                to={`/news/${newsElement.id_wordpress}`}
               >
                 <article
                   className={`news_content third-news-posts ${
@@ -183,8 +183,8 @@ const LastNews = () => {
             {thirdNews.map((newsElement, index) => (
               <Link
                 className="news_container--link"
-                key={newsElement.ID}
-                to={`/news/${newsElement.ID}`}
+                key={newsElement.id_wordpress}
+                to={`/news/${newsElement.id_wordpress}`}
               >
                 <article
                   className={`news_content third-news-posts ${

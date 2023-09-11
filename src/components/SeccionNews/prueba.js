@@ -191,12 +191,12 @@ const Prueba = () => {
                               {sections[categoryName]
                                 .slice(0, 1)
                                 .map((newsElement, index) => (
-                                  <React.Fragment key={newsElement.id}>
+                                  <React.Fragment key={newsElement.id_wordpress}>
                                     <section>
                                       <Link
                                         className="news_container--link"
-                                        key={newsElement.id}
-                                        to={`/news/${newsElement.id}`}
+                                        key={newsElement.id_wordpress}
+                                        to={`/news/${newsElement.id_wordpress}`}
                                       >
                                         <article className="first-post">
                                           <picture className="news-image">
@@ -222,13 +222,34 @@ const Prueba = () => {
                                         </article>
                                       </Link>
                                     </section>
-                                  <picture className="anuncios">
-                                  <a> <img src={Arteria} className="anuncio"/></a>
-                                    
-                                  <a> <img src={Arteria} className="anuncio"/></a>
-                                    
-                                   
-                                  </picture>
+                                    <picture className="anuncios">
+                                      <a>
+                                        {" "}
+                                        <img
+                                          src={Arteria}
+                                          className="anuncio"
+                                        />
+                                      </a>
+
+                                      <Link
+                                        class="news_container--link news_container_first"
+                                        to="/news/"
+                                      >
+                                        <article class="news_content third-news-posts tercero news_container_first">
+                                          <section class="news_content--info">
+                                            <section class="news_content--info_cat"></section>
+                                          </section>
+                                          <h2 class="news--title italic">
+                                            {newsElement.title_post}
+                                          </h2>
+                                          <div class="news-extract oculto">
+                                            {newsElement.content_post
+                                              .replace(/<\/?[^>]+(>|$)/g, "")
+                                              .substring(0, 100) + "..."}
+                                          </div>
+                                        </article>
+                                      </Link>
+                                    </picture>
                                   </React.Fragment>
                                 ))}
                             </section>
@@ -238,8 +259,8 @@ const Prueba = () => {
                                 .map((newsElement, index) => (
                                   <Link
                                     className="news_container--link"
-                                    key={newsElement.id}
-                                    to={`/news/${newsElement.id}`}
+                                    key={newsElement.id_wordpress}
+                                    to={`/news/${newsElement.id_wordpress}`}
                                   >
                                     <article key={index}>
                                       {index === 0 ? (
@@ -311,28 +332,6 @@ const Prueba = () => {
                                         </>
                                       ) : (
                                         <>
-                                          <section className="news_content--info">
-                                            <section className="news_content--info_cat">
-                                              {/* {newsElement.categories_name
-                                                .length > 1 ? (
-                                                newsElement.categories_name.map(
-                                                  (category, index) =>
-                                                    category !== "Noticiero" ? (
-                                                      <p
-                                                        className="news-cat"
-                                                        key={index}
-                                                      >
-                                                        {category}
-                                                      </p>
-                                                    ) : null
-                                                )
-                                              ) : (
-                                                <p className="news-cat">
-                                                  {newsElement.categories_name[0]}
-                                                </p>
-                                              )} */}
-                                            </section>
-                                          </section>
                                           <h2 className="news--title italic">
                                             {newsElement.title_post}
                                           </h2>
@@ -360,8 +359,8 @@ const Prueba = () => {
                                 .map((newsElement, index) => (
                                   <Link
                                     className="news_container--link"
-                                    key={newsElement.id}
-                                    to={`/news/${newsElement.id}`}
+                                    key={newsElement.id_wordpress}
+                                    to={`/news/${newsElement.id_wordpress}`}
                                   >
                                     <article key={index}>
                                       {index === 0 ? (
@@ -379,9 +378,7 @@ const Prueba = () => {
                                             )}
                                           </picture>
                                           <section className="news_content--info">
-                                            <section className="news_content--info_cat">
-                                            
-                                            </section>
+                                            <section className="news_content--info_cat"></section>
                                           </section>
                                           <div
                                             className="news-extract"
@@ -398,15 +395,21 @@ const Prueba = () => {
                                         </>
                                       ) : index === 1 ? (
                                         <>
-                                        <picture className="anuncios">
-                                        <a> <img src={Arteria} className="anuncio"/></a>
-                                        </picture>
+                                          <picture className="anuncios">
+                                            <a>
+                                              {" "}
+                                              <img
+                                                src={Economia_Mobile}
+                                                className="anuncio"
+                                              />
+                                            </a>
+                                          </picture>
                                         </>
-                                      ):(
+                                      ) : (
                                         <>
-                                        <section className="news_content--info">
-                                          <section className="news_content--info_cat">
-                                            {/* {newsElement.categories_name
+                                          <section className="news_content--info">
+                                            <section className="news_content--info_cat">
+                                              {/* {newsElement.categories_name
                                               .length > 1 ? (
                                               <p className="news-cat" key={0}>
                                                 {newsElement.categories_name[0]}
@@ -416,24 +419,24 @@ const Prueba = () => {
                                                 {newsElement.categories_name[0]}
                                               </p>
                                             )} */}
+                                            </section>
                                           </section>
-                                        </section>
-                                        <h2 className="news--title italic">
-                                          {newsElement.title_post}
-                                        </h2>
-                                        <div
-                                          className="news-extract oculto"
-                                          dangerouslySetInnerHTML={{
-                                            __html:
-                                              newsElement.content_post
-                                                .replace(
-                                                  /<\/?[^>]+(>|$)/g,
-                                                  ""
-                                                )
-                                                .substring(0, 100) + "...",
-                                          }}
-                                        ></div>
-                                      </>
+                                          <h2 className="news--title italic">
+                                            {newsElement.title_post}
+                                          </h2>
+                                          <div
+                                            className="news-extract oculto"
+                                            dangerouslySetInnerHTML={{
+                                              __html:
+                                                newsElement.content_post
+                                                  .replace(
+                                                    /<\/?[^>]+(>|$)/g,
+                                                    ""
+                                                  )
+                                                  .substring(0, 100) + "...",
+                                            }}
+                                          ></div>
+                                        </>
                                       )}
                                     </article>
                                   </Link>

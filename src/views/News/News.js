@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import "./News.scss";
 import { SocialMediaIcons } from "../../components/SocialMediaIcons/SocialMediaIcons";
 import { RelacionalNews } from "../../components/RelacionalNews/RelacionalNews";
-import { LastNewsComponent } from "./../../components/LastNewsComponent/LastNewsComponent";
+// import { LastNewsComponent } from "./../../components/LastNewsComponent/LastNewsComponent";
 import Btn from "../../components/Btn/Btn";
 import Arteria from "./../../assets/img/Economia_Mobile.png";
 import DOMPurify from "dompurify";
@@ -13,14 +13,14 @@ const News = () => {
   const [additionalNews, setAdditionalNews] = useState({});
   const [isShared, setIsShared] = useState(false);
   const { newsId } = useParams();
-  const [newsData, setNewsData] = useState(null);
+  const [newsData, setNewsData] = useState({});
   const [dataAllCat, setDataAllCat] = useState([]);
   const [newCat, setNewCat] = useState(""); // State for newCat
   const [isLoading, setIsLoading] = useState(true); //
 
   useEffect(() => {
-    // fetch(`https://apitest.rdedigital.com/api/v1/posts/${newsId}`)
-    fetch(`https://apitest.rdedigital.com/api/v1/posts/${newsId}`)
+    
+    fetch(`https://api.rdedigital.com/api/v2/post/${newsId}`)
       .then((response) => response.json())
       .then((data) => {
         setNewsData(data);
@@ -33,22 +33,22 @@ const News = () => {
   }, [newsId]);
 
   console.log(newsData);
-  const loadMoreNews = () => {
-    const nextPage = newsCount + 1;
-    fetch(`https://apitest.rdedigital.com/api/post/${newsId}?page=${nextPage}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.length > 0) {
-          setAdditionalNews([...additionalNews, ...data]);
-          setNewsCount(nextPage);
-          setIsLoading(false);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching additional news:", error);
-        setIsLoading(false);
-      });
-  };
+  // const loadMoreNews = () => {
+  //   const nextPage = newsCount + 1;
+  //   fetch(`https://api.rdedigital.com/api/v2/post/${newsId}?page=${nextPage}`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data.length > 0) {
+  //         setAdditionalNews([...additionalNews, ...data]);
+  //         setNewsCount(nextPage);
+  //         setIsLoading(false);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching additional news:", error);
+  //       setIsLoading(false);
+  //     });
+  // };
 
   useEffect(() => {
     if (newsData) {
@@ -66,13 +66,15 @@ const News = () => {
     setIsShared(!isShared);
   };
 
+
+
   return (
     <section className="container">
-      {newsData ? (
+      {!isLoading && newsData ?(
         <>
           <section className="content_one_news">
             <h1 className="article_news_one--title">
-              {newsData.title.rendered}
+              {newsData.title_post}
             </h1>
             <section className="contenedor">
               <article className="article_news_one">
@@ -85,14 +87,14 @@ const News = () => {
                     <section className="article_news_one--info--published">
                       <picture className="article_news_one--info--published_img">
                         <img
-                          src={newsData.author.avatar_urls[96]}
+                          src={newsData.author_image}
                           className="article_news_one--info--published_img--img"
                         />
                       </picture>
                       <section className="article_news_one--info--texts">
                         <p>
                           <span>Autor por:</span> <br />
-                          {newsData.author.name}
+                          {newsData.author_name}
                         </p>
                       </section>
                     </section>
@@ -101,7 +103,7 @@ const News = () => {
                         <p>
                           {" "}
                           <span>Publicado:</span> <br />
-                          {newsData.post_date}
+                          {newsData.date_wordpress}
                         </p>
                       </section>
                     </section>
@@ -122,17 +124,17 @@ const News = () => {
                 </section>
                 <picture className="article_news_one_img">
                   <img
-                    src={`${newsData.media}`}
+                    src={`${newsData.media_post}`}
                     className="article_news_one_img--img"
                   />
-                  <p className="pie_pagina">{newsData.title.rendered}</p>
+                  <p className="pie_pagina">{newsData.title_post}</p>
                 </picture>
 
                 <div className="article_news_one--extrac">
-                  {newsData.content.rendered && (
+                  {newsData.content && (
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: newsData.content.rendered,
+                        __html: newsData.content,
                       }}
                     />
                   )}
@@ -144,7 +146,7 @@ const News = () => {
                     Ultimas noticias
                   </h4>
                   <section className="content_one_news--extra-last_section_container">
-                    <LastNewsComponent />
+                    {/* <LastNewsComponent /> */}
                   </section>
                   <picture className="Anuncio">
                     <img src={Arteria} />
@@ -155,10 +157,10 @@ const News = () => {
             <section className="relacionalNews">
               <h3 className="relacionalNews--title">Noticias Relacionadas</h3>
               <ul className="relacionalNews--list">
-                {newCat && <RelacionalNews categorie={newCat} />}
+                {/* newCat && <RelacionalNews categorie={newCat} /> */}
               </ul>
 
-              <Btn onClick={loadMoreNews} text="Cargar mas" />
+              <Btn  text="Cargar mas" />
             </section>
           </section>
         </>
@@ -167,6 +169,7 @@ const News = () => {
       )}
     </section>
   );
+
 };
 
 export { News };

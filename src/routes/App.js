@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import {Layout} from './../container/Layout';
 import { ThemeProvider } from './../Context/ThemeContext';
@@ -21,6 +21,20 @@ import { Prueba_news } from '../views/News/Prueba';
 
 
 function App() {
+  useEffect(() => {
+    // Realiza la solicitud sin procesar la respuesta
+    fetch('https://back.rdedigital.com/', {
+      method: 'GET', // Puedes ajustar el método HTTP según tus necesidades
+    })
+      .then(() => {
+        // La solicitud se completó con éxito, puedes agregar aquí cualquier lógica adicional si es necesario
+        console.log('Solicitud exitosa');
+      })
+      .catch((error) => {
+        // Maneja cualquier error que pueda ocurrir durante la solicitud
+        console.error('Error en la solicitud:', error);
+      });
+  }, []); 
   return (
     <ThemeProvider>
  <Router>

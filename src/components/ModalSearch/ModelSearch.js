@@ -8,7 +8,7 @@ const ModelSearch = ({ stado }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isState, setIsState] = useState(stado);
-  const API = 'https://apitest.rdedigital.com/api/posts';
+  const API = 'https://api.rdedigital.com/api/v2/posts';
 
   const handleInputChange = (event) => {
     const newSearchTerm = event.target.value;
