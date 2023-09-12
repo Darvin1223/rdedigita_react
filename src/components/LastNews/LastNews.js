@@ -64,13 +64,12 @@ const LastNews = () => {
                   </article>
                 </Link>
                 <picture className="anuncios desktop_show">
-                  <a>
-                    {" "}
+                  <Link className="anuncio_container">
                     <img src={arteria} className="anuncio" />
-                  </a>
+                  </Link>
                   
-                    <Link class="news_container--link news_container_first" to="/news/">
-                      <article class="news_content third-news-posts tercero news_container_first">
+                    <Link class="news_container--link news_container_first news_Extra" to="/news/">
+                      <article class="news_container_first">
                         <section class="news_content--info">
                           <section class="news_content--info_cat"></section>
                         </section>

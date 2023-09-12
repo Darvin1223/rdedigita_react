@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Navegation from "../../../components/Navegation/Navegation";
 import LinksNavegacion from "../../../components/LinksNavegacion/LinksNavegacion";
 import "./Header.scss";
@@ -17,11 +16,28 @@ const Header = ({ isDarkMode }) => {
   const [currencyData, setCurrencyData] = useState([]);
   const [categories,setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [darkMode, setDarkMode] = useState(isDarkMode); // Nuevo estado para el modo oscuro
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
 
+  const menuRef = useRef(null); 
+
+
+  useEffect(() => {
+    // Agrega un event listener para detectar clics en todo el documento
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      // Elimina el event listener cuando el componente se desmonta
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
+  const handleDocumentClick = (e) => {
+    // Comprueba si se hizo clic fuera del menú y el menú está abierto
+    if (menuRef.current && !menuRef.current.contains(e.target) && isMenuOpen) {
+      setIsMenuOpen(false);
+      setShouldHideMenu(true);
+    }
+  };
+  
   useEffect(() => {
     // Realiza la solicitud sin procesar la respuesta
     fetch('https://api.rdedigital.com/api/v2/categories')
@@ -118,12 +134,8 @@ const Header = ({ isDarkMode }) => {
   }];
   console.log(categories)
   categories.map((element,index) =>{
-    if(element.category_post != "Noticiero"){
-      
-      let data = {url:`/${element.category_post}`,name:`${element.category_post}`};
-      enlaces.push(data);
-    }
- 
+    let data = {url:`/${element.category_post}`,name:`${element.category_post}`};
+    enlaces.push(data);
   })
 
   const toggleMenu = () => {
@@ -135,9 +147,11 @@ const Header = ({ isDarkMode }) => {
     setIsModalOpen(!isModalOpen);
   };
   const closeMenu = () => {
-    setShouldHideMenu(true); // Cuando se cierra el menú, se debe ocultar
     setIsMenuOpen(false);
+    setShouldHideMenu(true); // Establece shouldHideMenu en true al cerrar el menú
   };
+  
+  
 
   const handleSearchClick = () => {
     // Aquí puedes agregar la lógica de búsqueda que desees
@@ -179,9 +193,11 @@ const Header = ({ isDarkMode }) => {
   ];
 
   console.log(enlaces)
+
+  
   return (
     <>
-     <header className={`Header ${darkMode ? "dark-mode" : "light-mode"}`}>
+      <header className={`Header ${isDarkMode ? "dark-mode" : "light-mode"}`}>
         <div className={`bar ${isScrolled ? "scrolled" : ""}`}>
           <div className={`bar-down`}>
             <section className="bar-down-container">
@@ -193,25 +209,24 @@ const Header = ({ isDarkMode }) => {
               </span>
               <Logo />
               <Navegation
-                className={`${isMenuOpen ? "show_menu" : "hidden_menu"} ${
-                  shouldHideMenu ? "hidden_menu" : ""
-                }`}
-                toggleMenu={toggleMenu}
-                darkMode={darkMode}
-                toggleDarkMode={toggleDarkMode}
+               ref={menuRef}
+               className={`${isMenuOpen ? "show_menu" : ""} ${
+                shouldHideMenu ? "hidden_menu" : ""
+              }`}
+              onClose={closeMenu} 
               >
                 {enlaces.map((enlace, index) => (
                   <LinksNavegacion
                     key={index}
                     url={enlace.url}
                     name={enlace.name}
-                    onClick={closeMenu}
+                    onClick={closeMenu} // Cerrar el menú cuando se hace clic en un enlace
                   />
                 ))}
               </Navegation>
               {isModalOpen ? (
                 <span
-                  className="material-symbols-outlined close-icon"
+                  class="material-symbols-outlined close-icon"
                   onClick={toggleModal}
                 >
                   close
@@ -228,7 +243,19 @@ const Header = ({ isDarkMode }) => {
           </div>
         </div>
       </header>
-      {/* ... Resto del código */}
+      <ProgramsBar />
+      <section className="info-section">
+        <section className="info-section--container">
+          <p className="timer-date-information">
+            <span>{`${daysOfWeek[currentDay]}, ${mesesDelAño[currentMonth]} ${currentDayNumber}, ${currentYear}`}</span>
+            <span className="line">|</span>
+            <span>Compra:</span> {Buy} DOP <span>/</span> <span>Venta:</span>{" "}
+            {Sell} DOP
+          </p>
+        </section>
+      </section>
+      
+      {isModalOpen && <ModelSearch stado={isModalOpen} />}
     </>
   );
 };
