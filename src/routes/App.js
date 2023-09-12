@@ -6,7 +6,7 @@ import {Home} from './../views/Home/Home'; // Asegúrate de importar tus compone
 
 import { CategoriesNews } from '../views/CategoriesNews/CategoriesNews';
 import { News } from '../views/News/News';
-import {Opinion} from '../views/ElScout/Opinion';
+import {ElScout} from '../views/ElScout/ElScout';
 import { Arteria } from '../views/Arteria/Arteria';
 import { Intervista } from '../views/Intervista/Intervista';
 import { Politica } from '../views/Politica/Politica';
@@ -68,24 +68,25 @@ function App() {
           <Route exact path='/' element={<Home />} />
           <Route path="/news/:newsId" element={<News />} />
           <Route  path='/news/category/:nameCategorie' element={<CategoriesNews />} />
-          {/* {categories.map((Element, index) => (
+          {categories.map((Element, index) => (
   <Route
-    path={`/${Element.category_post}`}
+    path={`/:categorie`}
     key={index}
-    element={<AllViews status={false} categorie={Element.category_post} />}
+    element={<AllViews status={false}/>}
   />
-))} */}
+))}
 
-          <Route path='/opinion'  element={<Opinion status={false} view={'Opinion'}/>}/>
+     
+          <Route path='/el-scout'  element={<ElScout status={true} view={'ElScout'}/>}/>
           <Route path='/arteria'  element={<Arteria status={true} view={'Arteria'}/>}/>
           <Route path='/intervista'  element={<Intervista status={true} view={'Intervista'}/>}/>
           <Route path='/politica'  element={<Politica status={true} view={'Politica'}/>}/>
-          <Route path='/el_menaje'  element={<ElMenaje status={true} view={'ElMenaje'}/>}/>
-          <Route path='/economia'  element={<Economia status={true} view={'Economia'}/> }/>
+          <Route path='/el-menaje'  element={<ElMenaje status={true} view={'ElMenaje'}/>}/>
+          <Route path='/peso-oro'  element={<Economia status={true} view={'Economia'}/> }/>
           <Route path='/paraiso'  element={<Paraiso status={true} view={'Paraiso'}/>}/>
           <Route path='/farandula'  element={<Farandula status={true} view={'Farandula'}/>}/>
-          <Route path='/chinazo'  element={<ElChinazo status={true} view={'El_Chinazo'}/>}/>
-          <Route path='/ensamble'  element={<Ensamble status={true} view={'Ensamble'}/>}/>
+          <Route path='/elchinazo'  element={<ElChinazo status={true} view={'El_Chinazo'}/>}/>
+          <Route path='/ensamble-etereo'  element={<Ensamble status={true} view={'Ensamble'}/>}/>
         </Routes>
       </Layout>
     </Router>

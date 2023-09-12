@@ -3,7 +3,7 @@ import  './Politica.scss';
 
 import mobile from '../../assets/img/construccion/mobile/En_Construcción_320_Paraiso.png';
 import desktop_1024 from "../../assets/img/construccion/1024/En_Construcción_1024_Paraiso.png";
-import desktop_1440 from "../../assets/img/construccion/1440/En_Construcción_1440_Paraiso.png";
+import desktop_1440 from "../../assets/img/construccion/1440/En_Construcción_1440x1128_Arteria2.png";
 const Politica = ({ status, view }) => {
     return (
         <>

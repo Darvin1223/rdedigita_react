@@ -2,6 +2,7 @@ import React from "react";
 import "./Navegation.scss";
 
 import { SocialMediaIcons } from "../SocialMediaIcons/SocialMediaIcons";
+import { Link } from "react-router-dom";
 
 const programs = [
   {
@@ -41,15 +42,15 @@ const programs = [
   },
 ];
 
-const Navegation = ({ children, className,onClose }) => {
+const Navegation = ({ children, className, onClose }) => {
   return (
     <nav className={`Navegation ${className}`}>
       <section className="Navegation--header">
-      <section className="Navegation--header--close" onClick={onClose}>
-  <i className="material-symbols-outlined">close</i>
-</section>
-        <section className="Navegation--header--mode">
-          {/* <span class="material-symbols-outlined">light_mode</span> */}
+        <section className="Navegation--header--close" onClick={onClose}>
+          <i className="material-symbols-outlined">close</i>
+        </section>
+        {/* <section className="Navegation--header--mode">
+       
           <section className="Navegation--header--mode--icon">
             <p>DarkMode</p>
           </section>
@@ -63,7 +64,7 @@ const Navegation = ({ children, className,onClose }) => {
               <div className="indicador"></div>
             </label>
           </section>
-        </section>
+        </section> */}
       </section>
       <section className="links_container">
         <section className="links_container_content">{children}</section>
@@ -73,16 +74,18 @@ const Navegation = ({ children, className,onClose }) => {
         <section className="Navegation--programs_container">
           <ul>
             {programs.map((element, index) => (
-              <li key={index}>{element.name}</li>
+              <li key={index}>
+                <Link to={element.url} onClick={onClose}>{element.name}</Link>
+              </li>
             ))}
           </ul>
         </section>
       </section>
       <section className="Navegation_social_media">
-      <section className="Navegation_social_media_content">
-      <p className="">Siguenos en:</p>
-      <SocialMediaIcons />
-      </section>
+        <section className="Navegation_social_media_content">
+          <p className="">Siguenos en:</p>
+          <SocialMediaIcons />
+        </section>
       </section>
     </nav>
   );

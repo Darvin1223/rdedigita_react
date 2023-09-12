@@ -3,8 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import arteria from "../../assets/img/Arteria_mobile.png";
 import "./../../components/LastNews/LastNews.scss";
 import "./AllViews.scss";
-const AllViews = ({ categorie, status }) => {
-  console.log(categorie);
+const AllViews = ({  status }) => {
+  let { categorie } = useParams();
   const API_URL = "https://api.rdedigital.com/api/v2/posts/";
   const [isLoading, setIsLoading] = useState(true);
   const [lastNews, setLastNews] = useState([]);
@@ -14,6 +14,8 @@ const AllViews = ({ categorie, status }) => {
   const [moreNews, setMoreNews] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true); // Iniciar la carga
+
     fetch(`${API_URL}${categorie}`)
       .then((response) => response.json())
       .then((data) => {
@@ -23,14 +25,13 @@ const AllViews = ({ categorie, status }) => {
         setFirstNews(slicedNews[0]);
         setSecondNews(slicedNews.slice(1, 5));
         setThirdNews(slicedNews.slice(5));
-        setIsLoading(false); // Marcamos que la carga ha finalizado
+        setIsLoading(false); // Finalizar la carga
       })
       .catch((error) => {
         console.error("Error fetching latest posts:", error);
-        setIsLoading(false); // En caso de error, también marcamos que la carga ha finalizado
+        setIsLoading(false); // En caso de error, finalizar la carga
       });
-  }, []);
-
+  }, [categorie]);
   isLoading ? console.log(moreNews) : <p>"Cargando</p>;
   return (
     <>

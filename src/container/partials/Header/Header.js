@@ -21,6 +21,7 @@ const Header = ({ isDarkMode }) => {
 
 
   useEffect(() => {
+    
     // Agrega un event listener para detectar clics en todo el documento
     document.addEventListener("click", handleDocumentClick);
 
@@ -132,7 +133,7 @@ const Header = ({ isDarkMode }) => {
     url: "/",
     name: "Portada",
   }];
-  console.log(categories)
+  // console.log(categories)
   categories.map((element,index) =>{
     let data = {url:`/${element.category_post}`,name:`${element.category_post}`};
     enlaces.push(data);
@@ -150,7 +151,20 @@ const Header = ({ isDarkMode }) => {
     setIsMenuOpen(false);
     setShouldHideMenu(true); // Establece shouldHideMenu en true al cerrar el menú
   };
-  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   
 
   const handleSearchClick = () => {
@@ -192,7 +206,7 @@ const Header = ({ isDarkMode }) => {
     "Diciembre",
   ];
 
-  console.log(enlaces)
+  // console.log(enlaces)
 
   
   return (
@@ -217,10 +231,11 @@ const Header = ({ isDarkMode }) => {
               >
                 {enlaces.map((enlace, index) => (
                   <LinksNavegacion
-                    key={index}
-                    url={enlace.url}
-                    name={enlace.name}
-                    onClick={closeMenu} // Cerrar el menú cuando se hace clic en un enlace
+                  key={index}
+                  url={enlace.url}
+                  name={enlace.name}
+                  onClick={closeMenu} //// Cerrar el menú cuando se hace clic en un enlace
+                  closeMenu={closeMenu} 
                   />
                 ))}
               </Navegation>
@@ -247,7 +262,7 @@ const Header = ({ isDarkMode }) => {
       <section className="info-section">
         <section className="info-section--container">
           <p className="timer-date-information">
-            <span>{`${daysOfWeek[currentDay]}, ${mesesDelAño[currentMonth]} ${currentDayNumber}, ${currentYear}`}</span>
+            <span>{`${daysOfWeek[currentDay]}, ${currentDayNumber}, ${mesesDelAño[currentMonth]}  ${currentYear}`}</span>
             <span className="line">|</span>
             <span>Compra:</span> {Buy} DOP <span>/</span> <span>Venta:</span>{" "}
             {Sell} DOP
