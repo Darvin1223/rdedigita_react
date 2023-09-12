@@ -45,18 +45,21 @@ a {
     background-color: white;
     color: black;
 
+    .anuncio_container{
+        border-right: #a1a1a1 solid 0.1rem!important;
+    }
     .programs_container{
         ul{
             li{
                 a{
-                    color: #ff2e1d!important;
+                    color: #ed3b24!important;
                 }
             }
         }
         .Social_Media_Lists{
             a{
 
-                color: #ff2e1d!important;
+                color: #ed3b24!important;
             }
         }
     }

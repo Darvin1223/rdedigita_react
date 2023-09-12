@@ -131,6 +131,7 @@
 
         font-family: 'Lora', serif;
         font-size: 14px;
+        white-space: nowrap;
         p{
             display: inline-block; /* Important to give the content a width */
 
@@ -142,7 +143,8 @@
             margin-bottom: .5rem;
             font-size: 1.5rem;
             color: #fff!important;
-            word-wrap: normal;
+            // word-wrap: normal;
+            white-space: nowrap;
             span{
                 font-weight: bold;
                 display: inline-block;
@@ -184,9 +186,103 @@
                             cursor: pointer;
                         }
                     }
+                    .search-icon{
+                        margin-right: 0;
+                    }
                     .Navegation{
                         a{
                             color: #fff!important;
+                            font-size: 1rem;
+
+                        }
+                      
+                    }
+
+                }
+            }
+        }
+    }
+    .info-section{
+        height: 4rem;
+        z-index: 1;
+        position: sticky;
+        top: 80px;
+        z-index: 9999999;
+        overflow: hidden;
+        
+        .info-section--container{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background-color: #992614;
+            color: white;
+            font-family: inter;
+            font-size: 18px;
+            white-space: nowrap;
+            p{
+                display: block; /* Important to give the content a width */
+                width: 100%;
+                transform: translateX(100%); /* Animation start out of the screen */
+                /* Add the animation */
+                animation: move 50s linear infinite /* infinite make reapeat the animation indefinitely */;
+                margin-bottom: .5rem;
+                font-size: 1.5rem;
+                color: #fff!important;
+                white-space: nowrap;
+              
+                span{
+                    font-weight: bold;
+                }
+                .line{
+                    padding: 0 1rem;
+                }
+                .full_slice{
+                    margin: 0 0 0 1rem;
+                }
+                .fuel_name{
+                    padding-right: 1rem;
+                }
+                .fuel_price{
+                    margin: 0 1rem;
+                }
+            }
+            @keyframes move {
+                to { transform: translateX(-100%); }
+              }
+           
+        }
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .Header{
+        background-color: #ed3b24;
+        .bar{
+
+            .bar-down{
+                .bar-down-container{
+                    color: #fff;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    width: 100%;
+                    max-width: 1200px;
+                    // Icon hamburguesa
+                    .icon_menu{
+                        display: none;
+                    }
+                    .logo_container{
+                       margin-left: 1rem;
+                    }
+                    .search-icon,.close-icon{
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
+                    .Navegation{
+                        a{
+                            color: #fff!important;
+                            font-size: 1.2rem;
 
                         }
                     }
@@ -201,36 +297,41 @@
         top: 80px;
         z-index: 9999999;
         overflow-x: hidden;
+        
         .info-section--container{
             position: absolute;
             top: 0;
             left: 0;
-
             width: 100%;
             padding: 1rem 0;
-            
-
             background-color: #992614;
             color: white;
-
-            font-family: Gelasio;
+            font-family: inter;
             font-size: 18px;
             p{
                 display: block; /* Important to give the content a width */
-
                 width: 100%;
                 transform: translateX(100%); /* Animation start out of the screen */
-              
                 /* Add the animation */
-                animation: move 50s linear infinite /* infinite make reapeat the animation indefinitely */;
+                animation: move 50s linear infinite ease-in-out /* infinite make reapeat the animation indefinitely */;
                 margin-bottom: .5rem;
                 font-size: 1.5rem;
                 color: #fff!important;
+                text-wrap: nowrap;
                 span{
                     font-weight: bold;
                 }
                 .line{
                     padding: 0 1rem;
+                }
+                .full_slice{
+                    margin: 0 0 0 1rem;
+                }
+                .fuel_name{
+                    padding-right: 1rem;
+                }
+                .fuel_price{
+                    margin: 0 1rem;
                 }
             }
             @keyframes move {

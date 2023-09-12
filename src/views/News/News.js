@@ -7,6 +7,8 @@ import { RelacionalNews } from "../../components/RelacionalNews/RelacionalNews";
 import Btn from "../../components/Btn/Btn";
 import Arteria from "./../../assets/img/Economia_Mobile.png";
 import DOMPurify from "dompurify";
+import { LastNewsComponent } from "../../components/LastNewsComponent/LastNewsComponent";
+import { Comments } from "../../components/Comments/Comments";
 
 const News = () => {
   const [newsCount, setNewsCount] = useState(1); 
@@ -131,23 +133,24 @@ const News = () => {
                 </picture>
 
                 <div className="article_news_one--extrac">
-                  {newsData.content && (
+                  {newsData.content_post && (
                     <div
                       dangerouslySetInnerHTML={{
                         __html: newsData.content_post,
                       }}
                     />
                   )}
-                  {newsData.content_post}
+                  
                 </div>
               </article>
+            
               <section className="content_one_news--extra">
                 <section className="content_one_news--extra-last">
                   <h4 className="content_one_news--extra-last-title">
                     Ultimas noticias
                   </h4>
                   <section className="content_one_news--extra-last_section_container">
-                    {/* <LastNewsComponent /> */}
+                    <LastNewsComponent /> 
                   </section>
                   <picture className="Anuncio">
                     <img src={Arteria} />
@@ -155,10 +158,11 @@ const News = () => {
                 </section>
               </section>
             </section>
+           <Comments id={newsData.id_wordpress}/>
             <section className="relacionalNews">
               <h3 className="relacionalNews--title">Noticias Relacionadas</h3>
               <ul className="relacionalNews--list">
-                {/* newCat && <RelacionalNews categorie={newCat} /> */}
+                <RelacionalNews categorie={newsData.category_post} /> 
               </ul>
 
               <Btn  text="Cargar mas" />

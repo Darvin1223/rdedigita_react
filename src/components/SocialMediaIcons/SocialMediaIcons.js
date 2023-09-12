@@ -14,7 +14,7 @@ const SocialMediaIcons = () => {
     return (
         <ul className='Social_Media_Lists'>
         {socialMedias.map((element,index) =>(
-            <Link key={index} to={element.url} className={element.className}> 
+            <Link key={index} to={element.url} target='_blank' className={element.className}> 
                 <i className={element.element}></i>
             </Link>
         ))}

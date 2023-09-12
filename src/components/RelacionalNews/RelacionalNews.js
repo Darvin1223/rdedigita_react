@@ -18,7 +18,7 @@ const RelacionalNews = ({categorie}) => {
             console.error(`Error fetching news: ${error}`);
             setLoading(false);
         })
-    }, [relacionalCategorie])
+    }, [])
     if(loading){
         return <p>Cargando....</p>
     }
@@ -29,11 +29,11 @@ const RelacionalNews = ({categorie}) => {
   if (index < 4 && index > 0) {
     return (
       <li key={index} className='news_relational--elements'>
-        <Link to={`/news/${element.ID}`}>
+        <Link to={`/news/${element.id}`}>
           <picture className='news_relational--elements-imgContainer'>
-            <img src={element.feature_image} alt={element.title} className='news_relational--elements-imgContainer-img'/>
+            <img src={element.media_post} alt={element.title_post} className='news_relational--elements-imgContainer-img'/>
           </picture>
-          <p className='news_relational--elements-title'>{element.title} </p>
+          <p className='news_relational--elements-title'>{element.title_post} </p>
         </Link> 
       </li>
     );

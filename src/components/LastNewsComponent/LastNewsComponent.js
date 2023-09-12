@@ -3,7 +3,7 @@ import './LastNewsComponent.scss';
 import { Link } from 'react-router-dom';
 
 const LastNewsComponent = () => {
-    const urlApiLatestPosts = "https://apitest.rdedigital.com/api/latestPosts"; 
+    const urlApiLatestPosts = "https://api.rdedigital.com/api/v2/lastestPost"; 
     const [lastNews, setLastNews] = useState([]);
 
     useEffect(() => {
@@ -16,8 +16,8 @@ const LastNewsComponent = () => {
     return (
         <ol className='last-news'>
             {lastNews.map((element,index) => (
-                <Link to={`/news/${element.ID}`} className='last-news-link--element' key={index}>
-                  <li className='last-news--element' key={index}>{element.title}</li>
+                <Link to={`/news/${element.id}`} className='last-news-link--element' key={index}>
+                  <li className='last-news--element' key={index}>{element.title_post}</li>
                 </Link>
               
             ))}

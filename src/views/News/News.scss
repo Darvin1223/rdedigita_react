@@ -81,6 +81,7 @@
             margin-right: 2rem;
             .article_news_one--info--published_img--img {
               border-radius: 5rem;
+
             }
           }
         }
@@ -197,6 +198,8 @@
         img {
           height: 100%;
           object-fit: cover;
+          object-position: top center;
+
           margin-bottom: 1rem;
         }
         .pie_pagina {
