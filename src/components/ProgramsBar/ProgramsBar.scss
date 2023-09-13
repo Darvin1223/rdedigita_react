@@ -1,0 +1,87 @@
+.desktop{
+    display: none;
+}
+
+
+
+
+@media screen and (min-width:1024px) {
+    .desktop{
+        display: flex;
+    }
+    .programs_container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: #000!important;
+        height: 4rem;
+        .programs_container-section{
+            display: flex;
+            justify-content: space-between;
+            width: 107rem;
+            ul{
+                // width: 90%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                li{
+                    a{
+                        color: #ff2e1d;
+                        font-size: 1.4rem;
+                        // padding: 3rem 0;
+                        margin-right: 5rem;
+                        font-weight: 600;
+                    }
+                }
+            }
+            .Social_Media_Lists{
+                a{
+                    font-size: 1.7rem;
+                }
+            }
+        }
+    
+    }
+    
+}
+@media screen and (min-width:1200px) {
+    .desktop{
+        display: flex;
+    }
+    .programs_container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: #000!important;
+        height: 4rem;
+        .programs_container-section{
+            display: flex;
+            justify-content: space-between;
+            width: 107rem;
+            ul{
+                // width: 90%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                li{
+                    a{
+                        color: #ff2e1d;
+                        font-size: 1.7rem;
+                        // padding: 3rem 0;
+                        margin-right: 5rem;
+                        font-weight: 600;
+                    }
+                }
+            }
+            .Social_Media_Lists{
+                a{
+                    font-size: 1.7rem;
+                }
+            }
+        }
+    
+    }
+    
+}

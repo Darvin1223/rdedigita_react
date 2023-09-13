@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"; // Asegúrate de importar 'Link' desde 
 import "./Footer.scss";
 import { SocialMediaIcons } from "../../../components/SocialMediaIcons/SocialMediaIcons";
 
+import logo from "./../../../assets/img/LogordeBlanco.svg";
 const Footer = () => {
   const date = new Date();
   const YEAR = date.getFullYear();
@@ -10,41 +11,33 @@ const Footer = () => {
     <footer class="footer">
      <div class="container">
       <div class="row">
+      <div class="footer-col">
+        
+        <picture className="footer-col_logo_container"> 
+        <img src={logo} />
+        </picture>
+       {/*  <ul>
+          <li><a href="#">watch</a></li>
+          <li><a href="#">bag</a></li>
+          <li><a href="#">shoes</a></li>
+          <li><a href="#">dress</a></li>
+        </ul> */}
+      </div> 
         <div class="footer-col">
-          <h4>company</h4>
-          <ul>
+          <h4>Nosotros</h4>
+          <p>En rde a través de un enfoque disruptivo, fusionamos las formas clásicas y la modernidad de la tecnología para resaltar nuestra cultura, analizar críticamente la política y dar voz a nuestros talentosos artistas. Únete a nosotros en este viaje para descubrir y resaltar lo mejor de la República Dominicana.</p>
+         {/*  <ul>
             <li><a href="#">about us</a></li>
             <li><a href="#">our services</a></li>
             <li><a href="#">privacy policy</a></li>
             <li><a href="#">affiliate program</a></li>
-          </ul>
+          </ul> */}
         </div>
+       
         <div class="footer-col">
-          <h4>get help</h4>
-          <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">shipping</a></li>
-            <li><a href="#">returns</a></li>
-            <li><a href="#">order status</a></li>
-            <li><a href="#">payment options</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>online shop</h4>
-          <ul>
-            <li><a href="#">watch</a></li>
-            <li><a href="#">bag</a></li>
-            <li><a href="#">shoes</a></li>
-            <li><a href="#">dress</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>follow us</h4>
+          <h4>Sigannos</h4>
           <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <SocialMediaIcons />
           </div>
         </div>
       </div>

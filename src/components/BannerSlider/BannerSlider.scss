@@ -1,0 +1,20 @@
+.desktop{
+    display: none;
+}
+
+
+@media screen and (min-width: 1024px) {
+    .desktop{
+        display: flex;
+    }
+    .slider{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        max-width: 1100px;
+        height: 26rem;
+    
+    }
+}
+

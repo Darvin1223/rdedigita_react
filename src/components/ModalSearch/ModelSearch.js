@@ -6,9 +6,11 @@ import { Link } from 'react-router-dom';
 const ModelSearch = ({ stado }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Inicialmente, cargando
   const [isState, setIsState] = useState(stado);
-  const API = 'https://apitest.rdedigital.com/api/posts';
+  const [allPosts, setAllPosts] = useState([]); // Almacena todos los posts
+
+  const API = 'https://api.rdedigital.com/api/v2/posts';
 
   const handleInputChange = (event) => {
     const newSearchTerm = event.target.value;
@@ -16,39 +18,51 @@ const ModelSearch = ({ stado }) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const response = await axios.get(API);
-        setSearchResults(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-      setIsLoading(false);
-    };
-
-    fetchData();
+    setIsLoading(true);
+  
+    fetch(API)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error fetching data: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setAllPosts(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setIsLoading(false);
+      });
   }, []);
   
+  
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth', // Agrega un desplazamiento suave
+      behavior: 'smooth',
     });
   };
-
-  const filteredResults = searchResults.filter((dato) =>
-    dato.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   const handleStateChange = () => {
     setIsState(!isState);
   };
 
   const handleItemClick = () => {
-    handleStateChange(); // Cambia el estado del modal
-    scrollToTop(); // Realiza el desplazamiento suave hacia arriba
+    handleStateChange();
+    scrollToTop();
   };
+
+  useEffect(() => {
+    // Filtrar los resultados basados en la búsqueda en todos los posts
+    const filteredResults = allPosts.filter((post) =>
+      post.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setSearchResults(filteredResults);
+  }, [searchTerm, allPosts]);
 
   return (
     <div className={`Modal ${isState ? 'activo' : 'inactivo'}`}>
@@ -60,13 +74,15 @@ const ModelSearch = ({ stado }) => {
       />
       {isLoading && <p>Cargando...</p>}
       <div className='Modal-results'>
-        {filteredResults.length === 0 ? (
+        {searchTerm.length === 0 ? (
+          <p className='Modal_not_found'>Ingresa un término de búsqueda.</p>
+        ) : searchResults.length === 0 ? (
           <p className='Modal_not_found'>No se encontraron resultados.</p>
         ) : (
           <ul>
-            {filteredResults.slice(0, 5).map((dato) => (
-              <Link to={`/news/${dato.ID}`} key={dato.id}>
-                <li onClick={handleItemClick}>{dato.title}</li>
+            {searchResults.slice(0, 5).map((post) => (
+              <Link to={`/news/${post.id}`} key={post.id}>
+                <li onClick={handleItemClick}>{post.title}</li>
               </Link>
             ))}
           </ul>

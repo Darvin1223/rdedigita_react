@@ -5,7 +5,7 @@ import './LinksNavegacion.scss';
 const LinksNavegacion = ({ url, name, onClick }) => {
     return (
         <Link className='link' to={url} onClick={onClick}>
-            {name}
+            {name.toUpperCase()}
         </Link>
     );
 };

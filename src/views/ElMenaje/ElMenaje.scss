@@ -1,21 +1,11 @@
 .ElMenaje-View{
-    height: 100vh;
+    display: inline-block;
     width: 100vw;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-image: url('./../../assets/img/construccion/mobile/En_Construcción_320_El_Menaje.png');
 
-}
-@media only screen and (min-width:1024px){
-    .ElMenaje-View{
-        background-image: url('./../../assets/img/construccion/1024/En_Construcción_1024_El_Menaje.png');
-
-    }
-}
-@media only screen and (min-width:1440px){
-    .ElMenaje-View{
-        background-image: url('./../../assets/img/construccion/1440/En_Construcción_1440_El_menaje.png');
-
+    height: 100vh;
+    img{
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
     }
 }

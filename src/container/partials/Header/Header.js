@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Navegation from "../../../components/Navegation/Navegation";
 import LinksNavegacion from "../../../components/LinksNavegacion/LinksNavegacion";
 import "./Header.scss";
 import Logo from "../../../components/Logo/Logo";
 import { Currency } from "../../../components/Currency/Currency";
 import { ModelSearch } from "../../../components/ModalSearch/ModelSearch";
-
-
+import { ProgramsBar } from "../../../components/ProgramsBar/ProgramsBar";
+import { BannerSlider } from "../../../components/BannerSlider/BannerSlider";
 
 const Header = ({ isDarkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +14,46 @@ const Header = ({ isDarkMode }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [shouldHideMenu, setShouldHideMenu] = useState(); // Nuevo estado
   const [currencyData, setCurrencyData] = useState([]);
-  const [status, setStatus] = useState('loading');
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fuelPrice, setFuelPrice] = useState([]);
+
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    // Agrega un event listener para detectar clics en todo el documento
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      // Elimina el event listener cuando el componente se desmonta
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
+  const handleDocumentClick = (e) => {
+    // Comprueba si se hizo clic fuera del menú y el menú está abierto
+    if (menuRef.current && !menuRef.current.contains(e.target) && isMenuOpen) {
+      setIsMenuOpen(false);
+      setShouldHideMenu(true);
+    }
+  };
+
+  useEffect(() => {
+    // Realiza la solicitud sin procesar la respuesta
+    fetch("https://api.rdedigital.com/api/v2/categories")
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        // Maneja cualquier error que pueda ocurrir durante la solicitud
+        console.error("Error en la solicitud:", error);
+      });
+
+   
+  }, []);
+  const [status, setStatus] = useState("loading");
   let Buy;
   let Sell;
   const API = `https://api.indexa.do/api/rates?bank=bpd`;
@@ -23,14 +62,32 @@ const Header = ({ isDarkMode }) => {
       .then((response) => response.json())
       .then((data) => {
         setCurrencyData(data);
-        setStatus('loaded');
+        setStatus("loaded");
       })
       .catch((error) => {
-        setStatus('error');
+        setStatus("error");
         console.error(`Error fetching currency Data: ${error}`);
       });
   }, []);
 
+  useEffect(() => {
+    fetch("https://api.rdedigital.com/api/v2/fuel_price")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Respuesta de red inesperada: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setFuelPrice(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(`Error en la solicitud: ${error}`);
+        setIsLoading(false); // Asegúrate de manejar el estado de isLoading incluso en caso de error.
+      });
+  }, []); // Dependencia vacía para ejecutar esta solicitud solo una vez
+  
   // Verificar si currencyData.data existe antes de mapearlo
   if (currencyData.data && currencyData.data.length > 0) {
     currencyData.data.forEach((element) => {
@@ -58,55 +115,78 @@ const Header = ({ isDarkMode }) => {
 
   const links = [
     {
-      url: "/politica",
-      name: "Politica",
+      url: "/",
+      name: "Portada",
+    },
+    {
+      url: "/opinion",
+      name: "Opinión",
+    },
+    {
+      url: "/el_pais",
+      name: "El País",
     },
     {
       url: "/economia",
-      name: "Economia",
+      name: "Economía",
     },
     {
-      url: "/arteria",
-      name: "Arteria",
+      url: "/tecnologia",
+      name: "Tecnología",
     },
     {
-      url: "/ensamble",
-      name: "Ensamble",
+      url: "/cultura",
+      name: "Cultura",
     },
     {
-      url: "/intervista",
-      name: "Intervista",
+      url: "/deporte",
+      name: "Deportes",
     },
     {
-      url: "/el_scout",
-      name: "El Scout",
-    },
-    {
-      url: "/el_menaje",
-      name: "El Menaje",
-    },
-    {
-      url: "/paraiso",
-      name: "Paraíso",
-    },
-    {
-      url: "/chinazo",
-      name: "El Chinazo",
+      url: "/trending",
+      name: "Trending",
     },
   ];
-  
+  const enlaces = [
+    {
+      url: "/",
+      name: "Portada",
+    },
+  ];
+  // console.log(categories)
+  categories.map((element, index) => {
+    let data = {
+      url: `/${element.category_post}`,
+      name: `${element.category_post}`,
+    };
+    enlaces.push(data);
+  });
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+
     setShouldHideMenu(false); // Cuando se abre el menú, no se debe ocultar
   };
   const toggleModal = () => {
- 
     setIsModalOpen(!isModalOpen);
-  }
-  const closeMenu = () => {
-    setShouldHideMenu(true); // Cuando se cierra el menú, se debe ocultar
-    setIsMenuOpen(false);
   };
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setShouldHideMenu(true); // Establece shouldHideMenu en true al cerrar el menú
+  };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (menuRef.current && !menuRef.current.contains(event.target)) {
+  //       closeMenu();
+  //     }
+  //   };
+
+  //   document.addEventListener("click", handleClickOutside);
+
+  //   return () => {
+  //     document.removeEventListener("click", handleClickOutside);
+  //   };
+  // }, []);
 
   const handleSearchClick = () => {
     // Aquí puedes agregar la lógica de búsqueda que desees
@@ -114,8 +194,6 @@ const Header = ({ isDarkMode }) => {
     console.log("Se hizo clic en el icono de búsqueda");
     // También puedes realizar otras acciones aquí, como mostrar un cuadro de diálogo de búsqueda.
   };
-
-  
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -135,20 +213,23 @@ const Header = ({ isDarkMode }) => {
     "Sábado",
   ];
   const mesesDelAño = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
+    "enero",
+    "febrero",
+    "marzo",
+    "abril",
+    "mayo",
+    "junio",
+    "julio",
+    "agosto",
+    "septiembre",
     "Octubre",
-    "Noviembre",
-    "Diciembre",
+    "noviembre",
+    "diciembre",
   ];
 
+  // console.log(enlaces)
+  console.log(mesesDelAño[currentMonth]);
+console.log(fuelPrice)
   return (
     <>
       <header className={`Header ${isDarkMode ? "dark-mode" : "light-mode"}`}>
@@ -163,43 +244,63 @@ const Header = ({ isDarkMode }) => {
               </span>
               <Logo />
               <Navegation
+                ref={menuRef}
                 className={`${isMenuOpen ? "show_menu" : ""} ${
                   shouldHideMenu ? "hidden_menu" : ""
                 }`}
+                onClose={closeMenu}
               >
-                {links.map((link, index) => (
+                {enlaces.map((enlace, index) => (
                   <LinksNavegacion
                     key={index}
-                    url={link.url}
-                    name={link.name}
-                    onClick={closeMenu} // Cerrar el menú cuando se hace clic en un enlace
+                    url={enlace.url}
+                    name={enlace.name}
+                    onClick={closeMenu} //// Cerrar el menú cuando se hace clic en un enlace
+                    closeMenu={closeMenu}
                   />
                 ))}
               </Navegation>
-              <span
-            className="material-symbols-outlined search-icon"
-            onClick={toggleModal}
-          >
-            search
-          </span>
-            
-              
+              {isModalOpen ? (
+                <span
+                  class="material-symbols-outlined close-icon"
+                  onClick={toggleModal}
+                >
+                  close
+                </span>
+              ) : (
+                <span
+                  className="material-symbols-outlined search-icon"
+                  onClick={toggleModal}
+                >
+                  search
+                </span>
+              )}
             </section>
           </div>
         </div>
       </header>
+      <ProgramsBar />
       <section className="info-section">
         <section className="info-section--container">
+          
           <p className="timer-date-information">
-            <span>{`${daysOfWeek[currentDay]}, ${mesesDelAño[currentMonth]} ${currentDayNumber}, ${currentYear}`}</span>
+            <span>{`${daysOfWeek[currentDay]}, ${currentDayNumber} de ${mesesDelAño[currentMonth]} de ${currentYear}`}</span>
             <span className="line">|</span>
-            <span>Compra:</span> {Buy} DOP <span>/</span> <span>Venta:</span> {Sell} DOP
+            <span>Compra:</span>{Buy} DOP <span>/</span> <span>Venta:</span>
+            {Sell} DOP
+            <span className="line">|</span>
+            {fuelPrice.map((element, index) => (
+              <React.Fragment>
+                {/* <span className="fuel_name"> Combustible: </span> */}
+                <span>{element.combustible}</span>:{element.precio}
+                <span className="line">|</span>
+              </React.Fragment>
+            ))}
           </p>
-         
         </section>
       </section>
-      {isModalOpen && <ModelSearch stado={isModalOpen} />}
 
+      {isModalOpen && <ModelSearch stado={isModalOpen} />}
     </>
   );
 };
