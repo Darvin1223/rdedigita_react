@@ -3,7 +3,8 @@ import "./LastNews.scss"; // Asegúrate de tener el archivo de estilos correcto
 import { Link } from "react-router-dom";
 
 import arteria from "../../assets/img/Arteria_mobile.png";
-
+import anuncio17 from "./../../assets/img/Anuncios/17.png";
+import anuncio18 from "./../../assets/img/Anuncios/18.png";
 const LastNews = () => {
   const urlApiLatestPosts = "https://api.rdedigital.com/api/v2/lastestPost";
   const [isLoading, setIsLoading] = useState(true);
@@ -65,7 +66,7 @@ const LastNews = () => {
                 </Link>
                 <picture className="anuncios desktop_show">
                   <Link className="anuncio_container">
-                    <img src={arteria} className="anuncio" />
+                    <img src={anuncio17} className="anuncio" />
                   </Link>
                   
                     <Link class="news_container--link news_container_first news_Extra" to="/news/">
@@ -218,7 +219,7 @@ const LastNews = () => {
                       <picture className="anuncios">
                         <a>
                           {" "}
-                          <img src={arteria} className="anuncio" />
+                          <img src={anuncio18} className="anuncio" />
                         </a>
                       </picture>
                     </>

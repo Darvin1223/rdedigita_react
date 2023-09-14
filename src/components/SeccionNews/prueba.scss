@@ -231,11 +231,13 @@
             flex-direction: column;
             border-bottom: none;
             .news--title {
-              font-size: 3.5rem;
-              line-height: 3.7rem;
-              margin-bottom: 1rem;
-              /* text-wrap: balance; */
-              letter-spacing: 0;
+              text-wrap: balance;
+              font-size: 2.3rem;
+              letter-spacing: -1px;
+              line-height: 2.5rem;
+              margin-bottom: 1.8rem;
+              position: relative;
+              text-align: left;
             }
             .news-image {
               height: 40rem;
@@ -255,6 +257,12 @@
             display: flex;
             justify-content: space-evenly;
             align-items: center;
+            .anuncio_container {
+              border-right: solid 0.1rem #fff;
+              padding: 2rem 2rem 2rem 0;
+              margin-right: 2rem;
+              height: 272px;
+          }
             img{
               width: 22rem;
             }
@@ -284,6 +292,9 @@
             display: flex;
             flex-direction: column;
             border-bottom: none;
+            
+           
+          
             .news--title {
               font-size: 2.3rem;
               margin-bottom: 1.2rem;
@@ -357,7 +368,17 @@
           border-right: none;
           padding-right: 2rem;
           height: 96%;
+       
 
+          a:nth-child(2) {
+            article {
+              border-bottom: solid 0.1rem #fff;
+              margin-bottom: 2rem;
+              .news-extract {
+                border: none;
+              }
+            }
+          }
           a:nth-child(3) {
             article {
               .news-extract {

@@ -1,5 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+// Anuncios
+import anuncio1 from "./../../assets/img/Anuncios/1.png";
+import anuncio2 from "./../../assets/img/Anuncios/2.png";
+import anuncio3 from "./../../assets/img/Anuncios/3.png";
+import anuncio4 from "./../../assets/img/Anuncios/4.png";
+import anuncio5 from "./../../assets/img/Anuncios/5.png";
+import anuncio6 from "./../../assets/img/Anuncios/6.png";
+import anuncio7 from "./../../assets/img/Anuncios/7.png";
+import anuncio8 from "./../../assets/img/Anuncios/8.png";
+import anuncio9 from "./../../assets/img/Anuncios/9.png";
+import anuncio10 from "./../../assets/img/Anuncios/10.png";
+import anuncio11 from "./../../assets/img/Anuncios/11.png";
+import anuncio12 from "./../../assets/img/Anuncios/12.png";
+import anuncio13 from "./../../assets/img/Anuncios/13.png";
+import anuncio14 from "./../../assets/img/Anuncios/14.png";
+import anuncio15 from "./../../assets/img/Anuncios/15.png";
+import anuncio16 from "./../../assets/img/Anuncios/16.png";
+import anuncio17 from "./../../assets/img/Anuncios/17.png";
+import anuncio18 from "./../../assets/img/Anuncios/18.png";
 import "./prueba.scss";
 import DOMPurify from "dompurify";
 
@@ -16,14 +36,15 @@ import Internacional from "./../../assets/img/rde 2.png";
 import elMenaje_Mobile from "../../assets/img/ElMenaje_Mobile.png";
 import Intervista_Mobile from "../../assets/img/Intervista_Mobile.png";
 import Arteria_Mobile from "./../../assets/img/Arteria_mobile.png";
-// import Deportes_Mobile from "./../../assets/img/Deportes_Mobile.png";
+import Deportes_Mobile from "./../../assets/img/Mobile Generico 3.png";
 import Paraiso_Mobile from "./../../assets/img/Paraiso_mobile.png";
 import Politica_Mobile from "./../../assets/img/Politica_Mobile.png";
 import Economia_Mobile from "./../../assets/img/Economia_Mobile.png";
 import Farandula_Mobile from "./../../assets/img/Farandula_mobile.png";
 import Arteria from "./../../assets/img/Economia_Mobile.png";
 const API_POSTS = "https://api.rdedigital.com/api/v2/posts/";
-const POSTS_PER_CATEGORY = 6;
+
+
 
 const Prueba = () => {
   const [sections, setSections] = useState({});
@@ -71,17 +92,21 @@ const Prueba = () => {
       url: "/opinion",
       ourName: "Opinión",
       banner: Opinion,
-      banner_mobile: Opinion,
+      banner_mobile: Intervista_Mobile,
       banner_tablet: Opinion,
+      anuncio_1: anuncio1,
+      anuncio_2: anuncio2
     },
     {
       id: 2,
       originalName: "Internacional",
       url: "/internacional",
       ourName: "Internacional",
-      banner: Internacional,
-      banner_mobile: Internacional,
+      banner: Sociedad,
+      banner_mobile: Politica_Mobile,
       banner_tablet: Internacional,
+      anuncio_1: anuncio3,
+      anuncio_2: anuncio4
     },
     {
       id: 3,
@@ -89,8 +114,10 @@ const Prueba = () => {
       url: "/sociedad",
       ourName: "Sociedad",
       banner: Sociedad,
-      banner_mobile: Sociedad,
+      banner_mobile: Politica_Mobile,
       banner_tablet: Sociedad,
+      anuncio_1: anuncio5,
+      anuncio_2: anuncio6
     },
     {
       id: 4,
@@ -100,6 +127,8 @@ const Prueba = () => {
       banner: Economia,
       banner_mobile: Economia_Mobile,
       banner_tablet: Economia_Mobile,
+      anuncio_1: anuncio7,
+      anuncio_2: anuncio8
     },
     {
       id: 5,
@@ -109,6 +138,8 @@ const Prueba = () => {
       banner: Economia,
       banner_mobile: elMenaje_Mobile,
       banner_tablet: elMenaje_Mobile,
+      anuncio_1: anuncio9,
+      anuncio_2: anuncio10
     },
     {
       id: 6,
@@ -116,8 +147,10 @@ const Prueba = () => {
       url: "/deporte",
       ourName: "Deportes",
       banner: Deportes,
-      banner_mobile: Deportes,
+      banner_mobile:Deportes_Mobile ,
       banner_tablet: Deportes,
+      anuncio_1: anuncio11,
+      anuncio_2: anuncio12
     },
     {
       id: 7,
@@ -125,17 +158,21 @@ const Prueba = () => {
       url: "/cultura",
       ourName: "Cultura",
       banner: Cultura,
-      banner_mobile: Cultura,
+      banner_mobile: Arteria_Mobile,
       banner_tablet: Cultura,
+      anuncio_1: anuncio13,
+      anuncio_2: anuncio14
     },
     {
       id: 8,
       originalName: "Gente",
       url: "/gente",
       ourName: "Gente",
-      banner: El_Pais,
-      banner_mobile: El_Pais,
+      banner: Opinion,
+      banner_mobile: Farandula_Mobile,
       banner_tablet: El_Pais,
+      anuncio_1: anuncio15,
+      anuncio_2: anuncio16
     },
   ];
 
@@ -147,6 +184,7 @@ const Prueba = () => {
             if (categoryName !== "Noticiero") {
               return sections[categoryName].length > 0
                 ? categories.map((categorie) =>
+                 
                     categorie.originalName === categoryName ? (
                       <section
                         className="conteiner_news_break"
@@ -188,10 +226,13 @@ const Prueba = () => {
                           </Link>
                           <section className="news_container">
                             <section className="first-news-container">
+                              {console.log(sections)}
                               {sections[categoryName]
                                 .slice(0, 1)
                                 .map((newsElement, index) => (
+                                 
                                   <React.Fragment key={newsElement.id_wordpress}>
+                                 
                                     <section>
                                       <Link
                                         className="news_container--link"
@@ -223,13 +264,10 @@ const Prueba = () => {
                                       </Link>
                                     </section>
                                     <picture className="anuncios">
-                                      <a>
-                                        {" "}
-                                        <img
-                                          src={Arteria}
-                                          className="anuncio"
-                                        />
-                                      </a>
+                                  
+                                      <Link className="anuncio_container" to="/">
+                                        <img src={categorie.anuncio_1} className="anuncio" />
+                                        </Link>
 
                                       <Link
                                         class="news_container--link news_container_first"
@@ -397,9 +435,9 @@ const Prueba = () => {
                                         <>
                                           <picture className="anuncios">
                                             <a>
-                                              {" "}
+                                             
                                               <img
-                                                src={Economia_Mobile}
+                                                src={categorie.anuncio_2}
                                                 className="anuncio"
                                               />
                                             </a>
